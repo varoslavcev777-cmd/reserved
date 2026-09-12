@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Noira Reserve</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #fff;
+      color: #111;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 78px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+
+    .logo {
+      position: absolute;
+      left: 6%;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 34px;
+    }
+
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: opacity .25s;
+    }
+
+    nav a:hover {
+      opacity: .45;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+    }
+
+    .hero-content {
+      animation: appear 1.4s ease forwards;
+    }
+
+    .brand-name {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(85px, 15vw, 190px);
+      font-weight: 400;
+      line-height: .9;
+      color: #080808;
+      white-space: nowrap;
+    }
+
+    .tagline {
+      margin-top: 34px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 17px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .location {
+      margin-top: 14px;
+      font-size: 9px;
+      letter-spacing: 5px;
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    .scroll::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 32px;
+      background: #bbb;
+      margin: 12px auto 0;
+    }
+
+    /* PRODUCTS */
+
+    .section {
+      padding: 120px 6%;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 42px;
+      font-weight: 500;
+      letter-spacing: -1px;
+    }
+
+    .section-heading span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #999;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product {
+      cursor: pointer;
+      position: relative;
+      background: #f7f7f5;
+      border: 1px solid #ededeb;
+      border-radius: 20px;
+      padding: 12px;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 55px rgba(0,0,0,.09);
+    }
+
+    .product-image {
+      height: 430px;
+      border-radius: 14px;
+      background: linear-gradient(145deg,#eeeeec,#fafafa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .shirt {
+      width: 175px;
+      height: 205px;
+      background: #111;
+      clip-path:
+NDOW -->
+
+  <div class="modal" id="productModal">
+
+    <div class="modal-box">
+
+      <button class="close" onclick="closeProduct()">
+        ×
+      </button>
+
+      <div class="modal-image">
+
+        <div class="shirt" id="modalShirt">
+          <span>NR</span>
+        </div>
+
+      </div>
+
+      <div class="modal-info">
+
+        <h2 id="modalName">
+          NOIRA TEE
+        </h2>
+
+        <div class="modal-price" id="modalPrice">
+          €59
+        </div>
+
+        <p id="modalDescription">
+          Premium heavyweight piece created for the
+          Noira Reserve collection. Clean silhouette,
+          minimal branding and timeless design.
+        </p>
+
+        <button class="buy" onclick="addToCart()">
+          ADD TO CART
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="cart" id="cart">
+    CART:
+    <span id="cartCount">0</span>
+  </div>
+
+  <footer>
+
+    <span>
+      © 2026 NOIRA RESERVE
+    </span>
+
+    <span>
+      LONDON — PARIS
+    </span>
+
+  </footer>
+
+  <script>
+
+    let cartCount = 0;
+
+    function openProduct(name, type, price, color) {
+
+      document.getElementById("modalName").textContent = name;
+      document.getElementById("modalPrice").textContent = price;
+
+      const shirt = document.getElementById("modalShirt");
+
+      if (color === "white") {
+        shirt.style.background = "#e8e8e6";
+        shirt.querySelector("span").style.color = "#111";
+      }
+
+      else if (color === "gray") {
+        shirt.style.background = "#555";
+        shirt.querySelector("span").style.color = "#fff";
+      }
+
+      else {
+        shirt.style.background = "#111";
+        shirt.querySelector("span").style.color = "#fff";
+      }
+
+      document.getElementById("productModal")
+        .classList.add("active");
+
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProduct() {
+
+      document.getElementById("productModal")
+        .classList.remove("active");
+
+      document.body.style.overflow = "";
+    }
+
+    function addToCart() {
+
+      cartCount++;
+
+      document.getElementById("cartCount")
+        .textContent = cartCount;
+
+      closeProduct();
+
+      alert("Товар добавлен в корзину.");
+    }
+
+    document.getElementById("productModal")
+      .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+          closeProduct();
+        }
+
+      });
+
+    document.addEventListener("keydown", function(event) {
+
+      if (event.key === "Escape") {
+        closeProduct();
+      }
+
+    });
+
+  </script>
+
+</body>
+</html> polygon
+ader {
+        height: 65px;
+      }
+
+      .logo {
+        display: none;
+      }
+
+      nav {
+        gap: 18px;
+      }
+
+      nav a {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .brand-name {
+        font-size: 85px;
+      }
+
+      .tagline {
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 360px;
+      }
+
+      .modal-box {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-image {
+        min-height: 300px;
+      }
+
+      .modal-info {
+        padding: 15px;
+      }
+
+      .about {
+        padding: 65px 25px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">NOIRA RESERVE</div>
+
+    <nav>
+      <a href="#new">Новинки</a>
+      <a href="#collection">Коллекция</a>
+      <a href="#about">О бренде</a>
+      <a href="#cart">Корзина</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="brand-name">
+          Noira Reserve
+        </div>
+
+        <div class="tagline">
+          London — Paris — Digital Luxury
+        </div>
+
+        <div class="location">
+          Crafted for those who move differently
+        </div>
+
+      </div>
+
+      <div class="scroll">
+        Discover
+      </div>
+
+    </section>
+
+    <section class="section" id="new">
+
+      <div class="section-heading">
+        <h2>New Collection</h2>
+        <span>03 / RESERVE</span>
+      </div>
+
+      <div class="products">
+
+        <article class="product" onclick="openProduct(
+          'NOIRA TEE / BLACK',
+          'Heavyweight T-Shirt',
+          '€59',
+          'black'
+        )">
+
+          <div class="product-image">
+            <div class="shirt">
+              <span>NR</span>
+            </div>
+          </div>
+
+          <div class="product-info">
+            <div>
+              <div class="product-name">
+                NOIRA TEE / BLACK
+              </div>
+
+              <div class="product-type">
+                Heavyweight T-Shirt
+              </div>
+            </div>
+
+            <div class="price">
+              €59
+            </div>
+          </div>
+
+        </article>
+
+        <article class="product" onclick="openProduct(
+          'NOIRA TEE / WHITE',
+          'Heavyweight T-Shirt',
+          '€59',
+          'white'
+        )">
+
+          <div class="product-image">
+            <div class="shirt" style="background:#e8e8e6;">
+              <span style="color:#111;">NR</span>
+            </div>
+          </div>
+
+          <div class="product-info">
+            <div>
+              <div class="product-name">
+                NOIRA TEE / WHITE
+              </div>
+
+              <div class="product-type">
+                Heavyweight T-Shirt
+              </div>
+            </div>
+
+            <div class="price">
+              €59
+            </div>
+          </div>
+
+        </article>
+
+        <article class="product" onclick="openProduct(
+          'NOIRA RESERVE HOODIE',
+          'Premium Hoodie',
+          '€119',
+          'gray'
+        )">
+
+          <div class="product-image">
+            <div class="shirt" style="background:#555;">
+              <span>NR</span>
+            </div>
+          </div>
+
+          <div class="product-info">
+            <div>
+              <div class="product-name">
+                NOIRA RESERVE HOODIE
+              </div>
+
+              <div class="product-type">
+                Premium Hoodie
+              </div>
+            </div>
+
+            <div class="price">
+              €119
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="about" id="about">
+
+      <h2>Quiet Luxury.</h2>
+
+      <p>
+        Noira Reserve — это эстетика Лондона и Парижа,
+        соединённая с духом новой цифровой экономики.
+        Минимализм, качество и характер без необходимости
+        что-либо доказывать.
+      </p>
+
+    </section>
+
+  </main>
+
+  <!-- PRODUCT WI
+(
+        25% 0,
+        42% 10%,
+        50% 17%,
+        58% 10%,
+        75% 0,
+        100% 20%,
+        85% 42%,
+        72% 32%,
+        72% 100%,
+        28% 100%,
+        28% 32%,
+        15% 42%,
+        0 20%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .5s ease;
+    }
+
+    .product:hover .shirt {
+      transform: scale(1.06);
+    }
+
+    .shirt span {
+      color: white;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      transform: translateY(15px);
+    }
+
+    .product-info {
+      padding: 19px 5px 5px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+    }
+
+    .product-name {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .product-type {
+      margin-top: 6px;
+      font-size: 10px;
+      color: #999;
+      letter-spacing: .5px;
+    }
+
+    .price {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* ABOUT */
+
+    .about {
+      margin: 40px 6% 120px;
+      padding: 100px 30px;
+      background: #0d0d0d;
+      color: white;
+      border-radius: 28px;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 7vw, 75px);
+      font-weight: 400;
+      letter-spacing: -2px;
+    }
+
+    .about p {
+      max-width: 580px;
+      margin: 30px auto 0;
+      color: #999;
+      font-size: 12px;
+      line-height: 2;
+      letter-spacing: .5px;
+    }
+
+    /* PRODUCT MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(900px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      background: white;
+      border-radius: 25px;
+      padding: 20px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .modal-image {
+      min-height: 500px;
+      border-radius: 18px;
+      background: linear-gradient(145deg,#eeeeec,#fafafa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .modal-info h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 48px;
+      font-weight: 500;
+    }
+
+    .modal-info .modal-price {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    .modal-info p {
+      margin-top: 25px;
+      color: #777;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      z-index: 5;
+      border: 0;
+      background: none;
+      font-size: 25px;
+      cursor: pointer;
+      color: #111;
+    }
+
+    .buy {
+      margin-top: 30px;
+      border: 0;
+      background: #111;
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: 2px;
+      transition: opacity .2s;
+    }
+
+    .buy:hover {
+      opacity: .7;
+    }
+
+    /* CART */
+
+    .cart {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 200;
+      padding: 15px 21px;
+      border-radius: 50px;
+      background: #111;
+      color: white;
+      font-size: 10px;
+      letter-spacing: 2px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.18);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 6%;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      color: #999;
+      font-size: 9px;
+      letter-spacing: 2px;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    max-width: 800px {
+
+      he
