@@ -9,23 +9,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
 
 <style>
 
 /* =========================================================
    NOIRA RESERVE
-   LUXURY FASHION EXPERIENCE
+   EDITORIAL LUXURY FASHION WEBSITE
 ========================================================= */
 
 :root{
-    --black:#080808;
-    --deep:#0c0c0c;
-    --cream:#f2efe8;
-    --gold:#d99a55;
-    --orange:#ef7c29;
-    --grey:#85827d;
-    --line:rgba(255,255,255,.11);
+    --black:#0b0b0b;
+    --black2:#11110f;
+    --cream:#eeeae1;
+    --paper:#e7e3da;
+    --white:#f7f5ef;
+    --muted:#85827b;
+    --gold:#b9854b;
+    --orange:#d86d32;
+    --line:rgba(255,255,255,.14);
+    --darkline:rgba(0,0,0,.13);
 }
 
 *{
@@ -40,43 +43,49 @@ html{
 
 body{
     background:var(--black);
-    color:white;
+    color:var(--white);
     font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
 }
 
 button,
 a{
-    -webkit-tap-highlight-color:transparent;
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
 }
 
 /* =========================================================
    PAGE TRANSITION
 ========================================================= */
 
-.page-transition{
+.transition{
     position:fixed;
     inset:0;
-    background:#050505;
+    background:#080808;
     z-index:99999;
     pointer-events:none;
     opacity:0;
-    transition:opacity .55s cubic-bezier(.2,.7,.2,1);
+    transition:opacity .5s cubic-bezier(.2,.7,.2,1);
 }
 
-body.transitioning .page-transition{
+body.is-changing .transition{
     opacity:1;
 }
 
 /* =========================================================
-   NAVIGATION
+   NAV
 ========================================================= */
 
 .nav{
     position:fixed;
-    z-index:1000;
+    z-index:5000;
+
     top:0;
     left:0;
+
     width:100%;
     height:76px;
 
@@ -86,58 +95,68 @@ body.transitioning .page-transition{
 
     padding:0 42px;
 
-    border-bottom:1px solid rgba(255,255,255,.07);
+    border-bottom:1px solid rgba(255,255,255,.08);
 
-    background:rgba(5,5,5,.27);
+    background:rgba(8,8,8,.35);
 
-    backdrop-filter:blur(24px) saturate(130%);
-    -webkit-backdrop-filter:blur(24px) saturate(130%);
+    backdrop-filter:blur(22px) saturate(130%);
+    -webkit-backdrop-filter:blur(22px) saturate(130%);
+
+    transition:
+        background .4s ease,
+        border .4s ease;
+}
+
+.nav.scrolled{
+    background:rgba(8,8,8,.82);
 }
 
 .nav-logo{
     color:white;
     text-decoration:none;
 
-    font-size:12px;
-    font-weight:500;
+    font-size:11px;
     letter-spacing:4px;
-
-    transition:opacity .3s ease;
+    font-weight:500;
 }
 
-.nav-logo:hover{
-    opacity:.65;
-}
-
-.nav-center{
+.nav-middle{
     position:absolute;
     left:50%;
     transform:translateX(-50%);
 
     font-family:"Cormorant Garamond",serif;
 
-    font-size:18px;
+    font-size:17px;
     letter-spacing:4px;
 }
 
-.nav-right{
+.nav-links{
     display:flex;
-    gap:28px;
+    gap:30px;
 }
 
 .nav-link{
     color:#aaa;
     text-decoration:none;
 
-    font-size:9px;
-    letter-spacing:2px;
+    font-size:8px;
+    letter-spacing:2.5px;
     text-transform:uppercase;
 
     transition:.3s ease;
 }
 
 .nav-link:hover{
-    color:white;
+    color:#fff;
+}
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#homePage{
+    display:block;
 }
 
 /* =========================================================
@@ -148,822 +167,141 @@ body.transitioning .page-transition{
     position:relative;
 
     height:100vh;
-    min-height:680px;
+    min-height:720px;
 
     overflow:hidden;
 
     display:flex;
-    align-items:center;
-    justify-content:center;
+    align-items:flex-end;
 
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(196,103,37,.13),
-            transparent 35%
-        ),
-        #070707;
+    background:#111;
 
     isolation:isolate;
 }
 
-/* cinematic image layers */
+/* main photograph */
 
-.hero-image{
-    position:absolute;
-    inset:-8%;
-
-    background-size:cover;
-    background-position:center;
-
-    opacity:.28;
-
-    filter:
-        saturate(.65)
-        contrast(1.08)
-        brightness(.55);
-
-    transform:scale(1.05);
-
-    transition:
-        transform 2s cubic-bezier(.2,.7,.2,1);
-
-    z-index:-10;
-}
-
-.hero-image.one{
-    background-image:
-        linear-gradient(
-            rgba(8,8,8,.45),
-            rgba(8,8,8,.75)
-        ),
-        url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=2400&q=90");
-}
-
-.hero-image.two{
-    background-image:
-        linear-gradient(
-            rgba(8,8,8,.55),
-            rgba(8,8,8,.8)
-        ),
-        url("https://images.unsplash.com/photo-1520986606214-8b456906c813?auto=format&fit=crop&w=2400&q=90");
-
-    opacity:.12;
-
-    mix-blend-mode:screen;
-
-    animation:
-        imageFloat 18s ease-in-out infinite alternate;
-}
-
-@keyframes
-    ageFloat{
-
-    from{
-        transform:scale(1.05) translate3d(-1%,0,0);
-    }
-
-    to{
-        transform:scale(1.11) translate3d(1%, -1%,0);
-    }
-}
-
-/* dark cinematic gradient */
-
-.hero::before{
-    content:"";
-
+.hero-photo{
     position:absolute;
     inset:0;
 
-    background:
+    background-image:
         linear-gradient(
             90deg,
-            rgba(0,0,0,.72),
-            transparent 35%,
-            transparent 65%,
-            rgba(0,0,0,.72)
+            rgba(0,0,0,.70),
+            rgba(0,0,0,.08) 52%,
+            rgba(0,0,0,.48)
         ),
         linear-gradient(
             0deg,
-            rgba(0,0,0,.82),
-            transparent 45%,
-            rgba(0,0,0,.4)
-        );
-
-    z-index:-7;
-}
-
-/* =========================================================
-   LIQUID LIGHT
-========================================================= */
-
-.light-orb{
-    position:absolute;
-
-    width:430px;
-    height:430px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(245,145,62,.25),
-            rgba(220,110,35,.07) 38%,
-            transparent 70%
-        );
-
-    filter:blur(35px);
-
-    pointer-events:none;
-
-    z-index:-4;
-
-    animation:
-        orbFloat 10s ease-in-out infinite;
-}
-
-.orb-one{
-    left:10%;
-    top:18%;
-}
-
-.orb-two{
-    right:5%;
-    bottom:8%;
-    width:330px;
-    height:330px;
-    animation-delay:-4s;
-}
-
-@keyframes orbFloat{
-
-    0%,100%{
-        transform:translate3d(0,0,0) scale(.92);
-        opacity:.55;
-    }
-
-    50%{
-        transform:translate3d(30px,-25px,0) scale(1.08);
-        opacity:.9;
-    }
-}
-
-/* =========================================================
-   ABSTRACT ART PANELS
-========================================================= */
-
-.art-panel{
-    position:absolute;
-
-    width:210px;
-    height:280px;
-
-    overflow:hidden;
-
-    border:1px solid rgba(255,255,255,.13);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.12),
-            rgba(255,255,255,.02)
-        );
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.45);
-
-    backdrop-filter:blur(8px);
-
-    opacity:.42;
-
-    z-index:-3;
-
-    transition:
-        transform 1.4s cubic-bezier(.2,.7,.2,1);
-}
-
-.art-panel::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
+            rgba(0,0,0,.75),
+            transparent 55%
+        ),
+        url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=2400&q=92");
 
     background-size:cover;
     background-position:center;
 
-    filter:
-        saturate(.75)
-        contrast(1.05);
-
-    opacity:.75;
-}
-
-.art-panel::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(220,150,80,.18),
-            transparent 45%,
-            rgba(0,0,0,.45)
-        );
-}
-
-.art-one{
-    left:7%;
-    top:22%;
-    transform:rotate(-7deg);
-}
-
-.art-one::before{
-    background-image:
-        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85");
-}
-
-.art-two{
-    right:8%;
-    top:19%;
-    width:175px;
-    height:235px;
-    transform:rotate(8deg);
-    animation:
-        panelFloatTwo 11s ease-in-out infinite;
-}
-
-.art-two::before{
-    background-image:
-        url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=85");
-}
-
-@keyframes panelFloatTwo{
-
-    0%,100%{
-        transform:rotate(8deg) translateY(0);
-    }
-
-    50%{
-        transform:rotate(5deg) translateY(-18px);
-    }
-}
-
-/* =========================================================
-   LEAVES
-========================================================= */
-
-.leaves{
-    position:absolute;
-    inset:0;
-
-    pointer-events:none;
-
-    z-index:-1;
-
-    overflow:hidden;
-}
-
-.leaf{
-    position:absolute;
-
-    width:34px;
-    height:17px;
-
-    border-radius:
-        100% 0 100% 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(221,171,98,.9),
-            rgba(104,66,35,.55)
-        );
-
-    opacity:0;
-
-    filter:
-        drop-shadow(0 7px 10px rgba(0,0,0,.25));
+    transform:scale(1.04);
 
     animation:
-        leafFly linear infinite;
+        heroZoom 16s ease-in-out infinite alternate;
+
+    z-index:-5;
 }
 
-.leaf::after{
-    content:"";
-
-    position:absolute;
-
-    width:1px;
-    height:100%;
-
-    left:50%;
-
-    background:rgba(255,220,160,.35);
-
-    transform:rotate(35deg);
-}
-
-.leaf:nth-child(1){
-    left:10%;
-    animation-du
-    ration:13s;
-    animation-delay:-2s;
-}
-
-.leaf:nth-child(2){
-    left:27%;
-    animation-duration:17s;
-    animation-delay:-9s;
-    transform:scale(.65);
-}
-
-.leaf:nth-child(3){
-    left:48%;
-    animation-duration:15s;
-    animation-delay:-4s;
-    transform:scale(.8);
-}
-
-.leaf:nth-child(4){
-    left:68%;
-    animation-duration:19s;
-    animation-delay:-13s;
-    transform:scale(.55);
-}
-
-.leaf:nth-child(5){
-    left:84%;
-    animation-duration:14s;
-    animation-delay:-7s;
-    transform:scale(.7);
-}
-
-.leaf:nth-child(6){
-    left:58%;
-    animation-duration:22s;
-    animation-delay:-18s;
-    transform:scale(.45);
-}
-
-@keyframes leafFly{
-
-    0%{
-        top:-15%;
-        opacity:0;
-        transform:
-            translateX(-40px)
-            rotate(0deg);
-    }
-
-    10%{
-        opacity:.55;
-    }
-
-    50%{
-        transform:
-            translateX(90px)
-            rotate(220deg);
-    }
-
-    80%{
-        opacity:.35;
-    }
-
-    100%{
-        top:110%;
-        opacity:0;
-        transform:
-            translateX(-80px)
-            rotate(480deg);
-    }
-}
-
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-.particles{
-    position:absolute;
-    inset:0;
-
-    z-index:-2;
-
-    overflow:hidden;
-
-    pointer-events:none;
-}
-
-.particle{
-    position:absolute;
-
-    width:2px;
-    height:2px;
-
-    border-radius:50%;
-
-    background:#e3a05e;
-
-    opacity:0;
-
-    animation:
-        particleRise linear infinite;
-}
-
-@keyframes particleRise{
-
-    0%{
-        transform:translateY(100px) scale(.3);
-        opacity:0;
-    }
-
-    20%{
-        opacity:.45;
-    }
-
-    75%{
-        opacity:.18;
-    }
-
-    100%{
-        transform:translateY(-100vh) scale(1);
-        opacity:0;
-    }
-}
-
-/* =========================================================
-   HERO CENTER
-========================================================= */
-
-.hero-content{
-    position:relative;
-
-    z-index:20;
-
-    text-align:center;
-
-    padding:20px;
-
-    animation:
-        heroEntrance 1.8s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
-
-    opacity:0;
-}
-
-@keyframes heroEntrance{
-
-    0%{
-        opacity:0;
-        transform:
-            translateY(35px)
-            scale(.97);
-
-        filter:blur(14px);
-    }
-
-    55%{
-        opacity:1;
-    }
-
-    100%{
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-        filter:blur(0);
-    }
-}
-
-/* glass halo behind logo */
-
-.logo-halo{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-54%);
-
-    width:560px;
-    height:240px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(255,160,75,.12),
-            transparent 68%
-        );
-
-    filter:blur(22px);
-
-    z-index:-1;
-
-    animation:
-        haloPulse 6s ease-in-out infinite;
-}
-
-@keyframes haloPulse{
-
-    0%,100%{
-        transform:
-            translate(-50%,-54%)
-            scale(.92);
-        opacity:.55;
-    }
-
-    50%{
-        transform:
-            translate(-50%,-54%)
-            scale(1.08);
-        opacity:1;
-    }
-}
-
-/* small upper label */
-
-.eyebrow{
-    font-size:8px;
-
-    letter-spacing:6px;
-
-    text-transform:uppercase;
-
-    color:#b8b3ab;
-
-    margin-bottom:27px;
-
-    opacity:0;
-
-    animation:
-        textReveal 1s
-        .45s
-        cubic-bezier(.2,.7,.2,1)
-        forwards;
-}
-
-/* MAIN LOGO */
-
-.brand{
-    font-family:"Great Vibes",cursive;
-
-    font-size:
-        clamp(75px,11vw,155px);
-
-    line-height:.78;
-
-    font-weight:400;
-
-    color:#f4efe7;
-
-    white-space:nowrap;
-
-    letter-spacing:-2px;
-
-    text-shadow:
-        0 0 30px rgba(255,170,90,.1),
-        0 15px 50px rgba(0,0,0,.35);
-
-    opacity:0;
-
-    animation:
-        logoReveal 1.7s
-        .25s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
-}
-
-@keyframes logoReveal{
-
-    0%{
-        opacity:0;
-
-        transform:
-            translateY(22px)
-            scale(.92);
-
-        filter:
-            blur(18px);
-    }
-
-    55%{
-        opacity:1;
-
-        filter:blur(0);
-
-        tran
-        sform:
-            translateY(0)
-            scale(1.02);
-    }
-
-    100%{
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-/* line */
-
-.brand-line{
-    width:90px;
-    height:1px;
-
-    margin:36px auto 24px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(226,164,92,.9),
-            transparent
-        );
-
-    transform:scaleX(0);
-
-    animation:
-        lineReveal 1.2s
-        1s
-        cubic-bezier(.2,.7,.2,1)
-        forwards;
-}
-
-@keyframes lineReveal{
-    to{
-        transform:scaleX(1);
-    }
-}
-
-/* subtitle */
-
-.hero-subtitle{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:19px;
-
-    letter-spacing:5px;
-
-    text-transform:uppercase;
-
-    color:#e0dcd4;
-
-    opacity:0;
-
-    animation:
-        textReveal 1s
-        1.1s
-        cubic-bezier(.2,.7,.2,1)
-        forwards;
-}
-
-.hero-description{
-    margin-top:15px;
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    color:#85817b;
-
-    text-transform:uppercase;
-
-    opacity:0;
-
-    animation:
-        textReveal 1s
-        1.3s
-        cubic-bezier(.2,.7,.2,1)
-        forwards;
-}
-
-@keyframes textReveal{
+@keyframes heroZoom{
 
     from{
-        opacity:0;
-        transform:translateY(10px);
+        transform:scale(1.04);
     }
 
     to{
-        opacity:1;
-        transform:translateY(0);
+        transform:scale(1.10);
     }
 }
 
-/* =========================================================
-   SCROLL
-========================================================= */
+/* warm cinematic light */
 
-.scroll{
+.hero-light{
     position:absolute;
 
-    left:50%;
-    bottom:30px;
-
-    transform:translateX(-50%);
-
-    color:#777;
-
-    font-size:8px;
-
-    letter-spacing:4px;
-
-    text-transform:uppercase;
-
-    z-index:20;
+    width:600px;
+    height
+   max-width:850px;
 }
 
-.scroll::after{
-    content:"";
-
-    display:block;
-
-    width:1px;
-    height:36px;
-
-    margin:12px auto 0;
-
-    background:
-        linear-gradient(
-            #aaa,
-            transparent
-        );
-
-    animation:
-        scrollPulse 2s ease-in-out infinite;
+.intro-title em{
+    font-style:italic;
 }
 
-@keyframes scrollPulse{
+.intro-copy{
+    max-width:500px;
 
-    0%,100%{
-        opacity:.25;
-        transform:scaleY(.5);
-        transform-origin:top;
-    }
+    margin-top:35px;
 
-    50%{
-        opacity:1;
-        transform:scaleY(1);
-    }
+    font-size:10px;
+
+    line-height:2;
+
+    color:#67645e;
 }
 
 /* =========================================================
-   COLLECTION
+   FEATURED COLLECTION
 ========================================================= */
 
 .collection{
-    position:relative;
-
-    background:#eeece6;
-
+    background:var(--paper);
     color:#111;
 
     padding:
-        130px
+        0
         5vw
-        150px;
+        140px;
 }
 
-.collection-header{
+.section-head{
     display:flex;
-
     justify-content:space-between;
-
     align-items:flex-end;
 
-    margin-bottom:60px;
+    padding:
+        0
+        3vw
+        45px;
 }
 
-.collection-title{
+.section-number{
+    font-size:8px;
+    letter-spacing:3px;
+    color:#888;
+}
+
+.section-title{
     font-family:"Cormorant Garamond",serif;
 
     font-size:
-        clamp(52px,7vw,90px);
+        clamp(48px,7vw,95px);
 
     font-weight:300;
 
     line-height:.8;
 }
 
-.collection-small{
-    font-size:8px;
+.section-link{
+    color:#555;
 
+    font-size:8px;
     letter-spacing:3px;
 
-    color:#777;
-
     text-transform:uppercase;
+
+    text-decoration:none;
+
+    border-bottom:1px solid #aaa;
+
+    padding-bottom:7px;
 }
 
 /* =========================================================
@@ -974,9 +312,9 @@ body.transitioning .page-transition{
     display:grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(12,1fr);
 
-    gap:22px;
+    gap:18px;
 }
 
 .product{
@@ -986,11 +324,11 @@ body.transitioning .page-transition{
 
     cursor:pointer;
 
-    aspect-ratio:4/5;
+    background:#d3d0c8;
 
-    background:#d7d4ce;
+    min-height:560px;
 
-    transform:translateY(0);
+    grid-column:span 4;
 
     transition:
         transform .7s
@@ -999,162 +337,114 @@ body.transitioning .page-transition{
         cubic-bezier(.2,.7,.2,1);
 }
 
-.product:hover{
-    transform:translateY(-8px);
-
-    box-shadow:
-        0 30px 70px rgba(0,0,0,.14);
+.product:nth-child(2){
+    margin-top:70px;
 }
 
-.product-visual{
+.product:nth-child(3){
+    margin-top:25px;
+}
+
+.product:hover{
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 35px 80px rgba(0,0,0,.15);
+}
+
+/* product image */
+
+.product-image{
     position:absolute;
     inset:0;
 
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
+    background-size:cover;
+    background-position:center;
 
     transition:
-        transform 1s
-        cubic-bezier(.2,.7,.2,1);
+        transform 1.1s
+        cubic-bezier(.2,.7,.2,1),
+        filter .8s ease;
 }
 
-.product:hover .product-visual{
-    transform:scale(1.045);
+.product:hover .product-image{
+    transform:scale(1.055);
+
+    filter:
+        saturate(1.08)
+        contrast(1.02);
 }
 
-.product-bg-black{
-    background:
-        radial-gradient(
-            circle at 50% 38%,
-            #393733,
-            transparent 30%
+/* real fashion image backgrounds */
+
+.product.black .product-image{
+    background-image:
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.75),
+            transparent 55%
         ),
-        #121212;
+        url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90");
 }
 
-.product-bg-white{
-    background:
-        radial-gradient(
-            circle at 50% 38%,
-            white,
-            transparent 36%
+.product.white .product-image{
+    background-image:
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.55),
+            transparent 55%
         ),
-        #d5d2cc;
+        url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=90");
 }
 
-.product-bg-gold{
-    background:
-        radial-gradient(
-            circle at 50% 38%,
-            rgba(207,150,87,.38),
-            transparent 36%
+.product.hoodie .product-image{
+    background-image:
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.75),
+            transparent 55%
         ),
-        #181513;
+        url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=90");
 }
 
-/* =========================================================
-   SHIRT
-========================================================= */
-
-.shirt{
-    position:relative;
-
-    width:48%;
-    height:58%;
-
-    clip-path:
-        polygon(
-            22% 0,
-            38% 10%,
-            50% 15%,
-            62% 10%,
-            78% 0,
-            100% 24%,
-            82% 38%,
-            74% 31%,
-            74% 100%,
-            26% 100%,
-            26% 31%,
-            18% 38%,
-            0 24%
-        );
-
-    box-shadow:
-        0 35px 65px rgba(0,0,0,.35);
-
-    transition:
-        transform .8s
-        cubic-bezier(.2,.7,.2,1);
-}
-
-.product:hover .shirt{
-    transform:translateY(-5px);
-}
-
-.shirt.black{
-    background:#070707;
-}
-
-.shirt.white{
-    background:#efede7;
-}
-
-.shirt.gold{
-    background:#a87643;
-}
-
-.shirt::after{
-    content:"NOIRA";
-
-    position:absolute;
-
-    left:50%;
-    top:45%;
-
-    transform:translate(-50%,-50%);
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    color:rgba(255,255,255,.65);
-}
-
-.shirt.white::after{
-    color:rgba(0,0,0,.5);
-}
-
-/* product text */
+/* product info */
 
 .product-info{
     position:absolute;
 
-    left:22px;
-    right:22px;
-    bottom:20px;
-
-    display:flex;
-
-    justify-content:space-between;
-    align-items:flex-end;
+    left:25px;
+    right:25px;
+    bottom:25px;
 
     z-index:5;
 
-    color:white;
-}
+    color:#fff;
 
-.product-bg-white .product-info{
-    color:#111;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
 }
 
 .product-name{
     font-size:9px;
 
-    letter-spacing:2px;
+    letter-spacing:2.5px;
 
     text-transform:uppercase;
+}
+
+.product-description{
+    margin-top:9px;
+
+    max-width:260px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:15px;
+
+    line-height:1.2;
+
+    color:#ddd8cf;
 }
 
 .product-price{
@@ -1163,29 +453,29 @@ body.transitioning .page-transition{
     font-size:20px;
 }
 
-/* hover view */
+/* product hover label */
 
 .product::after{
-    content:"VIEW PRODUCT";
+    content:"VIEW PIECE";
 
     position:absolute;
 
-    left:50%;
     top:50%;
+    left:50%;
 
     transform:
         translate(-50%,-50%)
         translateY(15px);
 
-    padding:13px 19px;
+    padding:13px 20px;
 
-    border:1px solid rgba(255,255,255,.65);
+    border:1px solid rgba(255,255,255,.7);
 
-    background:rgba(0,0,0,.14);
+    background:rgba(0,0,0,.18);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(14px);
 
-    color:white;
+    color:#fff;
 
     font-size:7px;
 
@@ -1194,14 +484,16 @@ body.transitioning .page-transition{
     opacity:0;
 
     transition:
-        opacity .45s ease,
-        transform .55s cubic-bezier(.2,.7,.2,1);
+        opacity .4s ease,
+        transform .5s
+        cubic-bezier(.2,.7,.2,1);
 
-    z-index:10;
+    z-index:20;
 }
 
 .product:hover::after{
-    opacity:1;
+    opacity:
+       1;
 
     transform:
         translate(-50%,-50%)
@@ -1209,167 +501,579 @@ body.transitioning .page-transition{
 }
 
 /* =========================================================
-   STATEMENT
+   EDITORIAL BLOCK
 ========================================================= */
 
-.statement{
+.editorial{
+    background:#10100e;
+
+    color:white;
+
     padding:
-        150px
-        8vw;
+        140px 6vw;
 
-    background:#090909;
+    display:grid;
 
-    text-align:center;
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:5vw;
+
+    align-items:center;
 }
 
-.statement-label{
+.editorial-image{
+    min-height:700px;
+
+    background-image:
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.25),
+            transparent
+        ),
+        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=90");
+
+    background-size:cover;
+    background-position:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.editorial-image::after{
+    content:"NOIRA / 01";
+
+    position:absolute;
+
+    left:25px;
+    bottom:25px;
+
+    font-size:7px;
+    letter-spacing:4px;
+
+    color:#fff;
+}
+
+.editorial-content{
+    padding:40px;
+}
+
+.editorial-number{
     font-size:8px;
+    letter-spacing:4px;
+    color:#777;
 
-    letter-spacing:5px;
-
-    text-transform:uppercase;
-
-    color:#6d6b67;
-
-    margin-bottom:35px;
+    margin-bottom:40px;
 }
 
-.statement h2{
-    max-width:920px;
-
-    margin:auto;
-
+.editorial-title{
     font-family:"Cormorant Garamond",serif;
+
+    font-size:
+        clamp(55px,6vw,95px);
 
     font-weight:300;
 
-    font-size:
-        clamp(43px,6vw,80px);
+    line-height:.88;
 
-    line-height:.95;
-
-    color:#efebe3;
+    margin-bottom:40px;
 }
 
-.statement p{
-    max-width:600px;
+.editorial-title em{
+    font-style:italic;
+}
 
-    margin:
-        38px
-        auto
-        0;
+.editorial-copy{
+    max-width:470px;
+
+    color:#85827b;
 
     font-size:10px;
 
     line-height:2;
 
-    letter-spacing:.8px;
-
-    color:#7c7974;
+    margin-bottom:40px;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+.editorial-button{
+    display:inline-block;
 
-footer{
-    padding:55px 42px;
+    color:white;
 
-    background:#070707;
+    text-decoration:none;
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.07);
+    border:1px solid #555;
 
-    display:flex;
+    padding:16px 25px;
 
-    align-items:center;
-
-    justify-content:space-between;
-}
-
-.footer-brand{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:18px;
-
-    letter-spacing:3px;
-}
-
-.footer-copy{
     font-size:7px;
 
-    letter-spacing:2px;
-
-    color:#65635f;
-
-    text-transform:uppercase;
-}
-
-/* =========================================================
-   PRODUCT PAGE
-========================================================= */
-
-.product-page{
-    display:none;
-
-    min-height:100vh;
-
-    padding-top:76px;
-
-    background:#efede7;
-
-    color:#111;
-}
-
-.product-page.active{
-    display:block;
-
-    animation:
-        productIn .75s
-        cubic-bezier(.2,.7,.2,1)
-        forwards;
-}
-
-@keyframes productIn{
-
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        letter-spacing:4px;
+    letter-spacing:3px;
 
     text-transform:uppercase;
 
     transition:.35s;
 }
 
-.buy:hover{
-    background:#292929;
-}
-
-.buy.added{
-    background:#8b5c32;
+.editorial-button:hover{
+    background:white;
+    color:#111;
+    border-color:white;
 }
 
 /* =========================================================
-   MOBILE
+   SECONDARY IMAGE STRIP
 ========================================================= */
 
-max-width:800px{
+.image-strip{
+    background:var(--paper);
+
+    padding:
+        110px 5vw;
+
+    color:#111;
+}
+
+.image-strip-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1.5fr
+        1fr;
+
+    gap:15px;
+
+    align-items:center;
+}
+
+.strip-image{
+    height:420px;
+
+    background-size:cover;
+    background-position:center;
+
+    transition:
+        transform .8s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.strip-image:hover{
+    transform:scale(.985);
+}
+
+.strip-one{
+    background-image:
+        url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=90");
+}
+
+.strip-two{
+    height:570px;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1300&q=90");
+}
+
+.strip-three{
+    background-image:
+        url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=90");
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    background:#e7e3da;
+
+    color:#111;
+
+    padding:
+        150px 8vw;
+
+    display:grid;
+
+    grid-template-columns:
+        .65fr
+        1.35fr;
+
+    gap:7vw;
+}
+
+.about-label{
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    color:#777;
+
+    text-transform:uppercase;
+}
+
+.about-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:
+        clamp(55px,7vw,100px);
+
+    font-weight:300;
+
+    line-height:.86;
+}
+
+.about-copy{
+    max-width:600px;
+
+    font-size:11px;
+
+    line-height:2;
+
+    color:#69665f;
+}
+
+.about-copy p + p{
+    margin-top:25px;
+}
+
+.about-meta{
+    margin-top:45px;
+
+    display:flex;
+
+    gap:60px;
+}
+
+.meta-item{
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.meta-number{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:30px;
+}
+
+.meta-label{
+    font-size:7px;
+
+    letter-spacing:2px;
+
+    color:#777;
+
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    background:#090909;
+   px;
+
+    border-radius:50%;
+
+    right:-150px;
+    top:15%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(214,121,48,.24),
+            transparent 68%
+        );
+
+    filter:blur(35px);
+
+    z-index:-3;
+
+    animation:
+        lightMove 9s ease-in-out infinite;
+}
+
+@keyframes lightMove{
+
+    0%,100%{
+        transform:translate(0,0) scale(.9);
+    }
+
+    50%{
+        transform:translate(-80px,50px) scale(1.1);
+    }
+}
+
+/* grain */
+
+.hero-grain{
+    position:absolute;
+    inset:0;
+
+    opacity:.08;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+
+    mix-blend-mode:screen;
+
+    pointer-events:none;
+
+    z-index:10;
+}
+
+/* hero content */
+
+.hero-content{
+    width:100%;
+
+    padding:
+        0
+        6vw
+        7vh;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    animation:
+        heroContent 1.4s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+
+    opacity:0;
+}
+
+@keyframes heroContent{
+
+    from{
+        opacity:0;
+        transform:translateY(35px);
+        filter:blur(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
+}
+
+.hero-left{
+    max-width:700px;
+}
+
+.hero-eyebrow{
+    font-size:8px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+    color:#c3beb4;
+
+    margin-bottom:24px;
+}
+
+.hero-title{
+    font-family:"Italiana",serif;
+
+    font-size:
+        clamp(80px,12vw,180px);
+
+    font-weight:400;
+
+    line-height:.72;
+
+    letter-spacing:-3px;
+
+    color:#f1eee7;
+
+    white-space:nowrap;
+
+    text-shadow:
+        0 20px 70px rgba(0,0,0,.45);
+}
+
+.hero-description{
+    max-width:440px;
+
+    margin-top:30px;
+
+    font-size:10px;
+
+    line-height:1.8;
+
+    letter-spacing:.6px;
+
+    color:#c1bdb4;
+}
+
+.hero-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+
+    gap:18px;
+}
+
+.hero-season{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:18px;
+
+    letter-spacing:2px;
+
+    color:#eee;
+}
+
+.hero-scroll{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    color:#aaa;
+
+    font-size:7px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.hero-scroll-line{
+    width:45px;
+    height:1px;
+
+    background:#aaa;
+
+    animation:
+        scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine{
+
+    0%,100%{
+        transform:scaleX(.4);
+        transform-origin:left;
+    }
+
+    50%{
+        transform:scaleX(1);
+    }
+}
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee{
+    overflow:hidden;
+
+    background:#171714;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    white-space:nowrap;
+}
+
+.marquee-track{
+    width:max-content;
+
+    display:flex;
+
+    animation:
+        marquee 28s
+        linear
+        infinite;
+}
+
+.marquee span{
+    padding:
+        19px
+        35px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:16px;
+
+    letter-spacing:4px;
+
+    color:#c5bfb4;
+}
+
+.marquee .dot{
+    color:var(--gold);
+}
+
+@keyframes marquee{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+    background:var(--paper);
+    color:#121212;
+
+    padding:
+        150px
+        8vw
+        130px;
+
+    display:grid;
+
+    grid-template-columns:
+        .8fr
+        1.2fr;
+
+    gap:8vw;
+
+    align-items:end;
+}
+
+.intro-label{
+    font-size:8px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:#777;
+}
+
+.intro-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:
+        clamp(45px,6vw,82px);
+
+    font-weight:300;
+
+    line-height:.92;
+   ==================================================
+   RESPONSIVE
+========================================================= */
+
+max-width:900px{
 
     .nav{
         height:65px;
         padding:0 20px;
     }
 
-    .nav-center{
+    .nav-middle{
         display:none;
     }
 
-    .nav-right{
+    .nav-links{
         gap:15px;
     }
 
@@ -1378,121 +1082,190 @@ max-width:800px{
     }
 
     .hero{
-        min-height:650px;
+        min-height:690px;
     }
 
-    .hero-image.one{
-        background-position:
-            45% center;
+    .hero-content{
+        padding:
+            0
+            25px
+            55px;
+
+        display:block;
     }
 
-    .art-panel{
-        opacity:.2;
-        transform:scale(.7) rotate(-7deg);
-    }
-
-    .art-one{
-        left:-45px;
-        top:18%;
-    }
-
-    .art-two{
-        right:-45px;
-        top:22%;
-    }
-
-    .brand{
-        font-size:72px;
-    }
-
-    .hero-subtitle{
-        font-size:13px;
-        letter-spacing:3px;
+    .hero-title{
+        font-size:75px;
+        letter-spacing:-1px;
     }
 
     .hero-description{
-        font-size:7px;
+        max-width:310px;
     }
 
-    .logo-halo{
-        width:390px;
+    .hero-right{
+        margin-top:35px;
+
+        align-items:flex-start;
+    }
+
+    .intro{
+        grid-template-columns:1fr;
+
+        padding:
+            100px 25px;
+    }
+
+    .intro-title{
+        font-size:52px;
+    }
+
+    .products{
+        display:grid;
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+    }
+
+    .product{
+        grid-column:auto !important;
+
+        min-height:540px;
+
+        margin-top:0 !important;
     }
 
     .collection{
         padding:
-            95px
-            20px
-            110px;
+            0 20px 100px;
     }
 
-    .collection-header{
-        margin-bottom:40px;
-    }
-
-    .collection-title{
-        font-size:58px;
-    }
-
-    .collection-small{
-        display:none;
-    }
-
-    .products{
-        grid-template-columns:1fr;
-        gap:18px;
-    }
-
-    .product{
-        aspect-ratio:1/1.15;
-    }
-
-    .statement{
+    .section-head{
         padding:
-            105px
-            25px;
+            0
+            0
+            35px;
     }
 
-    .statement h2{
-        font-size:45px;
+    .editorial{
+        grid-template-columns:1fr;
+
+        padding:
+            90px 20px;
     }
 
-    .statement p{
-        font-size:9px;
+    .editorial-image{
+        min-height:560px;
     }
 
-    footer{
-        padding:35px 20px;
+    .editorial-content{
+        padding:
+            40px 10px;
+    }
 
+    .image-strip{
+        padding:
+            80px 20px;
+    }
+
+    .image-strip-grid{
+        grid-template-columns:1fr;
+
+        gap:12px;
+    }
+
+    .strip-image,
+    .strip-two{
+        height:480px;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+
+        padding:
+            100px 25px;
+    }
+
+    .about-title{
+        font-size:60px;
+    }
+
+    .footer{
+        padding:
+            80px 25px 30px;
+    }
+
+    .footer-top{
+        grid-template-columns:1fr 1fr;
+
+        gap:45px;
+    }
+
+    .footer-logo{
+        grid-column:1 / -1;
+    }
+
+    .footer-bottom{
         flex-direction:column;
-
-        gap:15px;
-
-        text-align:center;
+        gap:12px;
     }
 
     .product-detail{
         grid-template-columns:1fr;
     }
 
-    .detail-image{
-        min-height:520px;
+    .detail-visual{
+        min-height:570px;
     }
 
     .detail-info{
         padding:
-            65px
-            25px
-            80px;
+            65px 25px 85px;
     }
 
     .detail-title{
-        font-size:58px;
+        font-size:62px;
+    }
+}
+
+max-width:500px{
+
+    .hero-title{
+        font-size:66px;
     }
 
-    .detail-description{
-        font-size:10px;
+    .hero-description{
+        font-size:9px;
     }
 
+    .hero-season{
+        font-size:16px;
+    }
+
+    .intro-title{
+        font-size:47px;
+    }
+
+    .section-title{
+        font-size:55px;
+    }
+
+    .product{
+        min-height:480px;
+    }
+
+    .editorial-image{
+        min-height:480px;
+    }
+
+    .about-title{
+        font-size:54px;
+    }
+
+    .footer-top{
+        grid-template-columns:1fr;
+    }
 }
 
 /* =========================================================
@@ -1516,27 +1289,27 @@ prefers-reduced-motion:reduce{
 
 <body>
 
-<div class="page-transition"></div>
+<div class="transition"></div>
 
 <!-- ======================================================
      NAVIGATION
 ====================================================== -->
 
-<header class="nav">
+<header class="nav" id="nav">
 
     <a
         href="#"
         class="nav-logo"
-        onclick="goHome(); return false;"
+        onclick="goHome();return false;"
     >
         NOIRA RESERVE
     </a>
 
-    <div class="nav-center">
+    <div class="nav-middle">
         LONDON · PARIS
     </div>
 
-    <div class="nav-right">
+    <nav class="nav-links">
 
         <a
             href="#collection"
@@ -1551,10 +1324,10 @@ prefers-reduced-motion:reduce{
             class="nav-link"
             onclick="goHome();"
         >
-            About
+            House
         </a>
 
-    </div>
+    </nav>
 
 </header>
 
@@ -1562,640 +1335,506 @@ prefers-reduced-motion:reduce{
      HOME
 ====================================================== -->
 
-<main id="homePage">
+<main id="homePag
+   color:#eee;
 
-<section class="hero" id="home">
+    padding:
+        100px 5vw 35px;
+}
 
-    <!-- cinematic London photographs -->
+.footer-top{
+    display:grid;
 
-    <div
-        class="hero-image one"
-        id="heroImageOne"
-    ></div>
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr;
 
-    <div
-        class="hero-image two"
-        id="heroImageTwo"
-    ></div>
+    gap:50px;
 
-    <!-- ambient lights -->
+    padding-bottom:90px;
+}
 
-    <div class="light-orb orb-one"></div>
-    <div class="light-orb orb-two"></div>
+.footer-logo{
+    font-family:"Italiana",serif;
 
-    <!-- floating artwork -->
+    font-size:
+        clamp(50px,7vw,100px);
 
-    <div class="art-panel art-one"></div>
+    line-height:.8;
+}
 
-    <div class="art-panel art-two"></div>
+.footer-column-title{
+    font-size:7px;
 
-    <!-- leaves -->
+    letter-spacing:3px;
 
-    <div class="leaves">
+    text-transform:uppercase;
 
-        <div class="leaf"></div>
-        <div class="leaf"></div>
-        <div class="leaf"></div>
-        <div class="leaf"></div>
-        <div class="leaf"></div>
-        <div class="leaf"></div>
+    color:#666;
 
-    </div>
+    margin-bottom:22px;
+}
 
-    <!-- particles -->
+.footer-link{
+    display:block;
 
-    <div
+    color:#aaa;
+
+    text-decoration:none;
+
+    font-size:9px;
+
+    margin-bottom:13px;
+
+    transition:.25s;
+}
+
+.footer-link:hover{
+    color:white;
+}
+
+.footer-bottom{
+    padding-top:25px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.1);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#5f5d59;
+
+    font-size:7px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   PRODUCT PAGE
+========================================================= */
+
+.product-page{
+    display:none;
+
+    min-height:100vh;
+
+    padding-top:76px;
+
+    background:#e9e5dc;
+
+    color:#111;
+}
+
+.product-page.active{
+    display:block;
+
+    animation:
+        productEnter .7s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
+}
+
+@keyframes productEnter{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
         opacity:1;
         transform:translateY(0);
     }
 }
 
-/* product navigation */
-
-.product-page-nav{
+.product-back{
     padding:
-        35px
-        5vw;
+        32px 5vw;
 }
 
-.back{
+.back-button{
     border:0;
-
     background:none;
 
     color:#555;
 
-    cursor:pointer;
-
     font-size:8px;
-
     letter-spacing:3px;
-
     text-transform:uppercase;
 
     transition:.3s;
 }
 
-.back:hover{
+.back-button:hover{
     color:#111;
-    transform:translateX(-4px);
+    transform:translateX(-5px);
 }
 
-/* product detail */
-
 .product-detail{
-    min-height:
-        calc(100vh - 146px);
-
     display:grid;
 
     grid-template-columns:
         1.05fr
         .95fr;
+
+    min-height:
+        calc(100vh - 145px);
 }
 
-/* product large image */
-
-.detail-image{
+.detail-visual{
     position:relative;
 
-    min-height:650px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
+    min-height:700px;
 
     overflow:hidden;
+
+    background:#151513;
 }
 
-.detail-image::before{
-    content:"";
-
+.detail-photo{
     position:absolute;
+    inset:0;
 
-    width:600px;
-    height:600px;
+    background-size:cover;
+    background-position:center;
 
-    border-radius:50%;
+    transition:
+        transform 1.2s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.detail-visual:hover .detail-photo{
+    transform:scale(1.025);
+}
+
+.detail-overlay{
+    position:absolute;
+    inset:0;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(216,140,66,.18),
-            transparent 65%
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.35),
+            transparent 60%
         );
-
-    filter:blur(20px);
-
-    animation:
-        detailGlow 7s ease-in-out infinite;
 }
 
-@keyframes detailGlow{
-
-    0%,100%{
-        transform:scale(.9);
-        opacity:.5;
-    }
-
-    50%{
-        transform:scale(1.1);
-        opacity:1;
-    }
-}
-
-.black-bg{
-    background:#101010;
-}
-
-.white-bg{
-    background:#dad7d0;
-}
-
-.gold-bg{
-    background:#171310;
-}
-
-/* detail shirt */
-
-.detail-shirt{
-    position:relative;
-
-    width:46%;
-    height:62%;
-
-    clip-path:
-        polygon(
-            22% 0,
-            38% 10%,
-            50% 15%,
-            62% 10%,
-            78% 0,
-            100% 24%,
-            82% 38%,
-            74% 31%,
-            74% 100%,
-            26% 100%,
-            26% 31%,
-            18% 38%,
-            0 24%
-        );
-
-    box-shadow:
-        0 50px 100px rgba(0,0,0,.4);
-
-    z-index:2;
-
-    animation:
-        productFloat 5s
-        ease-in-out
-        infinite;
-}
-
-@keyframes productFloat{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-9px);
-    }
-}
-
-.detail-shirt.black{
-    background:#070707;
-}
-
-.detail-shirt.white{
-    background:#f1eee7;
-}
-
-.detail-shirt.gold{
-    background:#a87643;
-}
-
-.detail-shirt::after{
-    content:"NOIRA RESERVE";
-
+.detail-caption{
     position:absolute;
 
-    left:50%;
-    top:45%;
+    left:35px;
+    bottom:30px;
 
-    transform:translate(-50%,-50%);
+    font-size:7px;
 
-    white-space:nowrap;
+    letter-spacing:4px;
 
-    font-size:9px;
-
-    letter-spacing:3px;
-
-    color:rgba(255,255,255,.65);
+    color:#fff;
 }
-
-.detail-shirt.white::after{
-    color:rgba(0,0,0,.5);
-}
-
-/* =========================================================
-   PRODUCT INFORMATION
-========================================================= */
 
 .detail-info{
     padding:
-        90px
+        80px
         8vw
-        90px
-        7vw;
+        80px 7vw;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
 }
 
 .detail-category{
     font-size:8px;
-
     letter-spacing:4px;
-
-    text-transform:uppercase;
 
     color:#888;
 
-    margin-bottom:24px;
+    text-transform:uppercase;
+
+    margin-bottom:25px;
 }
 
 .detail-title{
     font-family:"Cormorant Garamond",serif;
 
     font-size:
-        clamp(50px,5vw,78px);
+        clamp(55px,6vw,95px);
 
     font-weight:300;
 
-    line-height:.88;
+    line-height:.84;
 
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
 .detail-price{
     font-family:"Cormorant Garamond",serif;
 
-    font-size:28px;
+    font-size:27px;
 
-    margin-bottom:34px;
+    margin-bottom:35px;
 }
 
 .detail-description{
     max-width:500px;
 
-    color:#696762;
+    color:#6b6862;
 
     font-size:10px;
 
     line-height:2;
 
-    margin-bottom:35px;
+    margin-bottom:38px;
 }
 
-.detail-line{
-    width:100%;
-
+.detail-divider{
     height:1px;
 
-    background:#d0cdc7;
+    background:#cfcac0;
 
-    margin-bottom:28px;
+    margin-bottom:27px;
 }
 
-.size-label{
-    font-size:8px;
+.size-title{
+    font-size:7px;
 
     letter-spacing:3px;
 
     text-transform:uppercase;
 
-    margin-bottom:14px;
+    margin-bottom:13px;
 }
 
 .sizes{
     display:flex;
-
     gap:7px;
 
-    margin-bottom:34px;
+    margin-bottom:32px;
 }
 
 .size{
-    width:48px;
-    height:42px;
+    width:49px;
+    height:43px;
 
-    border:1px solid #c6c2bb;
+    border:1px solid #c4bfb6;
 
     background:transparent;
 
-    cursor:pointer;
-
     font-size:8px;
 
-    transition:
-        background .25s,
-        color .25s,
-        border .25s;
+    transition:.25s;
 }
 
 .size:hover,
 .size.selected{
     background:#111;
 
-    color:white;
+    color:#fff;
 
     border-color:#111;
 }
 
-.buy{
+.add-button{
     width:100%;
 
-    height:58px;
+    height:59px;
 
     border:0;
 
     background:#111;
 
-    color:white;
-
-    cursor:pointer;
+    color:#fff;
 
     font-size:8px;
-        ${y * -8}px,0)`;
 
-        heroTwo.style.transform =
-            `scale(1.1)
-             translate3d(${x * 22}px,
-                         ${y * 15}px,0)`;
+    letter-spacing:4px;
 
-        artOne.style.transform =
-            `rotate(-7deg)
-             translate3d(${x * -20}px,
-                         ${y * -12}px,0)`;
+    text-transform:uppercase;
 
-        artTwo.style.transform =
-            `rotate(8deg)
-             translate3d(${x * 25}px,
-                         ${y * 15}px,0)`;
+    transition:.35s;
+}
 
-        orbOne.style.transform =
-            `translate3d(${x * -35}px,
-                         ${y * -25}px,0)`;
+.add-button:hover{
+    background:#292929;
+}
 
-        orbTwo.style.transform =
-            `translate3d(${x * 30}px,
-                         ${y * 25}px,0)`;
+.add-button.added{
+    background:#8b5c32;
+}
 
-    }
-);
+/* =======
+   e">
 
-/* =========================================================
-   PRODUCTS
-========================================================= */
+<!-- HERO -->
 
-const products = {
+<section class="hero">
 
-    black:{
-        title:"Noira Tee / Black",
-        price:"€59",
-        type:"black",
+    <div class="hero-photo"></div>
 
-        description:
-        "A refined black essential with a relaxed silhouette and discreet Noira Reserve identity. Designed as a foundation piece for a modern wardrobe."
-    },
+    <div class="hero-light"></div>
 
-    white:{
-        title:"Noira Tee / White",
-        price:"€59",
-        type:"white",
-
-        description:
-        "Clean, understated and versatile. The Noira Tee in White balances a soft silhouette with minimal branding and an effortless European character."
-    },
-
-    hoodie:{
-        title:"Noira Reserve Hoodie",
-        price:"€119",
-        type:"gold",
-
-        description:
-        "A heavyweight statement layer inspired by London's evening palette. Relaxed proportions, understated identity and a distinctly contemporary attitude."
-    }
-
-};
-
-/* =========================================================
-   OPEN PRODUCT
-========================================================= */
-
-function openProduct(id){
-
-    const product =
-        products[id];
-
-    if(!product) return;
-
-    document.body.classList.add(
-        "transitioning"
-    );
-
-    setTimeout(function(){
-
-        document.getElementById(
-            "homePage"
-        ).style.display="none";
-
-        const page =
-            document.getElementById(
-                "productPage"
-            );
-
-        page.classList.add("active");
-
-        document.getElementById(
-            "detailTitle"
-        ).textContent =
-            product.title;
-
-        document.getElementById(
-            "detailPrice"
-        ).textContent =
-            product.price;
-
-        document.getElementById(
-            "detailDescription"
-        ).textContent =
-            product.description;
-
-        const image =
-            document.getElementById(
-                "detailImage"
-            );
-
-        const shirt =
-            document.getElementById(
-                "detailShirt"
-            );
-
-        image.className =
-            "detail-image";
-
-        shirt.className =
-            "detail-shirt";
-
-        if(product.type === "black"){
-
-            image.classList.add(
-                "black-bg"
-            );
-
-            shirt.classList.add(
-                "black"
-            );
-
-        }
-
-        if(product.type === "white"){
-
-            image.classList.add(
-                "white-bg"
-            );
-
-            shirt.classList.add(
-                "white"
-            );
-
-        }
-
-        if(product.type === "gold"){
-
-            image.classList.add(
-                "gold-bg"
-            );
-
-            shirt.classList.add(
-                "gold"
-            );
-
-        }
-
-        document
-            .getElementById("buyButton")
-            .classList.remove("added");
-
-        document
-            .getElementById("buyButton")
-            .textContent =
-            "Add to reserve";
-
-        document
-            .querySelectorAll(".size")
-            .forEach(function(size){
-
-                size.classList.remove(
-                    "selected"
-                );
-
-            });
-
-        window.scrollTo({
-            top:0,
-            behavior:"instant"
-        });
-
-        history.pushState(
-            {product:id},
-            "",
-            "#product-" + id
-        class="particles"
-        id="particles"
-    ></div>
-
-    <!-- central logo -->
+    <div class="hero-grain"></div>
 
     <div class="hero-content">
 
-        <div class="logo-halo"></div>
+        <div class="hero-left">
 
-        <div class="eyebrow">
-            EST. 2026 · LONDON
+            <div class="hero-eyebrow">
+                NOIRA RESERVE · EST. 2026 · LONDON
+            </div>
+
+            <h1 class="hero-title">
+                Noira
+
+                Reserve
+            </h1>
+
+            <p class="hero-description">
+                A contemporary wardrobe shaped by London,
+                refined through European restraint and created
+                for those who move differently.
+            </p>
+
         </div>
 
-        <div class="brand">
-            Noira Reserve
+        <div class="hero-right">
+
+            <div class="hero-season">
+                The Reserve / 01
+            </div>
+
+            <div class="hero-scroll">
+
+                Explore
+
+                <span class="hero-scroll-line"></span>
+
+            </div>
+
         </div>
 
-        <div class="brand-line"></div>
-
-        <div class="hero-subtitle">
-            London — Paris
-        </div>
-
-        <div class="hero-description">
-            Contemporary essentials · Quiet luxury
-        </div>
-
-    </div>
-
-    <div class="scroll">
-        Explore
     </div>
 
 </section>
 
-<!-- ======================================================
-     COLLECTION
-====================================================== -->
+<!-- MARQUEE -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>NOIRA RESERVE</span>
+        <span class="dot">✦</span>
+        <span>LONDON</span>
+        <span class="dot">✦</span>
+        <span>PARIS</span>
+        <span class="dot">✦</span>
+        <span>QUIET LUXURY</span>
+        <span class="dot">✦</span>
+
+        <span>NOIRA RESERVE</span>
+        <span class="dot">✦</span>
+        <span>LONDON</span>
+        <span class="dot">✦</span>
+        <span>PARIS</span>
+        <span class="dot">✦</span>
+        <span>QUIET LUXURY</span>
+        <span class="dot">✦</span>
+
+    </div>
+
+</div>
+
+<!-- INTRO -->
+
+<section class="intro">
+
+    <div>
+
+        <div class="intro-label">
+            The House
+        </div>
+
+    </div>
+
+    <div>
+
+        <h2 class="intro-title">
+            Clothing as a form of
+            <em>presence.</em>
+        </h2>
+
+        <p class="intro-copy">
+            Noira Reserve explores the space between
+            understated luxury and contemporary streetwear.
+            Clean silhouettes, restrained branding and
+            carefully considered details create a wardrobe
+            designed beyond the rhythm of seasons.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- COLLECTION -->
 
 <section
     class="collection"
     id="collection"
 >
 
-    <div class="collection-header">
+    <div class="section-head">
 
-        <div class="collection-title">
-            The Reserve
+        <div>
+
+            <div class="section-number">
+                01 / COLLECTION
+            </div>
+
+            <h2 class="section-title">
+                The Reserve
+            </h2>
+
         </div>
 
-        <div class="collection-small">
-            Spring / Summer · 2026
-        </div>
+        <a
+            href="#collection"
+            class="section-link"
+        >
+            View collection
+        </a>
 
     </div>
 
     <div class="products">
 
-        <!-- BLACK TEE -->
+        <!-- PRODUCT 1 -->
 
         <article
-            class="product"
+            class="product black"
             onclick="openProduct('black')"
         >
 
-            <div
-                class="product-visual
-                product-bg-black"
-            >
-
-                <div class="shirt black"></div>
-
-            </div>
+            <div class="product-image"></div>
 
             <div class="product-info">
 
-                <div class="product-name">
-                    Noira Tee / Black
+                <div>
+
+                    <div class="product-name">
+                        Noira Tee / Black
+                    </div>
+
+                    <div class="product-description">
+                        Essential black.
+                        Nothing unnecessary.
+                    </div>
+
                 </div>
 
                 <div class="product-price">
@@ -2206,26 +1845,28 @@ function openProduct(id){
 
         </article>
 
-        <!-- WHITE TEE -->
+        <!-- PRODUCT 2 -->
 
         <article
-            class="product"
+            class="product white"
             onclick="openProduct('white')"
         >
 
-            <div
-                class="product-visual
-                product-bg-white"
-            >
-
-                <div class="shirt white"></div>
-
-            </div>
+            <div class="product-image"></div>
 
             <div class="product-info">
 
-                <div class="product-name">
-                    Noira Tee / White
+                <div>
+
+                    <div class="product-name">
+                        Noira Tee / White
+                    </div>
+
+                    <div class="product-description">
+                        A clean foundation
+                        for every day.
+                    </div>
+
                 </div>
 
                 <div class="product-price">
@@ -2236,26 +1877,28 @@ function openProduct(id){
 
         </article>
 
-        <!-- HOODIE -->
+        <!-- PRODUCT 3 -->
 
-        <article
-            class="product"
+        <a
+         rticle
+            class="product hoodie"
             onclick="openProduct('hoodie')"
         >
 
-            <div
-                class="product-visual
-                product-bg-gold"
-            >
-
-                <div class="shirt gold"></div>
-
-            </div>
+            <div class="product-image"></div>
 
             <div class="product-info">
 
-                <div class="product-name">
-                    Reserve Hoodie
+                <div>
+
+                    <div class="product-name">
+                        Reserve Hoodie
+                    </div>
+
+                    <div class="product-description">
+                        London after dark.
+                    </div>
+
                 </div>
 
                 <div class="product-price">
@@ -2270,47 +1913,235 @@ function openProduct(id){
 
 </section>
 
-<!-- ======================================================
-     BRAND STATEMENT
-====================================================== -->
+<!-- EDITORIAL -->
 
-<section
-    class="statement"
-    id="about"
->
+<section class="editorial">
 
-    <div class="statement-label">
-        Noira Reserve
+    <div class="editorial-image"></div>
+
+    <div class="editorial-content">
+
+        <div class="editorial-number">
+            NOIRA RESERVE / EDITORIAL 01
+        </div>
+
+        <h2 class="editorial-title">
+            Between
+
+            <em>city & silence.</em>
+        </h2>
+
+        <p class="editorial-copy">
+            London is more than a location.
+            It is a rhythm — architecture, rain,
+            movement, evening light and people
+            passing without looking back.
+
+            Noira Reserve takes that atmosphere
+            and translates it into modern essentials.
+        </p>
+
+        <a
+            href="#about"
+            class="editorial-button"
+        >
+            Discover the house
+        </a>
+
     </div>
-
-    <h2>
-        Designed between London and Paris.
-        Made for the everyday.
-    </h2>
-
-    <p>
-        Noira Reserve is a contemporary clothing house
-        built around understated design, considered
-        proportions and timeless essentials. Our collections
-        combine European restraint with the energy of modern
-        London — creating pieces designed to remain relevant
-        beyond a single season.
-    </p>
 
 </section>
 
-<!-- ======================================================
-     FOOTER
-====================================================== -->
+<!-- IMAGE STRIP -->
 
-<footer>
+<section class="image-strip">
 
-    <div class="footer-brand">
-        NOIRA RESERVE
+    <div class="image-strip-grid">
+
+        <div class="strip-image strip-one"></div>
+
+        <div class="strip-image strip-two"></div>
+
+        <div class="strip-image strip-three"></div>
+
     </div>
 
-    <div class="footer-copy">
-        London · Paris · 2026
+</section>
+
+<!-- ABOUT -->
+
+<section
+    class="about"
+    id="about"
+>
+
+    <div>
+
+        <div class="about-label">
+            About Noira Reserve
+        </div>
+
+        <h2 class="about-title">
+            Less noise.
+
+            More presence.
+        </h2>
+
+    </div>
+
+    <div>
+
+        <div class="about-copy">
+
+            <p>
+                Noira Reserve is an independent fashion
+                house inspired by the visual language of
+                London and the refinement of Paris.
+            </p>
+
+            <p>
+                We believe luxury does not need to announce
+                itself. It exists in proportion, material,
+                construction and the feeling a piece leaves
+                behind.
+            </p>
+
+            <p>
+                Each collection is intentionally restrained:
+                contemporary essentials designed to become
+                part of a personal uniform rather than a
+                passing trend.
+            </p>
+
+        </div>
+
+        <div class="about-meta">
+
+            <div class="meta-item">
+
+                <div class="meta-number">
+                    01
+                </div>
+
+                <div class="meta-label">
+                    London
+                </div>
+
+            </div>
+
+            <div class="meta-item">
+
+                <div class="meta-number">
+                    02
+                </div>
+
+                <div class="meta-label">
+                    Paris
+                </div>
+
+            </div>
+
+            <div class="meta-item">
+
+                <div class="meta-number">
+                    26
+                </div>
+
+                <div class="meta-label">
+                    Collection
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-top">
+
+        <div class="footer-logo">
+            Noira
+
+            Reserve
+        </div>
+
+        <div>
+
+            <div class="footer-column-title">
+                Navigate
+            </div>
+
+            <a
+                href="#collection"
+                class="footer-link"
+            >
+                Collection
+            </a>
+
+            <a
+                href="#about"
+                class="footer-link"
+            >
+                About
+            </a>
+
+            <a
+                href="#
+               "
+                class="footer-link"
+            >
+                Shipping
+            </a>
+
+        </div>
+
+        <div>
+
+            <div class="footer-column-title">
+                Follow
+            </div>
+
+            <a
+                href="#"
+                class="footer-link"
+            >
+                Instagram
+            </a>
+
+            <a
+                href="#"
+                class="footer-link"
+            >
+                Telegram
+            </a>
+
+            <a
+                href="#"
+                class="footer-link"
+            >
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 NOIRA RESERVE
+        </span>
+
+        <span>
+            LONDON · PARIS
+        </span>
+
     </div>
 
 </footer>
@@ -2326,12 +2157,12 @@ function openProduct(id){
     id="productPage"
 >
 
-    <div class="product-page-nav">
+    <div class="product-back">
 
         <button
-            class="back"
+            class="back-button"
             onclick="goHome()"
-            >
+        >
             ← Back to collection
         </button>
 
@@ -2339,21 +2170,23 @@ function openProduct(id){
 
     <div class="product-detail">
 
-        <!-- PRODUCT VISUAL -->
-
         <div
-            class="detail-image"
-            id="detailImage"
+            class="detail-visual"
+            id="detailVisual"
         >
 
             <div
-                class="detail-shirt"
-                id="detailShirt"
+                class="detail-photo"
+                id="detailPhoto"
             ></div>
 
-        </div>
+            <div class="detail-overlay"></div>
 
-        <!-- PRODUCT INFO -->
+            <div class="detail-caption">
+                NOIRA RESERVE / 2026
+            </div>
+
+        </div>
 
         <div class="detail-info">
 
@@ -2379,14 +2212,13 @@ function openProduct(id){
                 class="detail-description"
                 id="detailDescription"
             >
-                A refined everyday essential with a clean
-                silhouette, discreet branding and a considered
-                approach to modern European dressing.
+                A refined everyday essential with a
+                clean silhouette and understated identity.
             </p>
 
-            <div class="detail-line"></div>
+            <div class="detail-divider"></div>
 
-            <div class="size-label">
+            <div class="size-title">
                 Select size
             </div>
 
@@ -2430,9 +2262,9 @@ function openProduct(id){
             </div>
 
             <button
-                class="buy"
-                id="buyButton"
-                onclick="addToCart()"
+                class="add-button"
+                id="addButton"
+                onclick="addToReserve()"
             >
                 Add to reserve
             </button>
@@ -2446,121 +2278,180 @@ function openProduct(id){
 <script>
 
 /* =========================================================
-   PARTICLES
+   NAV SCROLL
 ========================================================= */
 
-const particleContainer =
-    document.getElementById("particles");
+const nav =
+    document.getElementById("nav");
 
-for(let i = 0; i < 55; i++){
+window.addEventListener(
+    "scroll",
+    function(){
 
-    const particle =
-        document.createElement("div");
+        if(window.scrollY > 30){
 
-    particle.className = "particle";
+            nav.classList.add("scrolled");
 
-    particle.style.left =
-        Math.random() * 100 + "%";
+        }else{
 
-    particle.style.bottom =
-        Math.random() * 10 + "%";
+            nav.classList.remove("scrolled");
 
-    particle.style.animationDuration =
-        (9 + Math.random() * 17) + "s";
+        }
 
-    particle.style.animationDelay =
-        (-Math.random() * 20) + "s";
-
-    particle.style.width =
-        (Math.random() > .8 ? 3 : 2) + "px";
-
-    particle.style.height =
-        particle.style.width;
-
-    particleContainer.appendChild(
-        particle
-    );
-}
+    }
+);
 
 /* =========================================================
-   MOUSE PARALLAX
+   PRODUCTS
+=====================================================
+   ==== */
+
+const products = {
+
+    black:{
+        title:"Noira Tee / Black",
+        price:"€59",
+        image:
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1800&q=92",
+
+        description:
+        "A refined black essential with a relaxed silhouette and discreet Noira Reserve identity. Designed as a foundation piece for a modern wardrobe."
+    },
+
+    white:{
+        title:"Noira Tee / White",
+        price:"€59",
+        image:
+        "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1800&q=92",
+
+        description:
+        "Clean, understated and versatile. The Noira Tee in White balances a soft silhouette with minimal branding and an effortless European character."
+    },
+
+    hoodie:{
+        title:"Noira Reserve Hoodie",
+        price:"€119",
+        image:
+        "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=92",
+
+        description:
+        "A heavyweight layer inspired by London's evening palette. Relaxed proportions, understated identity and a distinctly contemporary attitude."
+    }
+
+};
+
+/* =========================================================
+   OPEN PRODUCT
 ========================================================= */
 
-const hero =
-    document.querySelector(".hero");
+function openProduct(id){
 
-const heroOne =
-    document.getElementById("heroImageOne");
+    const product =
+        products[id];
 
-const heroTwo =
-    document.getElementById("heroImageTwo");
+    if(!product) return;
 
-const artOne =
-    document.querySelector(".art-one");
+    document.body.classList.add(
+        "is-changing"
+    );
 
-const artTwo =
-    document.querySelector(".art-two");
+    setTimeout(function(){
 
-const orbOne =
-    document.querySelector(".orb-one");
+        document.getElementById(
+            "homePage"
+        ).style.display="none";
 
-const orbTwo =
-    document.querySelector(".orb-two");
+        const page =
+            document.getElementById(
+                "productPage"
+            );
 
-hero.addEventListener(
-    "mousemove",
-    function(event){
+        page.classList.add("active");
 
-        const x =
-            (event.clientX /
-            window.innerWidth - .5);
+        document.getElementById(
+            "detailTitle"
+        ).textContent =
+            product.title;
 
-        const y =
-            (event.clientY /
-            window.innerHeight - .5);
+        document.getElementById(
+            "detailPrice"
+        ).textContent =
+            product.price;
 
-        heroOne.style.transform =
-            `scale(1.07)
-             translate3d(${x * -12}px,
-             );
+        document.getElementById(
+            "detailDescription"
+        ).textContent =
+            product.description;
+
+        document.getElementById(
+            "detailPhoto"
+        ).style.backgroundImage =
+            `url("${product.image}")`;
+
+        document
+            .querySelectorAll(".size")
+            .forEach(function(size){
+
+                size.classList.remove(
+                    "selected"
+                );
+
+            });
+
+        const button =
+            document.getElementById(
+                "addButton"
+            );
+
+        button.classList.remove("added");
+
+        button.textContent =
+            "Add to reserve";
+
+        window.scrollTo({
+            top:0,
+            behavior:"instant"
+        });
+
+        history.pushState(
+            {product:id},
+            "",
+            "#product-" + id
+        );
 
         setTimeout(function(){
 
             document.body.classList.remove(
-                "transitioning"
+                "is-changing"
             );
 
         },100);
 
-    },500);
+    },450);
 
 }
 
 /* =========================================================
-   GO HOME
+   HOME
 ========================================================= */
 
 function goHome(){
 
     document.body.classList.add(
-        "transitioning"
+        "is-changing"
     );
 
     setTimeout(function(){
 
-        document
-            .getElementById(
-                "productPage"
-            )
-            .classList.remove(
-                "active"
-            );
+        document.getElementById(
+            "productPage"
+        ).classList.remove(
+            "active"
+        );
 
-        document
-            .getElementById(
-                "homePage"
-            )
-            .style.display =
+        document.getElementById(
+            "homePage"
+        ).style.display =
             "block";
 
         history.pushState(
@@ -2577,12 +2468,12 @@ function goHome(){
         setTimeout(function(){
 
             document.body.classList.remove(
-                "transitioning"
+                "is-changing"
             );
 
         },100);
 
-    },500);
+    },450);
 
 }
 
@@ -2601,8 +2492,7 @@ function selectSize(button){
             );
 
         });
-
-    button.classList.add(
+   button.classList.add(
         "selected"
     );
 
@@ -2612,11 +2502,11 @@ function selectSize(button){
    ADD TO RESERVE
 ========================================================= */
 
-function addToCart(){
+function addToReserve(){
 
     const button =
         document.getElementById(
-            "buyButton"
+            "addButton"
         );
 
     const selected =
@@ -2637,7 +2527,6 @@ function addToCart(){
         },1400);
 
         return;
-
     }
 
     button.classList.add(
@@ -2650,7 +2539,7 @@ function addToCart(){
 }
 
 /* =========================================================
-   BROWSER BACK BUTTON
+   BROWSER BACK
 ========================================================= */
 
 window.addEventListener(
@@ -2659,15 +2548,15 @@ window.addEventListener(
 
         if(
             window.location.hash
-            .startsWith("#product-")
+                .startsWith("#product-")
         ){
 
             const id =
                 window.location.hash
-                .replace(
-                    "#product-",
-                    ""
-                );
+                    .replace(
+                        "#product-",
+                        ""
+                    );
 
             openProduct(id);
 
@@ -2681,30 +2570,30 @@ window.addEventListener(
 );
 
 /* =========================================================
-   OPEN PRODUCT FROM DIRECT URL
+   DIRECT PRODUCT URL
 ========================================================= */
 
 if(
     window.location.hash
-    .startsWith("#product-")
+        .startsWith("#product-")
 ){
 
     const id =
         window.location.hash
-        .replace(
-            "#product-",
-            ""
-        );
+            .replace(
+                "#product-",
+                ""
+            );
 
     setTimeout(function(){
 
         openProduct(id);
 
-    },200);
+    },250);
 
 }
 
 </script>
 
 </body>
-</html> im
+</html>:600
