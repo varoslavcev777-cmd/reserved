@@ -1,2599 +1,2083 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#11110f" />
+  <meta name="description" content="Noira Reserve — London / Paris. Quiet luxury clothing." />
 
-<title>Noira Reserve — London / Paris</title>
+  <title>Noira Reserve — London / Paris</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-
-/* =========================================================
-   NOIRA RESERVE
-   EDITORIAL LUXURY FASHION WEBSITE
-========================================================= */
-
-:root{
-    --black:#0b0b0b;
-    --black2:#11110f;
-    --cream:#eeeae1;
-    --paper:#e7e3da;
-    --white:#f7f5ef;
-    --muted:#85827b;
-    --gold:#b9854b;
-    --orange:#d86d32;
-    --line:rgba(255,255,255,.14);
-    --darkline:rgba(0,0,0,.13);
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:var(--black);
-    color:var(--white);
-    font-family:Inter,Arial,sans-serif;
-    overflow-x:hidden;
-}
-
-button,
-a{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-/* =========================================================
-   PAGE TRANSITION
-========================================================= */
-
-.transition{
-    position:fixed;
-    inset:0;
-    background:#080808;
-    z-index:99999;
-    pointer-events:none;
-    opacity:0;
-    transition:opacity .5s cubic-bezier(.2,.7,.2,1);
-}
-
-body.is-changing .transition{
-    opacity:1;
-}
-
-/* =========================================================
-   NAV
-========================================================= */
-
-.nav{
-    position:fixed;
-    z-index:5000;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:76px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 42px;
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
-    background:rgba(8,8,8,.35);
-
-    backdrop-filter:blur(22px) saturate(130%);
-    -webkit-backdrop-filter:blur(22px) saturate(130%);
-
-    transition:
-        background .4s ease,
-        border .4s ease;
-}
-
-.nav.scrolled{
-    background:rgba(8,8,8,.82);
-}
-
-.nav-logo{
-    color:white;
-    text-decoration:none;
-
-    font-size:11px;
-    letter-spacing:4px;
-    font-weight:500;
-}
-
-.nav-middle{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:17px;
-    letter-spacing:4px;
-}
-
-.nav-links{
-    display:flex;
-    gap:30px;
-}
-
-.nav-link{
-    color:#aaa;
-    text-decoration:none;
-
-    font-size:8px;
-    letter-spacing:2.5px;
-    text-transform:uppercase;
-
-    transition:.3s ease;
-}
-
-.nav-link:hover{
-    color:#fff;
-}
-
-/* =========================================================
-   HOME
-========================================================= */
-
-#homePage{
-    display:block;
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    position:relative;
-
-    height:100vh;
-    min-height:720px;
-
-    overflow:hidden;
-
-    display:flex;
-    align-items:flex-end;
-
-    background:#111;
-
-    isolation:isolate;
-}
-
-/* main photograph */
-
-.hero-photo{
-    position:absolute;
-    inset:0;
-
-    background-image:
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,.70),
-            rgba(0,0,0,.08) 52%,
-            rgba(0,0,0,.48)
-        ),
-        linear-gradient(
-            0deg,
-            rgba(0,0,0,.75),
-            transparent 55%
-        ),
-        url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=2400&q=92");
-
-    background-size:cover;
-    background-position:center;
-
-    transform:scale(1.04);
-
-    animation:
-        heroZoom 16s ease-in-out infinite alternate;
-
-    z-index:-5;
-}
-
-@keyframes heroZoom{
-
-    from{
-        transform:scale(1.04);
+  <style>
+    :root {
+      --black: #11110f;
+      --black-soft: #181815;
+      --cream: #f3efe7;
+      --white: #fffdf8;
+      --muted: #8f8b82;
+      --line: rgba(255,255,255,.12);
+      --dark-line: rgba(17,17,15,.13);
+      --gold: #c9a76a;
+      --transition: cubic-bezier(.22,.61,.36,1);
     }
 
-    to{
-        transform:scale(1.10);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-}
 
-/* warm cinematic light */
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
 
-.hero-light{
-    position:absolute;
+    body {
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--black);
+      font-family: "DM Sans", Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-    width:600px;
-    height
-   max-width:850px;
-}
+    body.product-open {
+      background: var(--black);
+      color: white;
+    }
 
-.intro-title em{
-    font-style:italic;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.intro-copy{
-    max-width:500px;
+    button {
+      font: inherit;
+    }
 
-    margin-top:35px;
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-    font-size:10px;
+    /* =========================
+       LOADER
+    ========================= */
 
-    line-height:2;
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #11110f;
+      color: white;
+      display: grid;
+      place-items: center;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
 
-    color:#67645e;
-}
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
 
-/* =========================================================
-   FEATURED COLLECTION
-========================================================= */
+    .loader-inner {
+      text-align: center;
+    }
 
-.collection{
-    background:var(--paper);
-    color:#111;
+    .loader-logo {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(48px, 8vw, 100px);
+      font-weight: 400;
+      line-height: .8;
+    }
 
-    padding:
-        0
-        5vw
-        140px;
-}
+    .loader-sub {
+      margin-top: 20px;
+      font-size: 9px;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: #aaa69d;
+    }
 
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
+    /* =========================
+       NAVIGATION
+    ========================= */
 
-    padding:
-        0
-        3vw
-        45px;
-}
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 78px;
+      padding: 0 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.5),
+        rgba(0,0,0,0)
+      );
+      transition:
+        background .5s ease,
+        backdrop-filter .5s ease;
+    }
 
-.section-number{
-    font-size:8px;
-    letter-spacing:3px;
-    color:#888;
-}
+    .nav.scrolled {
+      background: rgba(17,17,15,.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
 
-.section-title{
-    font-family:"Cormorant Garamond",serif;
+    .nav-brand {
+      font-family: "Great Vibes", cursive;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1;
+      white-space: nowrap;
+    }
 
-    font-size:
-        clamp(48px,7vw,95px);
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
 
-    font-weight:300;
+    .nav-links a {
+      position: relative;
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      opacity: .82;
+      transition: opacity .3s ease;
+    }
 
-    line-height:.8;
-}
+    .nav-links a:hover {
+      opacity: 1;
+    }
 
-.section-link{
-    color:#555;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 1px;
+      background: white;
+      transition: width .35s var(--transition);
+    }
 
-    font-size:8px;
-    letter-spacing:3px;
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
-    text-transform:uppercase;
+    /* =========================
+       HOME HERO
+    ========================= */
 
-    text-decoration:none;
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      height: 100svh;
+      overflow: hidden;
+      background: #171613;
+      color: white;
+      isolation: isolate;
+    }
 
-    border-bottom:1px solid #aaa;
+    .hero-image {
+      position: absolute;
+       inset: -3%;
+      width: 106%;
+      height: 106%;
+      object-fit: cover;
+      object-position: center center;
+      filter: saturate(.72) contrast(1.05);
+      animation: heroZoom 16s ease-in-out infinite alternate;
+      z-index: -4;
+    }
 
-    padding-bottom:7px;
-}
+    .hero-mobile-image {
+      display: none;
+    }
 
-/* =========================================================
-   PRODUCT GRID
-========================================================= */
-
-.products{
-    display:grid;
-
-    grid-template-columns:
-        repeat(12,1fr);
-
-    gap:18px;
-}
-
-.product{
-    position:relative;
-
-    overflow:hidden;
-
-    cursor:pointer;
-
-    background:#d3d0c8;
-
-    min-height:560px;
-
-    grid-column:span 4;
-
-    transition:
-        transform .7s
-        cubic-bezier(.2,.7,.2,1),
-        box-shadow .7s
-        cubic-bezier(.2,.7,.2,1);
-}
-
-.product:nth-child(2){
-    margin-top:70px;
-}
-
-.product:nth-child(3){
-    margin-top:25px;
-}
-
-.product:hover{
-    transform:translateY(-10px);
-
-    box-shadow:
-        0 35px 80px rgba(0,0,0,.15);
-}
-
-/* product image */
-
-.product-image{
-    position:absolute;
-    inset:0;
-
-    background-size:cover;
-    background-position:center;
-
-    transition:
-        transform 1.1s
-        cubic-bezier(.2,.7,.2,1),
-        filter .8s ease;
-}
-
-.product:hover .product-image{
-    transform:scale(1.055);
-
-    filter:
-        saturate(1.08)
-        contrast(1.02);
-}
-
-/* real fashion image backgrounds */
-
-.product.black .product-image{
-    background-image:
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
         linear-gradient(
-            0deg,
-            rgba(0,0,0,.75),
-            transparent 55%
-        ),
-        url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90");
-}
-
-.product.white .product-image{
-    background-image:
-        linear-gradient(
-            0deg,
-            rgba(0,0,0,.55),
-            transparent 55%
-        ),
-        url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=90");
-}
-
-.product.hoodie .product-image{
-    background-image:
-        linear-gradient(
-            0deg,
-            rgba(0,0,0,.75),
-            transparent 55%
-        ),
-        url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=90");
-}
-
-/* product info */
-
-.product-info{
-    position:absolute;
-
-    left:25px;
-    right:25px;
-    bottom:25px;
-
-    z-index:5;
-
-    color:#fff;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-}
-
-.product-name{
-    font-size:9px;
-
-    letter-spacing:2.5px;
-
-    text-transform:uppercase;
-}
-
-.product-description{
-    margin-top:9px;
-
-    max-width:260px;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:15px;
-
-    line-height:1.2;
-
-    color:#ddd8cf;
-}
-
-.product-price{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:20px;
-}
-
-/* product hover label */
-
-.product::after{
-    content:"VIEW PIECE";
-
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:
-        translate(-50%,-50%)
-        translateY(15px);
-
-    padding:13px 20px;
-
-    border:1px solid rgba(255,255,255,.7);
-
-    background:rgba(0,0,0,.18);
-
-    backdrop-filter:blur(14px);
-
-    color:#fff;
-
-    font-size:7px;
-
-    letter-spacing:3px;
-
-    opacity:0;
-
-    transition:
-        opacity .4s ease,
-        transform .5s
-        cubic-bezier(.2,.7,.2,1);
-
-    z-index:20;
-}
-
-.product:hover::after{
-    opacity:
-       1;
-
-    transform:
-        translate(-50%,-50%)
-        translateY(0);
-}
-
-/* =========================================================
-   EDITORIAL BLOCK
-========================================================= */
-
-.editorial{
-    background:#10100e;
-
-    color:white;
-
-    padding:
-        140px 6vw;
-
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    gap:5vw;
-
-    align-items:center;
-}
-
-.editorial-image{
-    min-height:700px;
-
-    background-image:
-        linear-gradient(
-            0deg,
-            rgba(0,0,0,.25),
-            transparent
-        ),
-        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=90");
-
-    background-size:cover;
-    background-position:center;
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.editorial-image::after{
-    content:"NOIRA / 01";
-
-    position:absolute;
-
-    left:25px;
-    bottom:25px;
-
-    font-size:7px;
-    letter-spacing:4px;
-
-    color:#fff;
-}
-
-.editorial-content{
-    padding:40px;
-}
-
-.editorial-number{
-    font-size:8px;
-    letter-spacing:4px;
-    color:#777;
-
-    margin-bottom:40px;
-}
-
-.editorial-title{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:
-        clamp(55px,6vw,95px);
-
-    font-weight:300;
-
-    line-height:.88;
-
-    margin-bottom:40px;
-}
-
-.editorial-title em{
-    font-style:italic;
-}
-
-.editorial-copy{
-    max-width:470px;
-
-    color:#85827b;
-
-    font-size:10px;
-
-    line-height:2;
-
-    margin-bottom:40px;
-}
-
-.editorial-button{
-    display:inline-block;
-
-    color:white;
-
-    text-decoration:none;
-
-    border:1px solid #555;
-
-    padding:16px 25px;
-
-    font-size:7px;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    transition:.35s;
-}
-
-.editorial-button:hover{
-    background:white;
-    color:#111;
-    border-color:white;
-}
-
-/* =========================================================
-   SECONDARY IMAGE STRIP
-========================================================= */
-
-.image-strip{
-    background:var(--paper);
-
-    padding:
-        110px 5vw;
-
-    color:#111;
-}
-
-.image-strip-grid{
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        1.5fr
-        1fr;
-
-    gap:15px;
-
-    align-items:center;
-}
-
-.strip-image{
-    height:420px;
-
-    background-size:cover;
-    background-position:center;
-
-    transition:
-        transform .8s
-        cubic-bezier(.2,.7,.2,1);
-}
-
-.strip-image:hover{
-    transform:scale(.985);
-}
-
-.strip-one{
-    background-image:
-        url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=90");
-}
-
-.strip-two{
-    height:570px;
-
-    background-image:
-        url("https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1300&q=90");
-}
-
-.strip-three{
-    background-image:
-        url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=90");
-}
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about{
-    background:#e7e3da;
-
-    color:#111;
-
-    padding:
-        150px 8vw;
-
-    display:grid;
-
-    grid-template-columns:
-        .65fr
-        1.35fr;
-
-    gap:7vw;
-}
-
-.about-label{
-    font-size:8px;
-
-    letter-spacing:4px;
-
-    color:#777;
-
-    text-transform:uppercase;
-}
-
-.about-title{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:
-        clamp(55px,7vw,100px);
-
-    font-weight:300;
-
-    line-height:.86;
-}
-
-.about-copy{
-    max-width:600px;
-
-    font-size:11px;
-
-    line-height:2;
-
-    color:#69665f;
-}
-
-.about-copy p + p{
-    margin-top:25px;
-}
-
-.about-meta{
-    margin-top:45px;
-
-    display:flex;
-
-    gap:60px;
-}
-
-.meta-item{
-    display:flex;
-    flex-direction:column;
-
-    gap:8px;
-}
-
-.meta-number{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:30px;
-}
-
-.meta-label{
-    font-size:7px;
-
-    letter-spacing:2px;
-
-    color:#777;
-
-    text-transform:uppercase;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer{
-    background:#090909;
-   px;
-
-    border-radius:50%;
-
-    right:-150px;
-    top:15%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(214,121,48,.24),
-            transparent 68%
+          180deg,
+          rgba(0,0,0,.50) 0%,
+          rgba(0,0,0,.12) 34%,
+          rgba(0,0,0,.24) 65%,
+          rgba(0,0,0,.72) 100%
         );
-
-    filter:blur(35px);
-
-    z-index:-3;
-
-    animation:
-        lightMove 9s ease-in-out infinite;
-}
-
-@keyframes lightMove{
-
-    0%,100%{
-        transform:translate(0,0) scale(.9);
+      z-index: -3;
     }
 
-    50%{
-        transform:translate(-80px,50px) scale(1.1);
-    }
-}
-
-/* grain */
-
-.hero-grain{
-    position:absolute;
-    inset:0;
-
-    opacity:.08;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-
-    mix-blend-mode:screen;
-
-    pointer-events:none;
-
-    z-index:10;
-}
-
-/* hero content */
-
-.hero-content{
-    width:100%;
-
-    padding:
-        0
-        6vw
-        7vh;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-
-    animation:
-        heroContent 1.4s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
-
-    opacity:0;
-}
-
-@keyframes heroContent{
-
-    from{
-        opacity:0;
-        transform:translateY(35px);
-        filter:blur(8px);
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 70vw;
+      height: 70vw;
+      max-width: 850px;
+      max-height: 850px;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(
+        circle,
+        rgba(218,184,122,.20),
+        rgba(218,184,122,.04) 38%,
+        transparent 68%
+      );
+      filter: blur(20px);
+      z-index: -2;
+      animation: lightFloat 9s ease-in-out infinite alternate;
+      pointer-events: none;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
-        filter:blur(0);
-    }
-}
-
-.hero-left{
-    max-width:700px;
-}
-
-.hero-eyebrow{
-    font-size:8px;
-    letter-spacing:5px;
-    text-transform:uppercase;
-
-    color:#c3beb4;
-
-    margin-bottom:24px;
-}
-
-.hero-title{
-    font-family:"Italiana",serif;
-
-    font-size:
-        clamp(80px,12vw,180px);
-
-    font-weight:400;
-
-    line-height:.72;
-
-    letter-spacing:-3px;
-
-    color:#f1eee7;
-
-    white-space:nowrap;
-
-    text-shadow:
-        0 20px 70px rgba(0,0,0,.45);
-}
-
-.hero-description{
-    max-width:440px;
-
-    margin-top:30px;
-
-    font-size:10px;
-
-    line-height:1.8;
-
-    letter-spacing:.6px;
-
-    color:#c1bdb4;
-}
-
-.hero-right{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-
-    gap:18px;
-}
-
-.hero-season{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:18px;
-
-    letter-spacing:2px;
-
-    color:#eee;
-}
-
-.hero-scroll{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    color:#aaa;
-
-    font-size:7px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-}
-
-.hero-scroll-line{
-    width:45px;
-    height:1px;
-
-    background:#aaa;
-
-    animation:
-        scrollLine 2s ease-in-out infinite;
-}
-
-@keyframes scrollLine{
-
-    0%,100%{
-        transform:scaleX(.4);
-        transform-origin:left;
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: .08;
+      pointer-events: none;
+      z-index: 2;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
     }
 
-    50%{
-        transform:scaleX(1);
-    }
-}
-
-/* =========================================================
-   MARQUEE
-========================================================= */
-
-.marquee{
-    overflow:hidden;
-
-    background:#171714;
-
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-
-    white-space:nowrap;
-}
-
-.marquee-track{
-    width:max-content;
-
-    display:flex;
-
-    animation:
-        marquee 28s
-        linear
-        infinite;
-}
-
-.marquee span{
-    padding:
-        19px
-        35px;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:16px;
-
-    letter-spacing:4px;
-
-    color:#c5bfb4;
-}
-
-.marquee .dot{
-    color:var(--gold);
-}
-
-@keyframes marquee{
-
-    from{
-        transform:translateX(0);
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 90px 20px 100px;
     }
 
-    to{
-        transform:translateX(-50%);
-    }
-}
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro{
-    background:var(--paper);
-    color:#121212;
-
-    padding:
-        150px
-        8vw
-        130px;
-
-    display:grid;
-
-    grid-template-columns:
-        .8fr
-        1.2fr;
-
-    gap:8vw;
-
-    align-items:end;
-}
-
-.intro-label{
-    font-size:8px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-
-    color:#777;
-}
-
-.intro-title{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:
-        clamp(45px,6vw,82px);
-
-    font-weight:300;
-
-    line-height:.92;
-   ==================================================
-   RESPONSIVE
-========================================================= */
-
-max-width:900px{
-
-    .nav{
-        height:65px;
-        padding:0 20px;
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+      color: rgba(255,255,255,.82);
+      animation: fadeUp 1s .3s both;
     }
 
-    .nav-middle{
-        display:none;
+    .hero-logo {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(72px, 10.5vw, 170px);
+      font-weight: 400;
+      line-height: .75;
+      letter-spacing: -.015em;
+      text-shadow:
+        0 12px 45px rgba(0,0,0,.30);
+      animation: logoReveal 1.5s .15s var(--transition) both;
+      white-space: nowrap;
     }
 
-    .nav-links{
-        gap:15px;
+    .hero-tagline {
+      margin-top: 35px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(11px, 1.1vw, 14px);
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      animation: fadeUp 1s .55s both;
     }
 
-    .nav-link{
-        font-size:7px;
+    .hero-bottom {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 30px;
+      z-index: 4;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.68);
     }
 
-    .hero{
-        min-height:690px;
+    .hero-scroll {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,.35);
+      overflow: hidden;
     }
 
-    .hero-content{
-        padding:
-            0
-            25px
-            55px;
-
-        display:block;
+    .hero-scroll::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -100%;
+      width: 100%;
+      height: 50%;
+      background: white;
+      animation: scrollLine 2.2s ease-in-out infinite;
     }
 
-    .hero-title{
-        font-size:75px;
-        letter-spacing:-1px;
+    /* =========================
+       INTRO
+    ========================= */
+
+    .intro {
+      min-height: 70vh;
+      padding: 150px 7vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10vw;
+      align-items: center;
+      background: var(--cream);
     }
 
-    .hero-description{
-        max-width:310px;
+    .section-kicker {
+      font-size: 9px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: #77736b;
+      margin-bottom: 28px;
     }
 
-    .hero-right{
-        margin-top:35px;
-
-        align-items:flex-start;
+    .intro-title {
+      font-family: "Manrope", sans-serif;
+      font-weight: 500;
+      font-size: clamp(36px, 5vw, 75px);
+       eight: 500;
+      max-width: 600px;
     }
 
-    .intro{
-        grid-template-columns:1fr;
-
-        padding:
-            100px 25px;
+    .editorial-copy {
+      max-width: 430px;
+      margin-top: 35px;
+      color: #a7a39a;
+      line-height: 1.8;
+      font-size: 14px;
     }
 
-    .intro-title{
-        font-size:52px;
+    .editorial-link {
+      margin-top: 45px;
+      width: fit-content;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.5);
+      font-size: 10px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
     }
 
-    .products{
-        display:grid;
+    /* =========================
+       BRAND STATEMENT
+    ========================= */
 
-        grid-template-columns:1fr;
-
-        gap:15px;
+    .statement {
+      min-height: 75vh;
+      padding: 130px 7vw;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .product{
-        grid-column:auto !important;
-
-        min-height:540px;
-
-        margin-top:0 !important;
+    .statement-big {
+      max-width: 1150px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(48px, 8vw, 130px);
+      line-height: .88;
+      letter-spacing: -.08em;
+      font-weight: 500;
     }
 
-    .collection{
-        padding:
-            0 20px 100px;
+    .statement-big em {
+      font-family: "Great Vibes", cursive;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 1.12em;
     }
 
-    .section-head{
-        padding:
-            0
-            0
-            35px;
+    .statement-bottom {
+      margin-top: 75px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      color: #77736a;
+      font-size: 11px;
+      line-height: 1.7;
     }
 
-    .editorial{
-        grid-template-columns:1fr;
+    /* =========================
+       FOOTER
+    ========================= */
 
-        padding:
-            90px 20px;
+    footer {
+      padding: 75px 5vw 35px;
+      background: #11110f;
+      color: white;
     }
 
-    .editorial-image{
-        min-height:560px;
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 50px;
+      padding-bottom: 75px;
     }
 
-    .editorial-content{
-        padding:
-            40px 10px;
+    .footer-logo {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(60px, 9vw, 130px);
+      line-height: .7;
     }
 
-    .image-strip{
-        padding:
-            80px 20px;
+    .footer-links {
+      display: flex;
+      gap: 40px;
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
     }
 
-    .image-strip-grid{
-        grid-template-columns:1fr;
-
-        gap:12px;
+    .footer-links a {
+      opacity: .65;
+      transition: opacity .3s ease;
     }
 
-    .strip-image,
-    .strip-two{
-        height:480px;
+    .footer-links a:hover {
+      opacity: 1;
     }
 
-    .about{
-        grid-template-columns:1fr;
-
-        padding:
-            100px 25px;
+    .footer-bottom {
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #77736b;
     }
 
-    .about-title{
-        font-size:60px;
+    /* =========================
+       PRODUCT PAGE
+    ========================= */
+
+    .product-page {
+      min-height: 100svh;
+      background: #11110f;
+      color: white;
+      padding-top: 95px;
     }
 
-    .footer{
-        padding:
-            80px 25px 30px;
+    .product-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 78px;
+      padding: 0 34px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(17,17,15,.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
-    .footer-top{
-        grid-template-columns:1fr 1fr;
-
-        gap:45px;
+    .product-back {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
     }
 
-    .footer-logo{
-        grid-column:1 / -1;
+    .product-top-logo {
+      font-family: "Great Vibes", cursive;
+      font-size: 32px;
     }
 
-    .footer-bottom{
-        flex-direction:column;
-        gap:12px;
+    .product-layout {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 45px 5vw 100px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(340px, .85fr);
+      gap: 6vw;
+      align-items: start;
     }
 
-    .product-detail{
-        grid-template-columns:1fr;
+    .product-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
 
-    .detail-visual{
-        min-height:570px;
+    .product-main-image {
+      position: relative;
+      overflow: hidden;
+      background: #1c1b18;
+      aspect-ratio: 4 / 5;
     }
 
-    .detail-info{
-        padding:
-            65px 25px 85px;
+    .product-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: productImageIn 1.2s var(--transition) both;
     }
 
-    .detail-title{
-        font-size:62px;
-    }
-}
-
-max-width:500px{
-
-    .hero-title{
-        font-size:66px;
+    .product-video {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #1c1b18;
     }
 
-    .hero-description{
-        font-size:9px;
+    .product-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .82;
+      filter: saturate(.72);
     }
 
-    .hero-season{
-        font-size:16px;
+    .video-overlay {
+      position: absolute;
+      inset
+       line-height: .98;
+      letter-spacing: -.055em;
+      max-width: 720px;
     }
 
-    .intro-title{
-        font-size:47px;
+    .intro-title span {
+      color: #969086;
     }
 
-    .section-title{
-        font-size:55px;
+    .intro-copy {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #68645d;
+      max-width: 480px;
     }
 
-    .product{
-        min-height:480px;
+    .intro-signature {
+      margin-top: 42px;
+      font-family: "Great Vibes", cursive;
+      font-size: 48px;
+      color: #26251f;
     }
 
-    .editorial-image{
-        min-height:480px;
+    /* =========================
+       COLLECTION
+    ========================= */
+
+    .collection {
+      padding: 120px 5vw 150px;
+      background: #ebe6dc;
     }
 
-    .about-title{
-        font-size:54px;
+    .collection-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 55px;
+      gap: 30px;
     }
 
-    .footer-top{
-        grid-template-columns:1fr;
-    }
-}
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-prefers-reduced-motion:reduce{
-
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms !important;
-        animation-iteration-count:1 !important;
-        transition-duration:.01ms !important;
+    .collection-title {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(38px, 6vw, 82px);
+      line-height: .9;
+      letter-spacing: -.065em;
+      font-weight: 500;
     }
 
-}
+    .collection-note {
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #767168;
+      max-width: 210px;
+      line-height: 1.7;
+    }
 
-</style>
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 25px;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      background: #d8d1c4;
+      min-height: 650px;
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .product-card.small {
+      min-height: 310px;
+    }
+
+    .product-card.tall {
+      grid-row: span 2;
+    }
+
+    .product-card-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition:
+        transform 1.2s var(--transition),
+        filter .8s ease;
+    }
+
+    .product-card:hover .product-card-image {
+      transform: scale(1.055);
+      filter: saturate(1.06);
+    }
+
+    .product-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          transparent 45%,
+          rgba(0,0,0,.65)
+        );
+      z-index: 1;
+    }
+
+    .product-card-info {
+      position: absolute;
+      z-index: 3;
+      left: 30px;
+      right: 30px;
+      bottom: 27px;
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .product-name {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+
+    .product-category {
+      margin-top: 7px;
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    .product-price {
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .card-arrow {
+      position: absolute;
+      z-index: 4;
+      right: 27px;
+      top: 27px;
+      width: 45px;
+      height: 45px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 17px;
+      transition:
+        background .4s ease,
+        transform .4s var(--transition);
+    }
+
+    .product-card:hover .card-arrow {
+      background: white;
+      color: black;
+      transform: rotate(-45deg);
+    }
+
+    /* =========================
+       EDITORIAL
+    ========================= */
+
+    .editorial {
+      position: relative;
+      min-height: 85vh;
+      overflow: hidden;
+      background: #121210;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .editorial-image {
+      width: 100%;
+      height: 100%;
+      min-height: 750px;
+      object-fit: cover;
+      filter: saturate(.75);
+      transition: transform 1.2s var(--transition);
+    }
+
+    .editorial:hover .editorial-image {
+      transform: scale(1.025);
+    }
+
+    .editorial-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8vw;
+    }
+
+    .editorial-title {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(44px, 5vw, 78px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      font-w
+       : 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 25px;
+      background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.65)
+      );
+      pointer-events: none;
+    }
+
+    .video-overlay span {
+      font-size: 9px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+
+    .product-details {
+      position: sticky;
+      top: 120px;
+      padding: 20px 0 60px;
+      animation: fadeUp .9s .1s both;
+    }
+
+    .product-number {
+      font-size: 9px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: #77736b;
+      margin-bottom: 30px;
+    }
+
+    .product-page-title {
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(42px, 5vw, 76px);
+      line-height: .9;
+      letter-spacing: -.065em;
+      font-weight: 500;
+    }
+
+    .product-page-price {
+      margin-top: 27px;
+      font-size: 16px;
+      color: #c9a76a;
+    }
+
+    .product-description {
+      margin-top: 38px;
+      max-width: 480px;
+      font-size: 14px;
+      line-height: 1.9;
+      color: #a5a198;
+    }
+
+    .product-divider {
+      height: 1px;
+      background: rgba(255,255,255,.12);
+      margin: 40px 0;
+    }
+
+    .size-title {
+      font-size: 9px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: #88847b;
+      margin-bottom: 15px;
+    }
+
+    .sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .size-btn {
+      width: 56px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition:
+        background .3s ease,
+        color .3s ease,
+        border .3s ease;
+    }
+
+    .size-btn:hover,
+    .size-btn.active {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    .buy-btn {
+      position: relative;
+      width: 100%;
+      height: 62px;
+      margin-top: 38px;
+      border: none;
+      background: white;
+      color: black;
+      cursor: pointer;
+      overflow: hidden;
+      font-size: 10px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      transition: transform .35s var(--transition);
+    }
+
+    .buy-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #c9a76a;
+      transform: translateX(-101%);
+      transition: transform .5s var(--transition);
+    }
+
+    .buy-btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .buy-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .buy-btn:hover::before {
+      transform: translateX(0);
+    }
+
+    .product-meta {
+      margin-top: 35px;
+      display: grid;
+      gap: 13px;
+      font-size: 10px;
+      color: #77736b;
+      letter-spacing: .08em;
+    }
+
+    .product-meta-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding-bottom: 13px;
+    }
+
+    /* =========================
+       NOT FOUND
+    ========================= */
+
+    .not-found {
+      min-height: 100svh;
+      background: #11110f;
+      color: white;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .not-found h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 90px;
+      font-weight: 400;
+    }
+
+    .not-found a {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 10px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      border-bottom: 1px solid white;
+      padding-bottom: 8px;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes heroZoom {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.07);
+      }
+    }
+
+    @keyframes lightFloat {
+      0% {
+        transform: translate(-58%, -48%) scale(.9);
+      }
+      100% {
+        transform: translate(-40%, -53%) scale(1.1);
+      }
+    }
+
+    @keyframes logoReveal {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(.97);
+        filter:
+           flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer-bottom {
+        display: block;
+        line-height: 1.8;
+      }
+
+      .footer-bottom div + div {
+        margin-top: 10px;
+      }
+
+      /* product mobile */
+
+      .product-topbar {
+        height: 66px;
+        padding: 0 18px;
+      }
+
+      .product-top-logo {
+        font-size: 27px;
+      }
+
+      .product-back {
+        font-size: 8px;
+      }
+
+      .product-layout {
+        display: block;
+        padding: 25px 14px 70px;
+      }
+
+      .product-gallery {
+        gap: 8px;
+      }
+
+      .product-main-image {
+        aspect-ratio: 4 / 5;
+      }
+
+      .product-video {
+        aspect-ratio: 4 / 5;
+      }
+
+      .product-details {
+        position: static;
+        padding: 55px 10px 20px;
+      }
+
+      .product-page-title {
+        font-size: 52px;
+      }
+
+      .product-description {
+        font-size: 13px;
+      }
+
+      .size-btn {
+        width: 52px;
+        height: 46px;
+      }
+
+      .buy-btn {
+        height: 58px;
+      }
+    }
+
+    max-width: 420px {
+
+      .nav-links {
+        gap: 9px;
+      }
+
+      .nav-links a {
+        font-size: 7px;
+      }
+
+      .hero-logo {
+        font-size: 68px;
+      }
+
+      .product-card,
+      .product-card.small,
+      .product-card.tall {
+        min-height: 430px;
+      }
+
+      .product-page-title {
+        font-size: 45px;
+      }
+    }
+
+    prefers-reduced-motion: reduce {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="transition"></div>
-
-<!-- ======================================================
-     NAVIGATION
-====================================================== -->
-
-<header class="nav" id="nav">
-
-    <a
-        href="#"
-        class="nav-logo"
-        onclick="goHome();return false;"
-    >
-        NOIRA RESERVE
-    </a>
-
-    <div class="nav-middle">
-        LONDON · PARIS
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">Noira</div>
+      <div class="loader-sub">Reserve / London / Paris</div>
     </div>
+  </div>
 
-    <nav class="nav-links">
+  <!-- APP -->
+  <div id="app">
 
-        <a
-            href="#collection"
-            class="nav-link"
-            onclick="goHome();"
+    <!-- HOME -->
+    <div id="homePage">
+
+      <!-- NAV -->
+      <header class="nav" id="mainNav">
+        <a href="?view=home" class="nav-brand">Noira Reserve</a>
+
+        <nav class="nav-links">
+          <a href="?view=home">Дом</a>
+          <a href="?view=collection#collection">Коллекция</a>
+          <a href="?view=about#about">О бренде</a>
+        </nav>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero">
+
+        <!-- DESKTOP -->
+        <img
+          class="hero-image"
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2400&q=88"
+          alt="Noira Reserve editorial"
         >
-            Collection
-        </a>
 
-        <a
-            href="#about"
-            class="nav-link"
-            onclick="goHome();"
+        <!-- MOBILE -->
+        <img
+          class="hero-mobile-image"
+          src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=88"
+          alt="Noira Reserve mobile editorial"
         >
-            House
-        </a>
 
-    </nav>
+        <div class="hero-grain"></div>
 
-</header>
+        <div class="hero-content">
 
-<!-- ======================================================
-     HOME
-====================================================== -->
+          <div class="hero-eyebrow">
+            London · Paris · 2026
+          </div>
 
-<main id="homePag
-   color:#eee;
+          <h1 class="hero-logo">
+            Noira Reserve
+          </h1>
 
-    padding:
-        100px 5vw 35px;
-}
-
-.footer-top{
-    display:grid;
-
-    grid-template-columns:
-        1.5fr
-        1fr
-        1fr;
-
-    gap:50px;
-
-    padding-bottom:90px;
-}
-
-.footer-logo{
-    font-family:"Italiana",serif;
-
-    font-size:
-        clamp(50px,7vw,100px);
-
-    line-height:.8;
-}
-
-.footer-column-title{
-    font-size:7px;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    color:#666;
-
-    margin-bottom:22px;
-}
-
-.footer-link{
-    display:block;
-
-    color:#aaa;
-
-    text-decoration:none;
-
-    font-size:9px;
-
-    margin-bottom:13px;
-
-    transition:.25s;
-}
-
-.footer-link:hover{
-    color:white;
-}
-
-.footer-bottom{
-    padding-top:25px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.1);
-
-    display:flex;
-
-    justify-content:space-between;
-
-    color:#5f5d59;
-
-    font-size:7px;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-}
-
-/* =========================================================
-   PRODUCT PAGE
-========================================================= */
-
-.product-page{
-    display:none;
-
-    min-height:100vh;
-
-    padding-top:76px;
-
-    background:#e9e5dc;
-
-    color:#111;
-}
-
-.product-page.active{
-    display:block;
-
-    animation:
-        productEnter .7s
-        cubic-bezier(.2,.7,.2,1)
-        forwards;
-}
-
-@keyframes productEnter{
-
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.product-back{
-    padding:
-        32px 5vw;
-}
-
-.back-button{
-    border:0;
-    background:none;
-
-    color:#555;
-
-    font-size:8px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-
-    transition:.3s;
-}
-
-.back-button:hover{
-    color:#111;
-    transform:translateX(-5px);
-}
-
-.product-detail{
-    display:grid;
-
-    grid-template-columns:
-        1.05fr
-        .95fr;
-
-    min-height:
-        calc(100vh - 145px);
-}
-
-.detail-visual{
-    position:relative;
-
-    min-height:700px;
-
-    overflow:hidden;
-
-    background:#151513;
-}
-
-.detail-photo{
-    position:absolute;
-    inset:0;
-
-    background-size:cover;
-    background-position:center;
-
-    transition:
-        transform 1.2s
-        cubic-bezier(.2,.7,.2,1);
-}
-
-.detail-visual:hover .detail-photo{
-    transform:scale(1.025);
-}
-
-.detail-overlay{
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            0deg,
-            rgba(0,0,0,.35),
-            transparent 60%
-        );
-}
-
-.detail-caption{
-    position:absolute;
-
-    left:35px;
-    bottom:30px;
-
-    font-size:7px;
-
-    letter-spacing:4px;
-
-    color:#fff;
-}
-
-.detail-info{
-    padding:
-        80px
-        8vw
-        80px 7vw;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.detail-category{
-    font-size:8px;
-    letter-spacing:4px;
-
-    color:#888;
-
-    text-transform:uppercase;
-
-    margin-bottom:25px;
-}
-
-.detail-title{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:
-        clamp(55px,6vw,95px);
-
-    font-weight:300;
-
-    line-height:.84;
-
-    margin-bottom:22px;
-}
-
-.detail-price{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:27px;
-
-    margin-bottom:35px;
-}
-
-.detail-description{
-    max-width:500px;
-
-    color:#6b6862;
-
-    font-size:10px;
-
-    line-height:2;
-
-    margin-bottom:38px;
-}
-
-.detail-divider{
-    height:1px;
-
-    background:#cfcac0;
-
-    margin-bottom:27px;
-}
-
-.size-title{
-    font-size:7px;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    margin-bottom:13px;
-}
-
-.sizes{
-    display:flex;
-    gap:7px;
-
-    margin-bottom:32px;
-}
-
-.size{
-    width:49px;
-    height:43px;
-
-    border:1px solid #c4bfb6;
-
-    background:transparent;
-
-    font-size:8px;
-
-    transition:.25s;
-}
-
-.size:hover,
-.size.selected{
-    background:#111;
-
-    color:#fff;
-
-    border-color:#111;
-}
-
-.add-button{
-    width:100%;
-
-    height:59px;
-
-    border:0;
-
-    background:#111;
-
-    color:#fff;
-
-    font-size:8px;
-
-    letter-spacing:4px;
-
-    text-transform:uppercase;
-
-    transition:.35s;
-}
-
-.add-button:hover{
-    background:#292929;
-}
-
-.add-button.added{
-    background:#8b5c32;
-}
-
-/* =======
-   e">
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="hero-photo"></div>
-
-    <div class="hero-light"></div>
-
-    <div class="hero-grain"></div>
-
-    <div class="hero-content">
-
-        <div class="hero-left">
-
-            <div class="hero-eyebrow">
-                NOIRA RESERVE · EST. 2026 · LONDON
-            </div>
-
-            <h1 class="hero-title">
-                Noira
-
-                Reserve
-            </h1>
-
-            <p class="hero-description">
-                A contemporary wardrobe shaped by London,
-                refined through European restraint and created
-                for those who move differently.
-            </p>
+          <div class="hero-tagline">
+            Quiet luxury · Modern wardrobe
+          </div>
 
         </div>
 
-        <div class="hero-right">
-
-            <div class="hero-season">
-                The Reserve / 01
-            </div>
-
-            <div class="hero-scroll">
-
-                Explore
-
-                <span class="hero-scroll-line"></span>
-
-            </div>
-
+        <div class="hero-bottom">
+          <span>Collection 01</span>
+          <span>Est. London / Paris</span>
         </div>
 
-    </div>
+        <div class="hero-scroll"></div>
 
-</section>
+      </section>
 
-<!-- MARQUEE -->
-
-<div class="marquee">
-
-    <div class="marquee-track">
-
-        <span>NOIRA RESERVE</span>
-        <span class="dot">✦</span>
-        <span>LONDON</span>
-        <span class="dot">✦</span>
-        <span>PARIS</span>
-        <span class="dot">✦</span>
-        <span>QUIET LUXURY</span>
-        <span class="dot">✦</span>
-
-        <span>NOIRA RESERVE</span>
-        <span class="dot">✦</span>
-        <span>LONDON</span>
-        <span class="dot">✦</span>
-        <span>PARIS</span>
-        <span class="dot">✦</span>
-        <span>QUIET LUXURY</span>
-        <span class="dot">✦</span>
-
-    </div>
-
-</div>
-
-<!-- INTRO -->
-
-<section class="intro">
-
-    <div>
-
-        <div class="intro-label">
-            The House
-        </div>
-
-    </div>
-
-    <div>
-
-        <h2 class="intro-title">
-            Clothing as a form of
-            <em>presence.</em>
-        </h2>
-
-        <p class="intro-copy">
-            Noira Reserve explores the space between
-            understated luxury and contemporary streetwear.
-            Clean silhouettes, restrained branding and
-            carefully considered details create a wardrobe
-            designed beyond the rhythm of seasons.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- COLLECTION -->
-
-<section
-    class="collection"
-    id="collection"
->
-
-    <div class="section-head">
+      <!-- INTRO -->
+      <section class="intro">
 
         <div>
-
-            <div class="section-number">
-                01 / COLLECTION
-            </div>
-
-            <h2 class="section-title">
-                The Reserve
-            </h2>
-
-        </div>
-
-        <a
-            href="#collection"
-            class="section-link"
-        >
-            View collection
-        </a>
-
-    </div>
-
-    <div class="products">
-
-        <!-- PRODUCT 1 -->
-
-        <article
-            class="product black"
-            onclick="openProduct('black')"
-        >
-
-            <div class="product-image"></div>
-
-            <div class="product-info">
-
-                <div>
-
-                    <div class="product-name">
-                        Noira Tee / Black
-                    </div>
-
-                    <div class="product-description">
-                        Essential black.
-                        Nothing unnecessary.
-                    </div>
-
-                </div>
-
-                <div class="product-price">
-                    €59
-                </div>
-
-            </div>
-
-        </article>
-
-        <!-- PRODUCT 2 -->
-
-        <article
-            class="product white"
-            onclick="openProduct('white')"
-        >
-
-            <div class="product-image"></div>
-
-            <div class="product-info">
-
-                <div>
-
-                    <div class="product-name">
-                        Noira Tee / White
-                    </div>
-
-                    <div class="product-description">
-                        A clean foundation
-                        for every day.
-                    </div>
-
-                </div>
-
-                <div class="product-price">
-                    €59
-                </div>
-
-            </div>
-
-        </article>
-
-        <!-- PRODUCT 3 -->
-
-        <a
-         rticle
-            class="product hoodie"
-            onclick="openProduct('hoodie')"
-        >
-
-            <div class="product-image"></div>
-
-            <div class="product-info">
-
-                <div>
-
-                    <div class="product-name">
-                        Reserve Hoodie
-                    </div>
-
-                    <div class="product-description">
-                        London after dark.
-                    </div>
-
-                </div>
-
-                <div class="product-price">
-                    €119
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-<!-- EDITORIAL -->
-
-<section class="editorial">
-
-    <div class="editorial-image"></div>
-
-    <div class="editorial-content">
-
-        <div class="editorial-number">
-            NOIRA RESERVE / EDITORIAL 01
-        </div>
-
-        <h2 class="editorial-title">
-            Between
-
-            <em>city & silence.</em>
-        </h2>
-
-        <p class="editorial-copy">
-            London is more than a location.
-            It is a rhythm — architecture, rain,
-            movement, evening light and people
-            passing without looking back.
-
-            Noira Reserve takes that atmosphere
-            and translates it into modern essentials.
-        </p>
-
-        <a
-            href="#about"
-            class="editorial-button"
-        >
-            Discover the house
-        </a>
-
-    </div>
-
-</section>
-
-<!-- IMAGE STRIP -->
-
-<section class="image-strip">
-
-    <div class="image-strip-grid">
-
-        <div class="strip-image strip-one"></div>
-
-        <div class="strip-image strip-two"></div>
-
-        <div class="strip-image strip-three"></div>
-
-    </div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section
-    class="about"
-    id="about"
->
-
-    <div>
-
-        <div class="about-label">
-            About Noira Reserve
-        </div>
-
-        <h2 class="about-title">
-            Less noise.
-
-            More presence.
-        </h2>
-
-    </div>
-
-    <div>
-
-        <div class="about-copy">
-
-            <p>
-                Noira Reserve is an independent fashion
-                house inspired by the visual language of
-                London and the refinement of Paris.
-            </p>
-
-            <p>
-                We believe luxury does not need to announce
-                itself. It exists in proportion, material,
-                construction and the feeling a piece leaves
-                behind.
-            </p>
-
-            <p>
-                Each collection is intentionally restrained:
-                contemporary essentials designed to become
-                part of a personal uniform rather than a
-                passing trend.
-            </p>
-
-        </div>
-
-        <div class="about-meta">
-
-            <div class="meta-item">
-
-                <div class="meta-number">
-                    01
-                </div>
-
-                <div class="meta-label">
-                    London
-                </div>
-
-            </div>
-
-            <div class="meta-item">
-
-                <div class="meta-number">
-                    02
-                </div>
-
-                <div class="meta-label">
-                    Paris
-                </div>
-
-            </div>
-
-            <div class="meta-item">
-
-                <div class="meta-number">
-                    26
-                </div>
-
-                <div class="meta-label">
-                    Collection
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-    <div class="footer-top">
-
-        <div class="footer-logo">
+          <div class="section-kicker">
+            Noira Reserve / 001
+          </div>
+
+          <h2 class="intro-title">
+            Clothes for those
+            who don't need
+            <span>to be loud.</span>
+          </h2>
+
+          <div class="intro-signature">
             Noira
-
-            Reserve
+          </div>
         </div>
 
         <div>
+          <p class="intro-copy">
+            Noira Reserve соединяет эстетику Лондона,
+            французскую сдержанность и современную
+            культуру. Чистые формы. Спокойные цвета.
+            Материалы, которые ощущаются дороже,
+            чем выглядят.
+             blur(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
 
-            <div class="footer-column-title">
-                Navigate
-            </div>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-            <a
-                href="#collection"
-                class="footer-link"
-            >
-                Collection
-            </a>
+    @keyframes scrollLine {
+      0% {
+        transform: translateY(0);
+      }
+      60% {
+        transform: translateY(250%);
+      }
+      100% {
+        transform: translateY(250%);
+      }
+    }
 
-            <a
-                href="#about"
-                class="footer-link"
-            >
-                About
-            </a>
+    @keyframes productImageIn {
+      from {
+        opacity: 0;
+        transform: scale(1.04);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
-            <a
-                href="#
-               "
-                class="footer-link"
-            >
-                Shipping
-            </a>
+    /* =========================
+       MOBILE
+    ========================= */
+
+    max-width: 800px {
+
+      .nav {
+        height: 66px;
+        padding: 0 18px;
+      }
+
+      .nav-brand {
+        font-size: 27px;
+      }
+
+      .nav-links {
+        gap: 13px;
+      }
+
+      .nav-links a {
+        font-size: 8px;
+        letter-spacing: .11em;
+      }
+
+      .hero {
+        min-height: 100svh;
+        height: 100svh;
+      }
+
+      .hero-image {
+        display: none;
+      }
+
+      .hero-mobile-image {
+        display: block;
+        position: absolute;
+        inset: -3%;
+        width: 106%;
+        height: 106%;
+        object-fit: cover;
+        object-position: center;
+        filter: saturate(.7) contrast(1.04);
+        animation: heroZoom 15s ease-in-out infinite alternate;
+        z-index: -4;
+      }
+
+      .hero-content {
+        padding: 80px 18px 90px;
+      }
+
+      .hero-eyebrow {
+        font-size: 8px;
+        letter-spacing: .28em;
+        margin-bottom: 20px;
+      }
+
+      .hero-logo {
+        font-size: clamp(62px, 19vw, 105px);
+        white-space: normal;
+        line-height: .78;
+      }
+
+      .hero-tagline {
+        max-width: 280px;
+        margin-top: 27px;
+        font-size: 9px;
+        line-height: 1.8;
+        letter-spacing: .18em;
+      }
+
+      .hero-bottom {
+        left: 18px;
+        right: 18px;
+        bottom: 22px;
+        font-size: 7px;
+      }
+
+      .hero-scroll {
+        display: none;
+      }
+
+      .intro {
+        min-height: auto;
+        padding: 90px 25px;
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .intro-title {
+        font-size: clamp(40px, 12vw, 60px);
+      }
+
+      .intro-copy {
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .collection {
+        padding: 85px 18px 100px;
+      }
+
+      .collection-head {
+        display: block;
+        margin-bottom: 35px;
+      }
+
+      .collection-title {
+        font-size: 52px;
+      }
+
+      .collection-note {
+        margin-top: 22px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .product-card,
+      .product-card.small,
+      .product-card.tall {
+        grid-row: auto;
+        min-height: 470px;
+      }
+
+      .product-card-info {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+      }
+
+      .product-name {
+        font-size: 17px;
+      }
+
+      .card-arrow {
+        width: 39px;
+        height: 39px;
+        right: 18px;
+        top: 18px;
+      }
+
+      .editorial {
+        min-height: auto;
+        display: block;
+      }
+
+      .editorial-image {
+        min-height: 500px;
+        height: 65vh;
+      }
+
+      .editorial-content {
+        padding: 80px 25px 95px;
+      }
+
+      .editorial-title {
+        font-size: 48px;
+      }
+
+      .statement {
+        min-height: auto;
+        padding: 90px 25px;
+      }
+
+      .statement-big {
+        font-size: clamp(52px, 14vw, 90px);
+      }
+
+      .statement-bottom {
+        display: block;
+        margin-top: 45px;
+      }
+
+      .statement-bottom div + div {
+        margin-top: 25px;
+      }
+
+      footer {
+        padding: 65px 22px 25px;
+      }
+
+      .footer-top {
+        display: block;
+        padding-bottom: 55px;
+      }
+
+      .footer-logo {
+        font-size: 70px;
+      }
+
+      .footer-links {
+        margin-top: 45px;
+             >
+            Discover the house
+          </a>
 
         </div>
 
-        <div>
+      </section>
 
-            <div class="footer-column-title">
-                Follow
-            </div>
+      <!-- STATEMENT -->
+      <section class="statement" id="about">
 
-            <a
-                href="#"
-                class="footer-link"
-            >
-                Instagram
-            </a>
+        <div class="section-kicker">
+          The House
+        </div>
 
-            <a
-                href="#"
-                class="footer-link"
-            >
-                Telegram
-            </a>
+        <h2 class="statement-big">
+          Less noise.
 
-            <a
-                href="#"
-                class="footer-link"
-            >
-                Contact
-            </a>
+          More <em>presence.</em>
+        </h2>
+
+        <div class="statement-bottom">
+
+          <div>
+            London — Paris
+
+            Independent fashion house
+          </div>
+
+          <div>
+            Designed for the modern city.
+
+            Made for the long term.
+          </div>
 
         </div>
 
-    </div>
+      </section>
 
-    <div class="footer-bottom">
+      <!-- FOOTER -->
+      <footer>
 
-        <span>
-            © 2026 NOIRA RESERVE
-        </span>
+        <div class="footer-top">
 
-        <span>
-            LONDON · PARIS
-        </span>
+          <div class="footer-logo">
+            Noira
+          </div>
 
-    </div>
-
-</footer>
-
-</main>
-
-<!-- ======================================================
-     PRODUCT PAGE
-====================================================== -->
-
-<section
-    class="product-page"
-    id="productPage"
->
-
-    <div class="product-back">
-
-        <button
-            class="back-button"
-            onclick="goHome()"
-        >
-            ← Back to collection
-        </button>
-
-    </div>
-
-    <div class="product-detail">
-
-        <div
-            class="detail-visual"
-            id="detailVisual"
-        >
-
-            <div
-                class="detail-photo"
-                id="detailPhoto"
-            ></div>
-
-            <div class="detail-overlay"></div>
-
-            <div class="detail-caption">
-                NOIRA RESERVE / 2026
-            </div>
+          <div class="footer-links">
+            <a href="?view=home">Home</a>
+            <a href="?view=collection#collection">Collection</a>
+            <a href="?view=about#about">The House</a>
+            <a href="mailto:hello@noirareserve.com">Contact</a>
+          </div>
 
         </div>
 
-        <div class="detail-info">
+        <div class="footer-bottom">
+          <div>
+            © 2026 Noira Reserve
+          </div>
 
-            <div class="detail-category">
-                NOIRA RESERVE · ESSENTIALS
-            </div>
+          <div>
+            London · Paris
+          </div>
+        </div>
 
-            <h1
-                class="detail-title"
-                id="detailTitle"
+      </footer>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    /*
+      =====================================================
+      NOIRA RESERVE
+      SIMPLE GITHUB PAGES ROUTER
+
+      No React.
+      No Tailwind.
+      No build.
+      No pushState.
+      No complicated routing.
+
+      Product URL examples:
+
+      ?product=black
+      ?product=white
+      ?product=hoodie
+
+      This is intentionally simple so GitHub Pages
+      doesn't produce a black screen.
+      =====================================================
+    */
+
+    const products = {
+
+      black: {
+        number: "Essential / 01",
+        name: "Noira Tee / Black",
+        price: "€59",
+        image:
+          "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1800&q=90",
+        description:
+          "Плотная футболка свободного силуэта из мягкого heavyweight cotton. Минимальный брендинг, чистая форма и посадка, которая остаётся актуальной вне сезона.",
+        material:
+          "100% heavyweight cotton",
+        fit:
+          "Relaxed / unisex",
+        color:
+          "Noir Black"
+      },
+
+      white: {
+        number: "Essential / 02",
+        name: "Noira Tee / Ivory",
+        price: "€59",
+        image:
+          "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=90",
+        description:
+          "Молочная футболка с чистым силуэтом и мягкой фактурой. Создана как самостоятельная вещь и как базовый слой под всю коллекцию Noira Reserve.",
+        material:
+          "100% premium cotton",
+        fit:
+          "Relaxed / unisex",
+        color:
+          "Soft Ivory"
+      },
+
+      hoodie: {
+        number: "Heavyweight / 03",
+        name: "Noira Reserve Hoodie",
+        price: "€119",
+        image:
+          "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=90",
+        description:
+          "Тяжёлый худи свободного силуэта. Глубокий чёрный цвет, минимальная графика и плотная ткань создают ощущение современной городской формы.",
+        material:
+          "Heavyweight cotton blend",
+        fit:
+          "Oversized",
+        color:
+          "Reserve Black"
+      }
+
+    };
+
+    function productPage(product) {
+
+      document.body.classList.add("product-open");
+
+      const app = document.getElementById("app");
+
+      app.innerHTML = `
+
+        <div class="product-page">
+
+          <div class="product-topbar">
+
+            <a
+              href="?view=collection#collection"
+              class="product-back"
             >
-                Noira Tee / Black
-            </h1>
+              ← Collection
+            </a>
 
-            <div
-                class="detail-price"
-                id="detailPrice"
+            <a
+              href="?view=home"
+              class="product-top-logo"
             >
-                €59
-            </div>
+              Noira Reserve
+            </a>
 
-            <p
-                class="detail-description"
-                id="detailDescription"
+            <a
+              href="?view=collection#collection"
+              class="product-b
+              ack"
             >
-                A refined everyday essential with a
-                clean silhouette and understated identity.
-            </p>
+              01 / 03
+            </a>
 
-            <div class="detail-divider"></div>
+          </div>
 
-            <div class="size-title">
+          <main class="product-layout">
+
+            <section class="product-gallery">
+
+              <div class="product-main-image">
+
+                <img
+                  src="${product.image}"
+                  alt="${product.name}"
+                >
+
+              </div>
+
+              <div class="product-video">
+
+                <video
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster="${product.image}"
+                >
+                  <source
+                    src="https://videos.pexels.com/video-files/853800/853800-hd_1920_1080_30fps.mp4"
+                    type="video/mp4"
+                  >
+                </video>
+
+                <div class="video-overlay">
+                  <span>
+                    Noira Reserve / Campaign film
+                  </span>
+                </div>
+
+              </div>
+
+            </section>
+
+            <aside class="product-details">
+
+              <div class="product-number">
+                ${product.number}
+              </div>
+
+              <h1 class="product-page-title">
+                ${product.name}
+              </h1>
+
+              <div class="product-page-price">
+                ${product.price}
+              </div>
+
+              <p class="product-description">
+                ${product.description}
+              </p>
+
+              <div class="product-divider"></div>
+
+              <div class="size-title">
                 Select size
+              </div>
+
+              <div class="sizes">
+
+                <button class="size-btn" type="button">
+                  XS
+                </button>
+
+                <button class="size-btn active" type="button">
+                  S
+                </button>
+
+                <button class="size-btn" type="button">
+                  M
+                </button>
+
+                <button class="size-btn" type="button">
+                  L
+                </button>
+
+                <button class="size-btn" type="button">
+                  XL
+                </button>
+
+              </div>
+
+              <button
+                class="buy-btn"
+                id="buyButton"
+                type="button"
+              >
+                <span>
+                  Add to reserve
+                </span>
+              </button>
+
+              <div class="product-meta">
+
+                <div class="product-meta-row">
+                  <span>Material</span>
+                  <span>${product.material}</span>
+                </div>
+
+                <div class="product-meta-row">
+                  <span>Fit</span>
+                  <span>${product.fit}</span>
+                </div>
+
+                <div class="product-meta-row">
+                  <span>Color</span>
+                  <span>${product.color}</span>
+                </div>
+
+                <div class="product-meta-row">
+                  <span>Shipping</span>
+                  <span>Worldwide</span>
+                </div>
+
+              </div>
+
+            </aside>
+
+          </main>
+
+        </div>
+      `;
+
+      /*
+        SIZE SELECT
+      */
+
+      document
+        .querySelectorAll(".size-btn")
+        .forEach(button => {
+
+          button.addEventListener("click", () => {
+
+            document
+              .querySelectorAll(".size-btn")
+              .forEach(btn =>
+                btn.classList.remove("active")
+              );
+
+            button.classList.add("active");
+
+          });
+
+        });
+
+      /*
+        DEMO PURCHASE BUTTON
+      */
+
+      const buyButton =
+        document.getElementById("buyButton");
+
+      if (buyButton) {
+
+        buyButton.addEventListener("click", () => {
+
+          const selected =
+            document.querySelector(".size-btn.active");
+
+          const size =
+            selected ? selected.textContent : "S";
+
+          buyButton.querySelector("span").textContent =
+            `Reserved — ${size}`;
+
+          setTimeout(() => {
+             Мы создаём вещи не на один сезон.
+            Мы создаём состояние.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- COLLECTION -->
+      <section class="collection" id="collection">
+
+        <div class="collection-head">
+
+          <div>
+            <div class="section-kicker">
+              Collection 01
             </div>
 
-            <div class="sizes">
+            <h2 class="collection-title">
+              The Reserve
+            </h2>
+          </div>
 
-                <button
-                    class="size"
-                    onclick="selectSize(this)"
-                >
-                    XS
-                </button>
+          <div class="collection-note">
+            Three essential pieces.
 
-                <button
-                    class="size"
-                    onclick="selectSize(this)"
-                >
-                    S
-                </button>
-
-                <button
-                    class="size"
-                    onclick="selectSize(this)"
-                >
-                    M
-                </button>
-
-                <button
-                    class="size"
-                    onclick="selectSize(this)"
-                >
-                    L
-                </button>
-
-                <button
-                    class="size"
-                    onclick="selectSize(this)"
-                >
-                    XL
-                </button>
-
-            </div>
-
-            <button
-                class="add-button"
-                id="addButton"
-                onclick="addToReserve()"
-            >
-                Add to reserve
-            </button>
+            One quiet statement.
+          </div>
 
         </div>
 
-    </div>
+        <div class="products-grid">
 
-</section>
+          <!-- BLACK TEE -->
+          <a
+            class="product-card tall"
+            href="?product=black"
+          >
 
-<script>
+            <img
+              class="product-card-image"
+              src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1600&q=88"
+              alt="Noira Reserve Black Tee"
+            >
 
-/* =========================================================
-   NAV SCROLL
-========================================================= */
+            <div class="card-arrow">
+              ↗
+            </div>
 
-const nav =
-    document.getElementById("nav");
+            <div class="product-card-info">
 
-window.addEventListener(
-    "scroll",
-    function(){
+              <div>
+                <div class="product-name">
+                  Noira Tee / Black
+                </div>
 
-        if(window.scrollY > 30){
+                <div class="product-category">
+                  Essential / 01
+                </div>
+              </div>
 
-            nav.classList.add("scrolled");
+              <div class="product-price">
+                €59
+              </div>
 
-        }else{
+            </div>
 
-            nav.classList.remove("scrolled");
+          </a>
+
+          <!-- WHITE TEE -->
+          <a
+            class="product-card small"
+            href="?product=white"
+          >
+
+            <img
+              class="product-card-image"
+              src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=88"
+              alt="Noira Reserve White Tee"
+            >
+
+            <div class="card-arrow">
+              ↗
+            </div>
+
+            <div class="product-card-info">
+
+              <div>
+                <div class="product-name">
+                  Noira Tee / Ivory
+                </div>
+
+                <div class="product-category">
+                  Essential / 02
+                </div>
+              </div>
+
+              <div class="product-price">
+                €59
+              </div>
+
+            </div>
+
+          </a>
+
+          <!-- HOODIE -->
+          <a
+            class="product-card small"
+            href="?product=hoodie"
+          >
+
+            <img
+              class="product-card-image"
+              src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1400&q=88"
+              alt="Noira Reserve Hoodie"
+            >
+
+            <div class="card-arrow">
+              ↗
+            </div>
+
+            <div class="product-card-info">
+
+              <div>
+                <div class="product-name">
+                  Noira Reserve Hoodie
+                </div>
+
+                <div class="product-category">
+                  Heavyweight / 03
+                </div>
+              </div>
+
+              <div class="product-price">
+                €119
+              </div>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      </section>
+
+      <!-- EDITORIAL -->
+      <section class="editorial">
+
+        <div>
+          <img
+            class="editorial-image"
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=88"
+            alt="Noira Reserve editorial campaign"
+          >
+        </div>
+
+        <div class="editorial-content">
+
+          <div class="section-kicker" style="color:#858178;">
+            London / After dark
+          </div>
+
+          <h2 class="editorial-title">
+            Between
+            city &
+            silence.
+          </h2>
+
+          <p class="editorial-copy">
+            Noira Reserve — это не логотип,
+            который должен кричать о себе.
+            Это одежда, которую замечают
+            тогда, когда человек уже прошёл мимо.
+          </p>
+
+          <a
+            class="editorial-link"
+            href="?view=about#about"
+             buyButton.querySelector("span").textContent =
+              "Add to reserve";
+
+          }, 1800);
+
+        });
+
+      }
+
+    }
+
+    /*
+      =====================================================
+      PAGE INITIALIZATION
+      =====================================================
+    */
+
+    function initializePage() {
+
+      const params =
+        new URLSearchParams(window.location.search);
+
+      const productId =
+        params.get("product");
+
+      if (productId && products[productId]) {
+
+        productPage(products[productId]);
+
+      }
+
+      else {
+
+        document.body.classList.remove("product-open");
+
+        const nav =
+          document.getElementById("mainNav");
+
+        if (nav) {
+
+          window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 40) {
+              nav.classList.add("scrolled");
+            } else {
+              nav.classList.remove("scrolled");
+            }
+
+          });
 
         }
 
-    }
-);
+        /*
+          Handle ?view=collection
+        */
 
-/* =========================================================
-   PRODUCTS
-=====================================================
-   ==== */
+        const view =
+          params.get("view");
 
-const products = {
+        if (view === "collection") {
 
-    black:{
-        title:"Noira Tee / Black",
-        price:"€59",
-        image:
-        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1800&q=92",
+          setTimeout(() => {
 
-        description:
-        "A refined black essential with a relaxed silhouette and discreet Noira Reserve identity. Designed as a foundation piece for a modern wardrobe."
-    },
+            const section =
+              document.getElementById("collection");
 
-    white:{
-        title:"Noira Tee / White",
-        price:"€59",
-        image:
-        "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1800&q=92",
+            if (section) {
 
-        description:
-        "Clean, understated and versatile. The Noira Tee in White balances a soft silhouette with minimal branding and an effortless European character."
-    },
+              section.scrollIntoView({
+                behavior: "smooth"
+              });
 
-    hoodie:{
-        title:"Noira Reserve Hoodie",
-        price:"€119",
-        image:
-        "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=92",
+            }
 
-        description:
-        "A heavyweight layer inspired by London's evening palette. Relaxed proportions, understated identity and a distinctly contemporary attitude."
-    }
-
-};
-
-/* =========================================================
-   OPEN PRODUCT
-========================================================= */
-
-function openProduct(id){
-
-    const product =
-        products[id];
-
-    if(!product) return;
-
-    document.body.classList.add(
-        "is-changing"
-    );
-
-    setTimeout(function(){
-
-        document.getElementById(
-            "homePage"
-        ).style.display="none";
-
-        const page =
-            document.getElementById(
-                "productPage"
-            );
-
-        page.classList.add("active");
-
-        document.getElementById(
-            "detailTitle"
-        ).textContent =
-            product.title;
-
-        document.getElementById(
-            "detailPrice"
-        ).textContent =
-            product.price;
-
-        document.getElementById(
-            "detailDescription"
-        ).textContent =
-            product.description;
-
-        document.getElementById(
-            "detailPhoto"
-        ).style.backgroundImage =
-            `url("${product.image}")`;
-
-        document
-            .querySelectorAll(".size")
-            .forEach(function(size){
-
-                size.classList.remove(
-                    "selected"
-                );
-
-            });
-
-        const button =
-            document.getElementById(
-                "addButton"
-            );
-
-        button.classList.remove("added");
-
-        button.textContent =
-            "Add to reserve";
-
-        window.scrollTo({
-            top:0,
-            behavior:"instant"
-        });
-
-        history.pushState(
-            {product:id},
-            "",
-            "#product-" + id
-        );
-
-        setTimeout(function(){
-
-            document.body.classList.remove(
-                "is-changing"
-            );
-
-        },100);
-
-    },450);
-
-}
-
-/* =========================================================
-   HOME
-========================================================= */
-
-function goHome(){
-
-    document.body.classList.add(
-        "is-changing"
-    );
-
-    setTimeout(function(){
-
-        document.getElementById(
-            "productPage"
-        ).classList.remove(
-            "active"
-        );
-
-        document.getElementById(
-            "homePage"
-        ).style.display =
-            "block";
-
-        history.pushState(
-            {},
-            "",
-            window.location.pathname
-        );
-
-        window.scrollTo({
-            top:0,
-            behavior:"instant"
-        });
-
-        setTimeout(function(){
-
-            document.body.classList.remove(
-                "is-changing"
-            );
-
-        },100);
-
-    },450);
-
-}
-
-/* =========================================================
-   SIZE
-========================================================= */
-
-function selectSize(button){
-
-    document
-        .querySelectorAll(".size")
-        .forEach(function(size){
-
-            size.classList.remove(
-                "selected"
-            );
-
-        });
-   button.classList.add(
-        "selected"
-    );
-
-}
-
-/* =========================================================
-   ADD TO RESERVE
-========================================================= */
-
-function addToReserve(){
-
-    const button =
-        document.getElementById(
-            "addButton"
-        );
-
-    const selected =
-        document.querySelector(
-            ".size.selected"
-        );
-
-    if(!selected){
-
-        button.textContent =
-            "Select a size";
-
-        setTimeout(function(){
-
-            button.textContent =
-                "Add to reserve";
-
-        },1400);
-
-        return;
-    }
-
-    button.classList.add(
-        "added"
-    );
-
-    button.textContent =
-        "Added to reserve ✓";
-
-}
-
-/* =========================================================
-   BROWSER BACK
-========================================================= */
-
-window.addEventListener(
-    "popstate",
-    function(){
-
-        if(
-            window.location.hash
-                .startsWith("#product-")
-        ){
-
-            const id =
-                window.location.hash
-                    .replace(
-                        "#product-",
-                        ""
-                    );
-
-            openProduct(id);
-
-        }else{
-
-            goHome();
+          }, 350);
 
         }
 
+        /*
+          Handle ?view=about
+        */
+
+        if (view === "about") {
+
+          setTimeout(() => {
+
+            const section =
+              document.getElementById("about");
+
+            if (section) {
+
+              section.scrollIntoView({
+                behavior: "smooth"
+              });
+
+            }
+
+          }, 350);
+
+        }
+
+      }
+
     }
-);
 
-/* =========================================================
-   DIRECT PRODUCT URL
-========================================================= */
+    /*
+      =====================================================
+      LOADER
+      =====================================================
+    */
 
-if(
-    window.location.hash
-        .startsWith("#product-")
-){
+    window.addEventListener("load", () => {
 
-    const id =
-        window.location.hash
-            .replace(
-                "#product-",
-                ""
-            );
+      initializePage();
 
-    setTimeout(function(){
+      setTimeout(() => {
 
-        openProduct(id);
+        const loader =
+          document.getElementById("loader");
 
-    },250);
+        if (loader) {
+          loader.classList.add("hidden");
+        }
 
-}
+      }, 650);
 
-</script>
+    });
+
+  </script>
 
 </body>
-</html>:600
+</html>
