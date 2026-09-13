@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Noira Reserve — London / Paris</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,14 +12,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================================================
+   NOIRA RESERVE
+   LUXURY FASHION EXPERIENCE
+========================================================= */
+
 :root{
-    --black:#0a0a0a;
-    --dark:#101010;
-    --white:#f4f2ed;
-    --gold:#d99a4a;
-    --orange:#ff7a18;
-    --muted:#9b9994;
-    --line:rgba(255,255,255,.12);
+    --black:#080808;
+    --deep:#0c0c0c;
+    --cream:#f2efe8;
+    --gold:#d99a55;
+    --orange:#ef7c29;
+    --grey:#85827d;
+    --line:rgba(255,255,255,.11);
 }
 
 *{
@@ -33,65 +40,84 @@ html{
 
 body{
     background:var(--black);
-    color:var(--white);
+    color:white;
     font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
 }
 
-/* =========================================
-   PAGE TRANSITION
-========================================= */
+button,
+a{
+    -webkit-tap-highlight-color:transparent;
+}
 
-body::before{
-    content:"";
+/* =========================================================
+   PAGE TRANSITION
+========================================================= */
+
+.page-transition{
     position:fixed;
     inset:0;
     background:#050505;
-    z-index:9999;
+    z-index:99999;
     pointer-events:none;
     opacity:0;
-    transition:opacity .45s ease;
+    transition:opacity .55s cubic-bezier(.2,.7,.2,1);
 }
 
-body.page-changing::before{
+body.transitioning .page-transition{
     opacity:1;
 }
 
-/* =========================================
+/* =========================================================
    NAVIGATION
-========================================= */
+========================================================= */
 
 .nav{
     position:fixed;
+    z-index:1000;
     top:0;
     left:0;
     width:100%;
-    height:78px;
+    height:76px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 42px;
-    z-index:100;
-    border-bottom:1px solid rgba(255,255,255,.08);
-    background:rgba(7,7,7,.35);
-    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.07);
+
+    background:rgba(5,5,5,.27);
+
+    backdrop-filter:blur(24px) saturate(130%);
+    -webkit-backdrop-filter:blur(24px) saturate(130%);
 }
 
 .nav-logo{
     color:white;
     text-decoration:none;
-    font-size:13px;
-    letter-spacing:4px;
+
+    font-size:12px;
     font-weight:500;
+    letter-spacing:4px;
+
+    transition:opacity .3s ease;
+}
+
+.nav-logo:hover{
+    opacity:.65;
 }
 
 .nav-center{
     position:absolute;
     left:50%;
     transform:translateX(-50%);
+
     font-family:"Cormorant Garamond",serif;
+
     font-size:18px;
-    letter-spacing:3px;
+    letter-spacing:4px;
 }
 
 .nav-right{
@@ -102,182 +128,784 @@ body.page-changing::before{
 .nav-link{
     color:#aaa;
     text-decoration:none;
-    font-size:10px;
+
+    font-size:9px;
     letter-spacing:2px;
     text-transform:uppercase;
-    transition:.3s;
+
+    transition:.3s ease;
 }
 
 .nav-link:hover{
     color:white;
 }
 
-/* =========================================
+/* =========================================================
    HERO
-========================================= */
+========================================================= */
 
 .hero{
-    height:100vh;
-    min-height:700px;
     position:relative;
+
+    height:100vh;
+    min-height:680px;
+
     overflow:hidden;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    isolation:isolate;
+
     background:
-        radial-gradient(circle at 50% 45%,rgba(186,92,19,.16),transparent 35%),
-        radial-gradient(circle at 20% 70%,rgba(255,135,40,.08),transparent 30%),
-        #080808;
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(196,103,37,.13),
+            transparent 35%
+        ),
+        #070707;
+
+    isolation:isolate;
 }
 
-/* atmospheric glow */
+/* cinematic image layers */
+
+.hero-image{
+    position:absolute;
+    inset:-8%;
+
+    background-size:cover;
+    background-position:center;
+
+    opacity:.28;
+
+    filter:
+        saturate(.65)
+        contrast(1.08)
+        brightness(.55);
+
+    transform:scale(1.05);
+
+    transition:
+        transform 2s cubic-bezier(.2,.7,.2,1);
+
+    z-index:-10;
+}
+
+.hero-image.one{
+    background-image:
+        linear-gradient(
+            rgba(8,8,8,.45),
+            rgba(8,8,8,.75)
+        ),
+        url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=2400&q=90");
+}
+
+.hero-image.two{
+    background-image:
+        linear-gradient(
+            rgba(8,8,8,.55),
+            rgba(8,8,8,.8)
+        ),
+        url("https://images.unsplash.com/photo-1520986606214-8b456906c813?auto=format&fit=crop&w=2400&q=90");
+
+    opacity:.12;
+
+    mix-blend-mode:screen;
+
+    animation:
+        imageFloat 18s ease-in-out infinite alternate;
+}
+
+@keyframes
+    ageFloat{
+
+    from{
+        transform:scale(1.05) translate3d(-1%,0,0);
+    }
+
+    to{
+        transform:scale(1.11) translate3d(1%, -1%,0);
+    }
+}
+
+/* dark cinematic gradient */
 
 .hero::before{
     content:"";
+
     position:absolute;
-    width:800px;
-    height:800px;
-    left:50%;
-    top:45%;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:radial-gradient(
-        circle,
-        rgba(224,124,40,.18) 0%,
-        rgba(224,124,40,.06) 25%,
-        transparent 68%
-    );
-    filter:blur(30px);
-    animation:breathing 7s ease-in-out infinite;
-    z-index:-4;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.72),
+            transparent 35%,
+            transparent 65%,
+            rgba(0,0,0,.72)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.82),
+            transparent 45%,
+            rgba(0,0,0,.4)
+        );
+
+    z-index:-7;
 }
 
-@keyframes breathing{
+/* =========================================================
+   LIQUID LIGHT
+========================================================= */
+
+.light-orb{
+    position:absolute;
+
+    width:430px;
+    height:430px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,145,62,.25),
+            rgba(220,110,35,.07) 38%,
+            transparent 70%
+        );
+
+    filter:blur(35px);
+
+    pointer-events:none;
+
+    z-index:-4;
+
+    animation:
+        orbFloat 10s ease-in-out infinite;
+}
+
+.orb-one{
+    left:10%;
+    top:18%;
+}
+
+.orb-two{
+    right:5%;
+    bottom:8%;
+    width:330px;
+    height:330px;
+    animation-delay:-4s;
+}
+
+@keyframes orbFloat{
+
     0%,100%{
-        transform:translate(-50%,-50%) scale(.95);
-        opacity:.65;
+        transform:translate3d(0,0,0) scale(.92);
+        opacity:.55;
     }
+
     50%{
-        transform:translate(-50%,-50%) scale(1.08);
+        transform:translate3d(30px,-25px,0) scale(1.08);
+        opacity:.9;
+    }
+}
+
+/* =========================================================
+   ABSTRACT ART PANELS
+========================================================= */
+
+.art-panel{
+    position:absolute;
+
+    width:210px;
+    height:280px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.13);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.02)
+        );
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.45);
+
+    backdrop-filter:blur(8px);
+
+    opacity:.42;
+
+    z-index:-3;
+
+    transition:
+        transform 1.4s cubic-bezier(.2,.7,.2,1);
+}
+
+.art-panel::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background-size:cover;
+    background-position:center;
+
+    filter:
+        saturate(.75)
+        contrast(1.05);
+
+    opacity:.75;
+}
+
+.art-panel::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(220,150,80,.18),
+            transparent 45%,
+            rgba(0,0,0,.45)
+        );
+}
+
+.art-one{
+    left:7%;
+    top:22%;
+    transform:rotate(-7deg);
+}
+
+.art-one::before{
+    background-image:
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85");
+}
+
+.art-two{
+    right:8%;
+    top:19%;
+    width:175px;
+    height:235px;
+    transform:rotate(8deg);
+    animation:
+        panelFloatTwo 11s ease-in-out infinite;
+}
+
+.art-two::before{
+    background-image:
+        url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=85");
+}
+
+@keyframes panelFloatTwo{
+
+    0%,100%{
+        transform:rotate(8deg) translateY(0);
+    }
+
+    50%{
+        transform:rotate(5deg) translateY(-18px);
+    }
+}
+
+/* =========================================================
+   LEAVES
+========================================================= */
+
+.leaves{
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    overflow:hidden;
+}
+
+.leaf{
+    position:absolute;
+
+    width:34px;
+    height:17px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(221,171,98,.9),
+            rgba(104,66,35,.55)
+        );
+
+    opacity:0;
+
+    filter:
+        drop-shadow(0 7px 10px rgba(0,0,0,.25));
+
+    animation:
+        leafFly linear infinite;
+}
+
+.leaf::after{
+    content:"";
+
+    position:absolute;
+
+    width:1px;
+    height:100%;
+
+    left:50%;
+
+    background:rgba(255,220,160,.35);
+
+    transform:rotate(35deg);
+}
+
+.leaf:nth-child(1){
+    left:10%;
+    animation-du
+    ration:13s;
+    animation-delay:-2s;
+}
+
+.leaf:nth-child(2){
+    left:27%;
+    animation-duration:17s;
+    animation-delay:-9s;
+    transform:scale(.65);
+}
+
+.leaf:nth-child(3){
+    left:48%;
+    animation-duration:15s;
+    animation-delay:-4s;
+    transform:scale(.8);
+}
+
+.leaf:nth-child(4){
+    left:68%;
+    animation-duration:19s;
+    animation-delay:-13s;
+    transform:scale(.55);
+}
+
+.leaf:nth-child(5){
+    left:84%;
+    animation-duration:14s;
+    animation-delay:-7s;
+    transform:scale(.7);
+}
+
+.leaf:nth-child(6){
+    left:58%;
+    animation-duration:22s;
+    animation-delay:-18s;
+    transform:scale(.45);
+}
+
+@keyframes leafFly{
+
+    0%{
+        top:-15%;
+        opacity:0;
+        transform:
+            translateX(-40px)
+            rotate(0deg);
+    }
+
+    10%{
+        opacity:.55;
+    }
+
+    50%{
+        transform:
+            translateX(90px)
+            rotate(220deg);
+    }
+
+    80%{
+        opacity:.35;
+    }
+
+    100%{
+        top:110%;
+        opacity:0;
+        transform:
+            translateX(-80px)
+            rotate(480deg);
+    }
+}
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+
+    z-index:-2;
+
+    overflow:hidden;
+
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:#e3a05e;
+
+    opacity:0;
+
+    animation:
+        particleRise linear infinite;
+}
+
+@keyframes particleRise{
+
+    0%{
+        transform:translateY(100px) scale(.3);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.45;
+    }
+
+    75%{
+        opacity:.18;
+    }
+
+    100%{
+        transform:translateY(-100vh) scale(1);
+        opacity:0;
+    }
+}
+
+/* =========================================================
+   HERO CENTER
+========================================================= */
+
+.hero-content{
+    position:relative;
+
+    z-index:20;
+
+    text-align:center;
+
+    padding:20px;
+
+    animation:
+        heroEntrance 1.8s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+
+    opacity:0;
+}
+
+@keyframes heroEntrance{
+
+    0%{
+        opacity:0;
+        transform:
+            translateY(35px)
+            scale(.97);
+
+        filter:blur(14px);
+    }
+
+    55%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:blur(0);
+    }
+}
+
+/* glass halo behind logo */
+
+.logo-halo{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-54%);
+
+    width:560px;
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,160,75,.12),
+            transparent 68%
+        );
+
+    filter:blur(22px);
+
+    z-index:-1;
+
+    animation:
+        haloPulse 6s ease-in-out infinite;
+}
+
+@keyframes haloPulse{
+
+    0%,100%{
+        transform:
+            translate(-50%,-54%)
+            scale(.92);
+        opacity:.55;
+    }
+
+    50%{
+        transform:
+            translate(-50%,-54%)
+            scale(1.08);
         opacity:1;
     }
 }
 
-/* =========================================
-   LONDON ABSTRACT ARCHITECTURE
-========================================= */
+/* small upper label */
 
-.london{
-    position:absolute;
-    inset:0;
-    z-index:-2;
-    overflow:hidden;
+.eyebrow{
+    font-size:8px;
+
+    letter-spacing:6px;
+
+    text-transform:uppercase;
+
+    color:#b8b3ab;
+
+    margin-bottom:27px;
+
+    opacity:0;
+
+    animation:
+        textReveal 1s
+        .45s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
 }
 
-.buildings{
-    position:absolute;
-    bottom:-10px;
-    left:0;
-    width:100%;
-    height:42%;
-    opacity:.5;
+/* MAIN LOGO */
+
+.brand{
+    font-family:"Great Vibes",cursive;
+
+    font-size:
+        clamp(75px,11vw,155px);
+
+    line-height:.78;
+
+    font-weight:400;
+
+    color:#f4efe7;
+
+    white-space:nowrap;
+
+    letter-spacing:-2px;
+
+    text-shadow:
+        0 0 30px rgba(255,170,90,.1),
+        0 15px 50px rgba(0,0,0,.35);
+
+    opacity:0;
+
+    animation:
+        logoReveal 1.7s
+        .25s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
 }
 
-.building{
-    position:absolute;
-    bottom:0;
-    background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.04),
-        rgba(255,255,255,.01)
-    );
-    border:1px solid rgba(255,255,255,.06);
+@keyframes logoReveal{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translateY(22px)
+            scale(.92);
+
+        filter:
+            blur(18px);
+    }
+
+    55%{
+        opacity:1;
+
+        filter:blur(0);
+
+        tran
+        sform:
+            translateY(0)
+            scale(1.02);
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
-.b1{
-    left:4%;
-    width:9%;
-    height:45%;
+/* line */
+
+.brand-line{
+    width:90px;
+    height:1px;
+
+    margin:36px auto 24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(226,164,92,.9),
+            transparent
+        );
+
+    transform:scaleX(0);
+
+    animation:
+        lineReveal 1.2s
+        1s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
 }
 
-.b2{
-    left:14%;
-    width:7%;
-    height:67%;
+@keyframes lineReveal{
+    to{
+        transform:scaleX(1);
+    }
 }
 
-.b3{
-    left:22%;
-    width:11%;
-    height:38%;
-}
-
-.b4{
-    left:34%;
-    width:6%;
-    height:78%;
-}
-
-.b5{
-    left:42%;
-    width:12%;
-    height:52%;
-}
-
-.b6
-  90deg,
-        transparent,
-        #d59a55,
-        transparent
-    );
-}
+/* subtitle */
 
 .hero-subtitle{
     font-family:"Cormorant Garamond",serif;
-    font-size:18px;
-    letter-spacing:4px;
+
+    font-size:19px;
+
+    letter-spacing:5px;
+
     text-transform:uppercase;
-    color:#ded9d0;
+
+    color:#e0dcd4;
+
+    opacity:0;
+
+    animation:
+        textReveal 1s
+        1.1s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
 }
 
 .hero-description{
     margin-top:15px;
-    font-size:9px;
+
+    font-size:8px;
+
     letter-spacing:3px;
-    color:#888;
+
+    color:#85817b;
+
     text-transform:uppercase;
+
+    opacity:0;
+
+    animation:
+        textReveal 1s
+        1.3s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
 }
 
-/* =========================================
-   SCROLL INDICATOR
-========================================= */
+@keyframes textReveal{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================================================
+   SCROLL
+========================================================= */
 
 .scroll{
     position:absolute;
-    bottom:32px;
+
     left:50%;
+    bottom:30px;
+
     transform:translateX(-50%);
-    font-size:8px;
-    letter-spacing:4px;
-    text-transform:uppercase;
+
     color:#777;
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    z-index:20;
 }
 
 .scroll::after{
     content:"";
+
     display:block;
+
     width:1px;
-    height:35px;
+    height:36px;
+
     margin:12px auto 0;
-    background:linear-gradient(
-        #888,
-        transparent
-    );
-    animation:scrollLine 2s ease-in-out infinite;
+
+    background:
+        linear-gradient(
+            #aaa,
+            transparent
+        );
+
+    animation:
+        scrollPulse 2s ease-in-out infinite;
 }
 
-@keyframes scrollLine{
+@keyframes scrollPulse{
+
     0%,100%{
         opacity:.25;
         transform:scaleY(.5);
@@ -290,158 +918,231 @@ body.page-changing::before{
     }
 }
 
-/* =========================================
+/* =========================================================
    COLLECTION
-========================================= */
+========================================================= */
 
 .collection{
     position:relative;
-    background:#f0eee9;
+
+    background:#eeece6;
+
     color:#111;
-    padding:130px 5vw;
+
+    padding:
+        130px
+        5vw
+        150px;
 }
 
 .collection-header{
     display:flex;
+
     justify-content:space-between;
-    align-items:end;
+
+    align-items:flex-end;
+
     margin-bottom:60px;
 }
 
 .collection-title{
     font-family:"Cormorant Garamond",serif;
-    font-size:clamp(50px,6vw,85px);
+
+    font-size:
+        clamp(52px,7vw,90px);
+
     font-weight:300;
-    line-height:.85;
+
+    line-height:.8;
 }
 
 .collection-small{
-    font-size:9px;
+    font-size:8px;
+
     letter-spacing:3px;
-    text-transform:uppercase;
+
     color:#777;
+
+    text-transform:uppercase;
 }
 
-/* PRODUCTS */
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
 
 .products{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:22px;
 }
 
 .product{
     position:relative;
-    cursor:pointer;
+
     overflow:hidden;
-    background:#dedbd4;
+
+    cursor:pointer;
+
     aspect-ratio:4/5;
+
+    background:#d7d4ce;
+
+    transform:translateY(0);
+
+    transition:
+        transform .7s
+        cubic-bezier(.2,.7,.2,1),
+        box-shadow .7s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.product:hover{
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.14);
 }
 
 .product-visual{
     position:absolute;
     inset:0;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
-    transition:transform .8s cubic-bezier(.2,.7,.2,1);
+
+    transition:
+        transform 1s
+        cubic-bezier(.2,.7,.2,1);
 }
 
 .product:hover .product-visual{
-    transform:scale(1.04);
+    transform:scale(1.045);
 }
 
 .product-bg-black{
     background:
         radial-gradient(
-            circle at 50% 35%,
-            rgba(80,80,80,.3),
-            transparent 35%
+            circle at 50% 38%,
+            #393733,
+            transparent 30%
         ),
-        #111;
+        #121212;
 }
 
 .product-bg-white{
     background:
         radial-gradient(
-            circle at 50% 35%,
-            rgba(255,255,255,.9),
-            transparent 38%
+            circle at 50% 38%,
+            white,
+            transparent 36%
         ),
-        #d8d5cf;
+        #d5d2cc;
 }
 
 .product-bg-gold{
     background:
         radial-gradient(
-            circle at 50% 35%,
-            rgba(220,160,90,.35),
-            transparent 38%
+            circle at 50% 38%,
+            rgba(207,150,87,.38),
+            transparent 36%
         ),
-        #181512;
+        #181513;
 }
 
-/* shirt */
+/* =========================================================
+   SHIRT
+========================================================= */
 
 .shirt{
+    position:relative;
+
     width:48%;
     height:58%;
-    position:relative;
-    clip-path:polygon(
-        22% 0,
-        38% 10%,
-        50% 15%,
-        62% 10%,
-        78% 0,
-        100% 24%,
-        82% 38%,
-        74% 31%,
-        74% 100%,
-        26% 100%,
-        26% 31%,
-        18% 38%,
-        0 24%
-    );
-    box-shadow:0 30px 50px rgba(0,0,0,.25);
+
+    clip-path:
+        polygon(
+            22% 0,
+            38% 10%,
+            50% 15%,
+            62% 10%,
+            78% 0,
+            100% 24%,
+            82% 38%,
+            74% 31%,
+            74% 100%,
+            26% 100%,
+            26% 31%,
+            18% 38%,
+            0 24%
+        );
+
+    box-shadow:
+        0 35px 65px rgba(0,0,0,.35);
+
+    transition:
+        transform .8s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.product:hover .shirt{
+    transform:translateY(-5px);
 }
 
 .shirt.black{
-    background:#080808;
+    background:#070707;
 }
 
 .shirt.white{
-    background:#eeeae2;
+    background:#efede7;
 }
 
 .shirt.gold{
-    background:#a8733e;
+    background:#a87643;
 }
 
 .shirt::after{
     content:"NOIRA";
+
     position:absolute;
+
     left:50%;
     top:45%;
+
     transform:translate(-50%,-50%);
-    font-size:9px;
+
+    font-size:8px;
+
     letter-spacing:3px;
+
     color:rgba(255,255,255,.65);
 }
 
 .shirt.white::after{
-    color:rgba(0,0,0,.55);
+    color:rgba(0,0,0,.5);
 }
+
+/* product text */
 
 .product-info{
     position:absolute;
+
     left:22px;
     right:22px;
     bottom:20px;
+
     display:flex;
+
     justify-content:space-between;
-    align-items:end;
+    align-items:flex-end;
+
+    z-index:5;
+
     color:white;
-    z-index:3;
 }
 
 .product-bg-white .product-info{
@@ -449,737 +1150,200 @@ body.page-changing::before{
 }
 
 .product-name{
-    font-size:10px;
+    font-size:9px;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
 }
 
 .product-price{
     font-family:"Cormorant Garamond",serif;
-    font-size:18px;
+
+    font-size:20px;
 }
 
-/* hover overlay */
+/* hover view */
 
 .product::after{
     content:"VIEW PRODUCT";
+
     position:absolute;
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%) translateY(10px);
-    padding:12px 18px;
-    border:1px solid rgba(255,255,255,.6);
-    col
-  or:white;
-    font-size:8px;
+
+    transform:
+        translate(-50%,-50%)
+        translateY(15px);
+
+    padding:13px 19px;
+
+    border:1px solid rgba(255,255,255,.65);
+
+    background:rgba(0,0,0,.14);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    font-size:7px;
+
     letter-spacing:3px;
+
     opacity:0;
-    transition:.45s;
-    z-index:5;
-    backdrop-filter:blur(8px);
+
+    transition:
+        opacity .45s ease,
+        transform .55s cubic-bezier(.2,.7,.2,1);
+
+    z-index:10;
 }
 
 .product:hover::after{
     opacity:1;
-    transform:translate(-50%,-50%) translateY(0);
+
+    transform:
+        translate(-50%,-50%)
+        translateY(0);
 }
 
-/* =========================================
-   BRAND STATEMENT
-========================================= */
+/* =========================================================
+   STATEMENT
+========================================================= */
 
 .statement{
-    padding:150px 8vw;
-    background:#0a0a0a;
-    color:#eee;
+    padding:
+        150px
+        8vw;
+
+    background:#090909;
+
     text-align:center;
 }
 
 .statement-label{
     font-size:8px;
+
     letter-spacing:5px;
-    color:#777;
+
     text-transform:uppercase;
+
+    color:#6d6b67;
+
     margin-bottom:35px;
 }
 
 .statement h2{
-    max-width:900px;
+    max-width:920px;
+
     margin:auto;
+
     font-family:"Cormorant Garamond",serif;
-    font-size:clamp(40px,6vw,78px);
-    line-height:.95;
+
     font-weight:300;
+
+    font-size:
+        clamp(43px,6vw,80px);
+
+    line-height:.95;
+
+    color:#efebe3;
 }
 
 .statement p{
-    max-width:570px;
-    margin:35px auto 0;
-    color:#888;
-    font-size:11px;
-    line-height:1.9;
-    letter-spacing:1px;
+    max-width:600px;
+
+    margin:
+        38px
+        auto
+        0;
+
+    font-size:10px;
+
+    line-height:2;
+
+    letter-spacing:.8px;
+
+    color:#7c7974;
 }
 
-/* =========================================
+/* =========================================================
    FOOTER
-========================================= */
+========================================================= */
 
 footer{
     padding:55px 42px;
-    background:#080808;
-    border-top:1px solid rgba(255,255,255,.08);
+
+    background:#070707;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
+
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
+
+    justify-content:space-between;
 }
 
 .footer-brand{
     font-family:"Cormorant Garamond",serif;
+
     font-size:18px;
+
     letter-spacing:3px;
 }
 
 .footer-copy{
-    font-size:8px;
+    font-size:7px;
+
     letter-spacing:2px;
-    color:#666;
+
+    color:#65635f;
+
     text-transform:uppercase;
 }
 
-/* =========================================
+/* =========================================================
    PRODUCT PAGE
-========================================= */
+========================================================= */
 
 .product-page{
     display:none;
+
     min-height:100vh;
-    background:#f1efe9;
+
+    padding-top:76px;
+
+    background:#efede7;
+
     color:#111;
-    padding-top:78px;
 }
 
 .product-page.active{
     display:block;
-    animation:productPageIn .7s ease forwards;
+
+    animation:
+        productIn .75s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
 }
 
-@keyframes productPageIn{
+@keyframes productIn{
+
     from{
         opacity:0;
-        transform:translateY(15px);
+        transform:translateY(20px);
     }
 
     to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+        letter-spacing:4px;
 
-.product-page-nav{
-    padding:35px 5vw;
-}
-
-.back{
-    border:0;
-    background:none;
-    cursor:pointer;
-    font-size:9px;
-    letter-spacing:3px;
     text-transform:uppercase;
-    color:#555;
-}
 
-.product-detail{
-    min-height:calc(100vh - 130px);
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-}
-
-.detail-image{
-    min-height:650px;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-}
-
-.detail-image.black-bg{
-    background:
-        radial-gradient(circle at center,rgba(230,150,70,.12),transparent 45%),
-        #101010;
-}
-
-.detail-image.white-bg{
-    background:#ddd9d1;
-}
-
-.detail-image.gold-bg{
-    background:
-        radial-gradient(circle at center,rgba(225,150,70,.18),transparent 50%),
-        #171310;
-}
-
-.detail-shirt{
-    width:46%;
-    height:62%;
-    position:relative;
-    clip-path:polygon(
-        22% 0,
-        38% 10%,
-        50% 15%,
-        62% 10%,
-        78% 0,
-        100% 24%,
-        82% 38%,
-        74% 31%,
-        74% 100%,
-        26% 100%,
-        26% 31%,
-        18% 38%,
-        0 24%
-    );
-    box-shadow:0 50px 90px rgba(0,0,0,.35);
-}
-
-.detail-shirt.black{
-    background:#070707;
-}
-
-.detail-shirt.white{
-    background:#f0ede6;
-}
-
-.detail-shirt.gold{
-    background:#a97845;
-}
-
-.detail-shirt::after{
-    content:"NOIRA RESERVE";
-    position:absolute;
-    left:50%;
-    top:45%;
-    transform:translate(-50%,-50%);
-    white-space:nowrap;
-    font-size:9px;
-    letter-spacing:3px;
-    color:rgba(255,255,255,.65);
-}
-
-.detail-shirt.white::after{
-    color:rgba(0,0,0,.55);
-}
-
-.detail-info{
-    padding:100px 8vw 80px 7vw;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.detail-category{
-    font-size:8px;
-    letter-spacing:4px;
-    color:#888;
-    text-transform:uppercase;
-    margin-bottom:25px;
-}
-
-.detail-title{
-    font-family:"Cormorant Garamond",serif;
-    font-size:clamp(48px,5vw,75px);
-    font-weight:300;
-    line-height:.9;
-    margin-bottom:20px;
-}
-
-.detail-price{
-    font-family:"Cormorant Garamond",serif;
-    font-size:27px;
-    margin-bottom:35px;
-}
-
-.detail-description{
-    max-width:480px;
-    color:#666;
-    font-size:11px;
-    line-height:1
-  left:55%;
-    width:7%;
-    height:85%;
-}
-
-.b7{
-    left:65%;
-    width:12%;
-    height:43%;
-}
-
-.b8{
-    left:78%;
-    width:6%;
-    height:72%;
-}
-
-.b9{
-    left:87%;
-    width:10%;
-    height:48%;
-}
-
-/* building lights */
-
-.building::after{
-    content:"";
-    position:absolute;
-    inset:12px;
-    opacity:.28;
-    background-image:
-        linear-gradient(
-            rgba(220,145,60,.45) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(220,145,60,.45) 1px,
-            transparent 1px
-        );
-    background-size:15px 20px;
-}
-
-/* =========================================
-   BIG BEN ABSTRACT
-========================================= */
-
-.clock-tower{
-    position:absolute;
-    left:50%;
-    bottom:0;
-    transform:translateX(-50%);
-    width:120px;
-    height:56%;
-    opacity:.18;
-    filter:blur(.2px);
-}
-
-.tower-body{
-    position:absolute;
-    bottom:0;
-    left:25px;
-    width:70px;
-    height:82%;
-    border-left:1px solid rgba(255,180,90,.5);
-    border-right:1px solid rgba(255,180,90,.5);
-}
-
-.tower-top{
-    position:absolute;
-    left:10px;
-    top:4%;
-    width:100px;
-    height:28%;
-    border:1px solid rgba(255,180,90,.55);
-    clip-path:polygon(
-        50% 0,
-        100% 40%,
-        85% 40%,
-        85% 100%,
-        15% 100%,
-        15% 40%,
-        0 40%
-    );
-}
-
-.clock{
-    position:absolute;
-    left:31px;
-    top:17%;
-    width:58px;
-    height:58px;
-    border-radius:50%;
-    border:1px solid rgba(255,190,100,.8);
-    box-shadow:
-        0 0 30px rgba(255,130,20,.25),
-        inset 0 0 20px rgba(255,130,20,.1);
-}
-
-.clock::before,
-.clock::after{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform-origin:bottom center;
-    background:rgba(255,190,100,.7);
-}
-
-.clock::before{
-    width:1px;
-    height:19px;
-    transform:translate(-50%,-100%) rotate(25deg);
-}
-
-.clock::after{
-    width:1px;
-    height:14px;
-    transform:translate(-50%,-100%) rotate(125deg);
-}
-
-/* =========================================
-   MOVING LIGHT
-========================================= */
-
-.light{
-    position:absolute;
-    width:400px;
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,155,65,.5),
-        transparent
-    );
-    transform:rotate(-25deg);
-    left:-20%;
-    top:45%;
-    filter:blur(1px);
-    animation:lightMove 13s linear infinite;
-}
-
-@keyframes lightMove{
-    from{
-        left:-40%;
-    }
-    to{
-        left:120%;
-    }
-}
-
-/* =========================================
-   PARTICLES
-========================================= */
-
-.particles{
-    position:absolute;
-    inset:0;
-    z-index:-1;
-    overflow:hidden;
-}
-
-.particle{
-    position:absolute;
-    width:2px;
-    height:2px;
-    border-radius:50%;
-    background:#e8a15b;
-    opacity:0;
-    animation:floatUp linear infinite;
-}
-
-@keyframes floatUp{
-    0%{
-        transform:translateY(100px) scale(.5);
-        opacity:0;
-    }
-
-    15%{
-        opacity:.65;
-    }
-
-    80%{
-        opacity:.25;
-    }
-
-    100%{
-        transform:translateY(-100vh) scale(1);
-        opacity:0;
-    }
-}
-
-/* =========================================
-   HERO CONTENT
-========================================= */
-
-.hero-content{
-    text-align:center;
-    position:relative;
-    z-index:10;
-    padding:20px;
-    animation:heroReveal 1.8s cubic-bezier(.2,.7,.2,1) forwards;
-    opacity:0;
-}
-
-@keyframes heroReveal{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-        filter:blur(10px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-        filter:blur(0);
-    }
-}
-
-.eyebrow{
-    font-size:9px;
-    letter-spacing:6px;
-    text-transform:uppercase;
-    color:#aaa;
-    margin-bottom:25px;
-}
-
-.brand{
-    font-family:"Great Vibes",cursive;
-    font-size:clamp(72px,11vw,155px);
-    font-weight:400;
-    color:#f3eee6;
-    line-height:.8;
-    text-shadow:
-        0 0 30px rgba(255,150,60,.08);
-    white-space:nowrap;
-}
-
-.brand-line{
-    width:70px;
-    height:1px;
-    margin:34px auto 25px;
-    background:linear-gradient(
-      "sizes">
-
-                <button class="size" onclick="selectSize(this)">
-                    XS
-                </button>
-
-                <button class="size" onclick="selectSize(this)">
-                    S
-                </button>
-
-                <button class="size" onclick="selectSize(this)">
-                    M
-                </button>
-
-                <button class="size" onclick="selectSize(this)">
-                    L
-                </button>
-
-                <button class="size" onclick="selectSize(this)">
-                    XL
-                </button>
-
-            </div>
-
-            <button class="buy" id="buyButton" onclick="addToCart()">
-                Add to reserve
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<script>
-
-/* =========================================
-   PARTICLES
-========================================= */
-
-const particleContainer =
-    document.getElementById("particles");
-
-for(let i = 0; i < 45; i++){
-
-    const particle =
-        document.createElement("div");
-
-    particle.className = "particle";
-
-    particle.style.left =
-        Math.random() * 100 + "%";
-
-    particle.style.bottom =
-        Math.random() * 20 + "%";
-
-    particle.style.animationDuration =
-        (8 + Math.random() * 15) + "s";
-
-    particle.style.animationDelay =
-        (-Math.random() * 15) + "s";
-
-    particle.style.transform =
-        `scale(${0.5 + Math.random()})`;
-
-    particleContainer.appendChild(particle);
-}
-
-/* =========================================
-   PRODUCTS
-========================================= */
-
-const products = {
-
-    black:{
-        title:"Noira Tee / Black",
-        price:"€59",
-        type:"black",
-        description:
-        "A refined black essential with a relaxed silhouette and discreet Noira Reserve identity. Designed as a foundation piece for a modern wardrobe."
-    },
-
-    white:{
-        title:"Noira Tee / White",
-        price:"€59",
-        type:"white",
-        description:
-        "Clean, understated and versatile. The Noira Tee in White balances a soft silhouette with minimal branding and an effortless European character."
-    },
-
-    hoodie:{
-        title:"Noira Reserve Hoodie",
-        price:"€119",
-        type:"gold",
-        description:
-        "A heavyweight statement layer inspired by London's evening palette. Relaxed proportions, understated identity and a distinctly contemporary attitude."
-    }
-
-};
-
-/* =========================================
-   OPEN PRODUCT
-========================================= */
-
-function openProduct(id){
-
-    const product = products[id];
-
-    if(!product) return;
-
-    document.body.classList.add("page-changing");
-
-    setTimeout(()=>{
-
-        document.getElementById("homePage").style.display="none";
-
-        const page =
-            document.getElementById("productPage");
-
-        page.classList.add("active");
-
-        const title =
-            document.getElementById("detailTitle");
-
-        const price =
-            document.getElementById("detailPrice");
-
-        const description =
-            document.getElementById("detailDescription");
-
-        const image =
-            document.getElementById("detailImage");
-
-        const shirt =
-            document.getElementById("detailShirt");
-
-        title.textContent =
-            product.title;
-
-        price.textContent =
-            product.price;
-
-        description.textContent =
-            product.description;
-
-        image.className =
-            "detail-image";
-
-        shirt.className =
-            "detail-shirt";
-
-        if(product.type === "black"){
-
-            image.classList.add("black-bg");
-
-            shirt.classList.add("black");
-
-        }
-
-        if(product.type === "white"){
-
-            image.classList.add("white-bg");
-
-            shirt.classList.add("white");
-
-        }
-
-        if(product.type === "gold"){
-
-            image.classList.add("gold-bg");
-
-            shirt.classList.add("gold");
-
-        }
-
-        document
-            .getElementById("buyButton")
-            .classList.remove("added");
-
-        document
-          .9;
-    margin-bottom:35px;
-}
-
-.detail-line{
-    width:100%;
-    height:1px;
-    background:#d5d2cc;
-    margin-bottom:28px;
-}
-
-.size-label{
-    font-size:8px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    margin-bottom:14px;
-}
-
-.sizes{
-    display:flex;
-    gap:8px;
-    margin-bottom:35px;
-}
-
-.size{
-    width:48px;
-    height:42px;
-    border:1px solid #c8c5bf;
-    background:transparent;
-    cursor:pointer;
-    font-size:9px;
-    transition:.25s;
-}
-
-.size:hover,
-.size.selected{
-    background:#111;
-    color:white;
-    border-color:#111;
-}
-
-.buy{
-    width:100%;
-    height:58px;
-    border:0;
-    background:#111;
-    color:white;
-    font-size:9px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    cursor:pointer;
-    transition:.3s;
+    transition:.35s;
 }
 
 .buy:hover{
@@ -1187,12 +1351,12 @@ function openProduct(id){
 }
 
 .buy.added{
-    background:#8b5b31;
+    background:#8b5c32;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 max-width:800px{
 
@@ -1210,40 +1374,72 @@ max-width:800px{
     }
 
     .nav-link{
-        font-size:8px;
+        font-size:7px;
     }
 
     .hero{
         min-height:650px;
     }
 
+    .hero-image.one{
+        background-position:
+            45% center;
+    }
+
+    .art-panel{
+        opacity:.2;
+        transform:scale(.7) rotate(-7deg);
+    }
+
+    .art-one{
+        left:-45px;
+        top:18%;
+    }
+
+    .art-two{
+        right:-45px;
+        top:22%;
+    }
+
     .brand{
-        font-size:70px;
+        font-size:72px;
     }
 
     .hero-subtitle{
-        font-size:12px;
+        font-size:13px;
         letter-spacing:3px;
     }
 
-    .products{
-        grid-template-columns:1fr;
+    .hero-description{
+        font-size:7px;
+    }
+
+    .logo-halo{
+        width:390px;
     }
 
     .collection{
-        padding:90px 20px;
+        padding:
+            95px
+            20px
+            110px;
     }
 
     .collection-header{
-        margin-bottom:35px;
+        margin-bottom:40px;
     }
 
     .collection-title{
-        font-size:55px;
+        font-size:58px;
     }
 
     .collection-small{
         display:none;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+        gap:18px;
     }
 
     .product{
@@ -1251,17 +1447,27 @@ max-width:800px{
     }
 
     .statement{
-        padding:100px 25px;
+        padding:
+            105px
+            25px;
     }
 
     .statement h2{
         font-size:45px;
     }
 
+    .statement p{
+        font-size:9px;
+    }
+
     footer{
         padding:35px 20px;
+
         flex-direction:column;
+
         gap:15px;
+
+        text-align:center;
     }
 
     .product-detail{
@@ -1269,44 +1475,60 @@ max-width:800px{
     }
 
     .detail-image{
-        min-height:500px;
+        min-height:520px;
     }
 
     .detail-info{
-        padding:65px 25px 80px;
+        padding:
+            65px
+            25px
+            80px;
     }
 
     .detail-title{
-        font-size:55px;
+        font-size:58px;
     }
+
+    .detail-description{
+        font-size:10px;
+    }
+
 }
 
-/* =========================================
+/* =========================================================
    REDUCED MOTION
-========================================= */
+========================================================= */
 
 prefers-reduced-motion:reduce{
 
     *,
     *::before,
     *::after{
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.01ms!important;
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================================
-     NAV
-========================================= -->
+<div class="page-transition"></div>
+
+<!-- ======================================================
+     NAVIGATION
+====================================================== -->
 
 <header class="nav">
 
-    <a href="#" class="nav-logo" onclick="goHome();return false;">
+    <a
+        href="#"
+        class="nav-logo"
+        onclick="goHome(); return false;"
+    >
         NOIRA RESERVE
     </a>
 
@@ -1315,52 +1537,595 @@ prefers-reduced-motion:reduce{
     </div>
 
     <div class="nav-right">
-        <a href="#collection" class="nav-link" onclick="goHome();">
+
+        <a
+            href="#collection"
+            class="nav-link"
+            onclick="goHome();"
+        >
             Collection
         </a>
 
-        <a href="#about" class="nav-link" onclick="goHome();">
+        <a
+            href="#about"
+            class="nav-link"
+            onclick="goHome();"
+        >
             About
         </a>
+
     </div>
 
 </header>
 
-<!-- =========================================
-     HOME PAGE
-========================================= -->
+<!-- ======================================================
+     HOME
+====================================================== -->
 
 <main id="homePage">
 
-<section class="hero">
+<section class="hero" id="home">
 
-    <div class="london">
+    <!-- cinematic London photographs -->
 
-        <div class="buildings">
-            <div class="building b1"></div>
-            <div class="building b2"></div>
-            <div class="building b3"></div>
-            <div class="building b4"></div>
-            <div class="building b5"></div>
-            <div class="building b6"></div>
-            <div class="building b7"></div>
-            <div class="building b8"></div>
-            <div class="building b9"></div>
-        </div>
+    <div
+        class="hero-image one"
+        id="heroImageOne"
+    ></div>
 
-        <div class="clock-tower">
-            <div class="tower-top"></div>
-            <div class="clock"></div>
-            <div class="tower-body"></div>
-        </div>
+    <div
+        class="hero-image two"
+        id="heroImageTwo"
+    ></div>
 
-        <div class="light"></div>
+    <!-- ambient lights -->
 
-        <div class="particles" id="particles"></div>
+    <div class="light-orb orb-one"></div>
+    <div class="light-orb orb-two"></div>
+
+    <!-- floating artwork -->
+
+    <div class="art-panel art-one"></div>
+
+    <div class="art-panel art-two"></div>
+
+    <!-- leaves -->
+
+    <div class="leaves">
+
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
 
     </div>
 
+    <!-- particles -->
+
+    <div
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* product navigation */
+
+.product-page-nav{
+    padding:
+        35px
+        5vw;
+}
+
+.back{
+    border:0;
+
+    background:none;
+
+    color:#555;
+
+    cursor:pointer;
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    transition:.3s;
+}
+
+.back:hover{
+    color:#111;
+    transform:translateX(-4px);
+}
+
+/* product detail */
+
+.product-detail{
+    min-height:
+        calc(100vh - 146px);
+
+    display:grid;
+
+    grid-template-columns:
+        1.05fr
+        .95fr;
+}
+
+/* product large image */
+
+.detail-image{
+    position:relative;
+
+    min-height:650px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.detail-image::before{
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216,140,66,.18),
+            transparent 65%
+        );
+
+    filter:blur(20px);
+
+    animation:
+        detailGlow 7s ease-in-out infinite;
+}
+
+@keyframes detailGlow{
+
+    0%,100%{
+        transform:scale(.9);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.1);
+        opacity:1;
+    }
+}
+
+.black-bg{
+    background:#101010;
+}
+
+.white-bg{
+    background:#dad7d0;
+}
+
+.gold-bg{
+    background:#171310;
+}
+
+/* detail shirt */
+
+.detail-shirt{
+    position:relative;
+
+    width:46%;
+    height:62%;
+
+    clip-path:
+        polygon(
+            22% 0,
+            38% 10%,
+            50% 15%,
+            62% 10%,
+            78% 0,
+            100% 24%,
+            82% 38%,
+            74% 31%,
+            74% 100%,
+            26% 100%,
+            26% 31%,
+            18% 38%,
+            0 24%
+        );
+
+    box-shadow:
+        0 50px 100px rgba(0,0,0,.4);
+
+    z-index:2;
+
+    animation:
+        productFloat 5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes productFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+}
+
+.detail-shirt.black{
+    background:#070707;
+}
+
+.detail-shirt.white{
+    background:#f1eee7;
+}
+
+.detail-shirt.gold{
+    background:#a87643;
+}
+
+.detail-shirt::after{
+    content:"NOIRA RESERVE";
+
+    position:absolute;
+
+    left:50%;
+    top:45%;
+
+    transform:translate(-50%,-50%);
+
+    white-space:nowrap;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    color:rgba(255,255,255,.65);
+}
+
+.detail-shirt.white::after{
+    color:rgba(0,0,0,.5);
+}
+
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
+
+.detail-info{
+    padding:
+        90px
+        8vw
+        90px
+        7vw;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+.detail-category{
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    color:#888;
+
+    margin-bottom:24px;
+}
+
+.detail-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:
+        clamp(50px,5vw,78px);
+
+    font-weight:300;
+
+    line-height:.88;
+
+    margin-bottom:20px;
+}
+
+.detail-price{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:28px;
+
+    margin-bottom:34px;
+}
+
+.detail-description{
+    max-width:500px;
+
+    color:#696762;
+
+    font-size:10px;
+
+    line-height:2;
+
+    margin-bottom:35px;
+}
+
+.detail-line{
+    width:100%;
+
+    height:1px;
+
+    background:#d0cdc7;
+
+    margin-bottom:28px;
+}
+
+.size-label{
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    margin-bottom:14px;
+}
+
+.sizes{
+    display:flex;
+
+    gap:7px;
+
+    margin-bottom:34px;
+}
+
+.size{
+    width:48px;
+    height:42px;
+
+    border:1px solid #c6c2bb;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:8px;
+
+    transition:
+        background .25s,
+        color .25s,
+        border .25s;
+}
+
+.size:hover,
+.size.selected{
+    background:#111;
+
+    color:white;
+
+    border-color:#111;
+}
+
+.buy{
+    width:100%;
+
+    height:58px;
+
+    border:0;
+
+    background:#111;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:8px;
+        ${y * -8}px,0)`;
+
+        heroTwo.style.transform =
+            `scale(1.1)
+             translate3d(${x * 22}px,
+                         ${y * 15}px,0)`;
+
+        artOne.style.transform =
+            `rotate(-7deg)
+             translate3d(${x * -20}px,
+                         ${y * -12}px,0)`;
+
+        artTwo.style.transform =
+            `rotate(8deg)
+             translate3d(${x * 25}px,
+                         ${y * 15}px,0)`;
+
+        orbOne.style.transform =
+            `translate3d(${x * -35}px,
+                         ${y * -25}px,0)`;
+
+        orbTwo.style.transform =
+            `translate3d(${x * 30}px,
+                         ${y * 25}px,0)`;
+
+    }
+);
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+const products = {
+
+    black:{
+        title:"Noira Tee / Black",
+        price:"€59",
+        type:"black",
+
+        description:
+        "A refined black essential with a relaxed silhouette and discreet Noira Reserve identity. Designed as a foundation piece for a modern wardrobe."
+    },
+
+    white:{
+        title:"Noira Tee / White",
+        price:"€59",
+        type:"white",
+
+        description:
+        "Clean, understated and versatile. The Noira Tee in White balances a soft silhouette with minimal branding and an effortless European character."
+    },
+
+    hoodie:{
+        title:"Noira Reserve Hoodie",
+        price:"€119",
+        type:"gold",
+
+        description:
+        "A heavyweight statement layer inspired by London's evening palette. Relaxed proportions, understated identity and a distinctly contemporary attitude."
+    }
+
+};
+
+/* =========================================================
+   OPEN PRODUCT
+========================================================= */
+
+function openProduct(id){
+
+    const product =
+        products[id];
+
+    if(!product) return;
+
+    document.body.classList.add(
+        "transitioning"
+    );
+
+    setTimeout(function(){
+
+        document.getElementById(
+            "homePage"
+        ).style.display="none";
+
+        const page =
+            document.getElementById(
+                "productPage"
+            );
+
+        page.classList.add("active");
+
+        document.getElementById(
+            "detailTitle"
+        ).textContent =
+            product.title;
+
+        document.getElementById(
+            "detailPrice"
+        ).textContent =
+            product.price;
+
+        document.getElementById(
+            "detailDescription"
+        ).textContent =
+            product.description;
+
+        const image =
+            document.getElementById(
+                "detailImage"
+            );
+
+        const shirt =
+            document.getElementById(
+                "detailShirt"
+            );
+
+        image.className =
+            "detail-image";
+
+        shirt.className =
+            "detail-shirt";
+
+        if(product.type === "black"){
+
+            image.classList.add(
+                "black-bg"
+            );
+
+            shirt.classList.add(
+                "black"
+            );
+
+        }
+
+        if(product.type === "white"){
+
+            image.classList.add(
+                "white-bg"
+            );
+
+            shirt.classList.add(
+                "white"
+            );
+
+        }
+
+        if(product.type === "gold"){
+
+            image.classList.add(
+                "gold-bg"
+            );
+
+            shirt.classList.add(
+                "gold"
+            );
+
+        }
+
+        document
+            .getElementById("buyButton")
+            .classList.remove("added");
+
+        document
+            .getElementById("buyButton")
+            .textContent =
+            "Add to reserve";
+
+        document
+            .querySelectorAll(".size")
+            .forEach(function(size){
+
+                size.classList.remove(
+                    "selected"
+                );
+
+            });
+
+        window.scrollTo({
+            top:0,
+            behavior:"instant"
+        });
+
+        history.pushState(
+            {product:id},
+            "",
+            "#product-" + id
+        class="particles"
+        id="particles"
+    ></div>
+
+    <!-- central logo -->
+
     <div class="hero-content">
+
+        <div class="logo-halo"></div>
 
         <div class="eyebrow">
             EST. 2026 · LONDON
@@ -1371,6 +2136,7 @@ prefers-reduced-motion:reduce{
         </div>
 
         <div class="brand-line"></div>
+
         <div class="hero-subtitle">
             London — Paris
         </div>
@@ -1387,9 +2153,14 @@ prefers-reduced-motion:reduce{
 
 </section>
 
-<!-- COLLECTION -->
+<!-- ======================================================
+     COLLECTION
+====================================================== -->
 
-<section class="collection" id="collection">
+<section
+    class="collection"
+    id="collection"
+>
 
     <div class="collection-header">
 
@@ -1405,12 +2176,17 @@ prefers-reduced-motion:reduce{
 
     <div class="products">
 
-        <!-- PRODUCT 1 -->
+        <!-- BLACK TEE -->
 
-        <article class="product"
-            onclick="openProduct('black')">
+        <article
+            class="product"
+            onclick="openProduct('black')"
+        >
 
-            <div class="product-visual product-bg-black">
+            <div
+                class="product-visual
+                product-bg-black"
+            >
 
                 <div class="shirt black"></div>
 
@@ -1430,12 +2206,17 @@ prefers-reduced-motion:reduce{
 
         </article>
 
-        <!-- PRODUCT 2 -->
+        <!-- WHITE TEE -->
 
-        <article class="product"
-            onclick="openProduct('white')">
+        <article
+            class="product"
+            onclick="openProduct('white')"
+        >
 
-            <div class="product-visual product-bg-white">
+            <div
+                class="product-visual
+                product-bg-white"
+            >
 
                 <div class="shirt white"></div>
 
@@ -1455,12 +2236,17 @@ prefers-reduced-motion:reduce{
 
         </article>
 
-        <!-- PRODUCT 3 -->
+        <!-- HOODIE -->
 
-        <article class="product"
-            onclick="openProduct('hoodie')">
+        <article
+            class="product"
+            onclick="openProduct('hoodie')"
+        >
 
-            <div class="product-visual product-bg-gold">
+            <div
+                class="product-visual
+                product-bg-gold"
+            >
 
                 <div class="shirt gold"></div>
 
@@ -1484,9 +2270,14 @@ prefers-reduced-motion:reduce{
 
 </section>
 
-<!-- BRAND STATEMENT -->
+<!-- ======================================================
+     BRAND STATEMENT
+====================================================== -->
 
-<section class="statement" id="about">
+<section
+    class="statement"
+    id="about"
+>
 
     <div class="statement-label">
         Noira Reserve
@@ -1498,14 +2289,19 @@ prefers-reduced-motion:reduce{
     </h2>
 
     <p>
-        Noira Reserve is a contemporary clothing house built around
-        understated design, considered proportions and timeless essentials.
-        Our collections combine European restraint with the energy of
-        modern London — creating pieces designed to remain relevant
+        Noira Reserve is a contemporary clothing house
+        built around understated design, considered
+        proportions and timeless essentials. Our collections
+        combine European restraint with the energy of modern
+        London — creating pieces designed to remain relevant
         beyond a single season.
     </p>
 
 </section>
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
 
 <footer>
 
@@ -1521,15 +2317,21 @@ prefers-reduced-motion:reduce{
 
 </main>
 
-<!-- =========================================
+<!-- ======================================================
      PRODUCT PAGE
-========================================= -->
+====================================================== -->
 
-<section class="product-page" id="productPage">
+<section
+    class="product-page"
+    id="productPage"
+>
 
     <div class="product-page-nav">
 
-        <button class="back" onclick="goHome()">
+        <button
+            class="back"
+            onclick="goHome()"
+            >
             ← Back to collection
         </button>
 
@@ -1537,11 +2339,21 @@ prefers-reduced-motion:reduce{
 
     <div class="product-detail">
 
-        <div class="detail-image" id="detailImage">
+        <!-- PRODUCT VISUAL -->
 
-            <div class="detail-shirt" id="detailShirt"></div>
+        <div
+            class="detail-image"
+            id="detailImage"
+        >
+
+            <div
+                class="detail-shirt"
+                id="detailShirt"
+            ></div>
 
         </div>
+
+        <!-- PRODUCT INFO -->
 
         <div class="detail-info">
 
@@ -1549,18 +2361,27 @@ prefers-reduced-motion:reduce{
                 NOIRA RESERVE · ESSENTIALS
             </div>
 
-            <h1 class="detail-title" id="detailTitle">
-                Noira Tee
+            <h1
+                class="detail-title"
+                id="detailTitle"
+            >
+                Noira Tee / Black
             </h1>
 
-            <div class="detail-price" id="detailPrice">
+            <div
+                class="detail-price"
+                id="detailPrice"
+            >
                 €59
             </div>
 
-            <p class="detail-description" id="detailDescription">
-                A refined everyday essential defined by a clean silhouette,
-                understated branding and a considered approach to modern
-                European dressing.
+            <p
+                class="detail-description"
+                id="detailDescription"
+            >
+                A refined everyday essential with a clean
+                silhouette, discreet branding and a considered
+                approach to modern European dressing.
             </p>
 
             <div class="detail-line"></div>
@@ -1569,46 +2390,178 @@ prefers-reduced-motion:reduce{
                 Select size
             </div>
 
-            <div class=
-              .getElementById("buyButton")
-            .textContent="Add to reserve";
+            <div class="sizes">
 
-        window.scrollTo({
-            top:0,
-            behavior:"instant"
-        });
+                <button
+                    class="size"
+                    onclick="selectSize(this)"
+                >
+                    XS
+                </button>
 
-        history.pushState(
-            {product:id},
-            "",
-            "#product-" + id
-        );
+                <button
+                    class="size"
+                    onclick="selectSize(this)"
+                >
+                    S
+                </button>
 
-        setTimeout(()=>{
-            document.body.classList.remove("page-changing");
+                <button
+                    class="size"
+                    onclick="selectSize(this)"
+                >
+                    M
+                </button>
+
+                <button
+                    class="size"
+                    onclick="selectSize(this)"
+                >
+                    L
+                </button>
+
+                <button
+                    class="size"
+                    onclick="selectSize(this)"
+                >
+                    XL
+                </button>
+
+            </div>
+
+            <button
+                class="buy"
+                id="buyButton"
+                onclick="addToCart()"
+            >
+                Add to reserve
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+const particleContainer =
+    document.getElementById("particles");
+
+for(let i = 0; i < 55; i++){
+
+    const particle =
+        document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.bottom =
+        Math.random() * 10 + "%";
+
+    particle.style.animationDuration =
+        (9 + Math.random() * 17) + "s";
+
+    particle.style.animationDelay =
+        (-Math.random() * 20) + "s";
+
+    particle.style.width =
+        (Math.random() > .8 ? 3 : 2) + "px";
+
+    particle.style.height =
+        particle.style.width;
+
+    particleContainer.appendChild(
+        particle
+    );
+}
+
+/* =========================================================
+   MOUSE PARALLAX
+========================================================= */
+
+const hero =
+    document.querySelector(".hero");
+
+const heroOne =
+    document.getElementById("heroImageOne");
+
+const heroTwo =
+    document.getElementById("heroImageTwo");
+
+const artOne =
+    document.querySelector(".art-one");
+
+const artTwo =
+    document.querySelector(".art-two");
+
+const orbOne =
+    document.querySelector(".orb-one");
+
+const orbTwo =
+    document.querySelector(".orb-two");
+
+hero.addEventListener(
+    "mousemove",
+    function(event){
+
+        const x =
+            (event.clientX /
+            window.innerWidth - .5);
+
+        const y =
+            (event.clientY /
+            window.innerHeight - .5);
+
+        heroOne.style.transform =
+            `scale(1.07)
+             translate3d(${x * -12}px,
+             );
+
+        setTimeout(function(){
+
+            document.body.classList.remove(
+                "transitioning"
+            );
+
         },100);
 
-    },400);
+    },500);
 
 }
 
-/* =========================================
-   HOME
-========================================= */
+/* =========================================================
+   GO HOME
+========================================================= */
 
 function goHome(){
 
-    document.body.classList.add("page-changing");
+    document.body.classList.add(
+        "transitioning"
+    );
 
-    setTimeout(()=>{
-
-        document
-            .getElementById("productPage")
-            .classList.remove("active");
+    setTimeout(function(){
 
         document
-            .getElementById("homePage")
-            .style.display="block";
+            .getElementById(
+                "productPage"
+            )
+            .classList.remove(
+                "active"
+            );
+
+        document
+            .getElementById(
+                "homePage"
+            )
+            .style.display =
+            "block";
 
         history.pushState(
             {},
@@ -1621,48 +2574,62 @@ function goHome(){
             behavior:"instant"
         });
 
-        setTimeout(()=>{
-            document.body.classList.remove("page-changing");
+        setTimeout(function(){
+
+            document.body.classList.remove(
+                "transitioning"
+            );
+
         },100);
 
-    },400);
+    },500);
 
 }
 
-/* =========================================
+/* =========================================================
    SIZE
-========================================= */
+========================================================= */
 
 function selectSize(button){
 
     document
         .querySelectorAll(".size")
-        .forEach(item=>{
-            item.classList.remove("selected");
+        .forEach(function(size){
+
+            size.classList.remove(
+                "selected"
+            );
+
         });
 
-    button.classList.add("selected");
+    button.classList.add(
+        "selected"
+    );
 
 }
 
-/* =========================================
-   CART BUTTON
-========================================= */
+/* =========================================================
+   ADD TO RESERVE
+========================================================= */
 
 function addToCart(){
 
     const button =
-        document.getElementById("buyButton");
+        document.getElementById(
+            "buyButton"
+        );
 
     const selected =
-        document.querySelector(".size.selected");
+        document.querySelector(
+            ".size.selected"
+        );
 
     if(!selected){
 
         button.textContent =
             "Select a size";
 
-        setTimeout(()=>{
+        setTimeout(function(){
 
             button.textContent =
                 "Add to reserve";
@@ -1670,29 +2637,34 @@ function addToCart(){
         },1400);
 
         return;
+
     }
 
-    button.classList.add("added");
+    button.classList.add(
+        "added"
+    );
 
     button.textContent =
         "Added to reserve ✓";
 
 }
 
-/* =========================================
+/* =========================================================
    BROWSER BACK BUTTON
-========================================= */
+========================================================= */
 
 window.addEventListener(
     "popstate",
     function(){
 
         if(
-            window.location.hash.startsWith("#product-")
+            window.location.hash
+            .startsWith("#product-")
         ){
 
             const id =
-                window.location.hash.replace(
+                window.location.hash
+                .replace(
                     "#product-",
                     ""
                 );
@@ -1708,27 +2680,31 @@ window.addEventListener(
     }
 );
 
-/* =========================================
-   INITIAL URL
-========================================= */
+/* =========================================================
+   OPEN PRODUCT FROM DIRECT URL
+========================================================= */
 
 if(
-    window.location.hash.startsWith("#product-")
+    window.location.hash
+    .startsWith("#product-")
 ){
 
     const id =
-        window.location.hash.replace(
+        window.location.hash
+        .replace(
             "#product-",
             ""
         );
 
-    setTimeout(()=>{
+    setTimeout(function(){
+
         openProduct(id);
-    },100);
+
+    },200);
 
 }
 
 </script>
 
 </body>
-</html>{             
+</html> im
