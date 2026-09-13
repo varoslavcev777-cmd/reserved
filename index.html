@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Aurevon</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
-    /* ==============================
-       RESET
-    ============================== */
-
-    *,
-    *::before,
-    *::after {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -29,20 +20,15 @@
 
     html,
     body {
+      width: 100%;
+      min-height: 100%;
       overflow-x: hidden;
       background: #000;
     }
 
-    html {
-      width: 100%;
-      min-height: 100%;
-    }
-
     body {
-      width: 100%;
-      min-height: 100vh;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     a {
@@ -58,44 +44,34 @@
       font-family: "Instrument Serif", serif;
     }
 
-    /* ==============================
+    /* =========================================
        NAVBAR
-    ============================== */
+    ========================================= */
 
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
-
       width: 100%;
       height: 64px;
-
       z-index: 50;
-
-      background: transparent;
 
       transition:
         background-color 500ms ease,
         backdrop-filter 500ms ease,
         -webkit-backdrop-filter 500ms ease;
-
-      -webkit-backdrop-filter: blur(0);
-      backdrop-filter: blur(0);
     }
 
     .navbar.scrolled {
       background: rgba(0, 0, 0, 0.8);
-
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
-    .navbar-inner {
+    .nav-inner {
       width: 100%;
       max-width: 1440px;
-
       height: 100%;
-
       margin: 0 auto;
 
       padding: 0 24px;
@@ -105,19 +81,13 @@
       justify-content: space-between;
     }
 
-    /* ==============================
-       LOGO
-    ============================== */
-
     .logo {
       position: relative;
-      z-index: 50;
-
-      color: white;
+      z-index: 60;
 
       font-size: 20px;
       font-weight: 600;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
 
       opacity: 0;
       transform: translateY(-16px);
@@ -127,31 +97,21 @@
         transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .mounted .logo {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ==============================
-       DESKTOP NAVIGATE
-    ============================== */
-
     .navigate-button {
-      display: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
 
-      align-items: center;
-      justify-content: center;
-
-      gap: 8px;
+      transform:
+        translate(-50%, -50%)
+        translateY(-16px);
 
       padding: 8px 20px;
 
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 999px;
 
-      border: 1px solid rgba(255, 255, 255, 0.2);
-
       background: transparent;
-
       color: rgba(255, 255, 255, 0.9);
 
       font-size: 14px;
@@ -159,7 +119,6 @@
       cursor: pointer;
 
       opacity: 0;
-      transform: translateY(-16px);
 
       transition:
         opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -171,19 +130,9 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    .mounted .navigate-button {
-      opacity: 1;
-      transform: translateY(0);
-
-      transition-delay: 200ms;
-    }
-
-    /* ==============================
-       FLOWER2
-    ============================== */
-
     .flower {
-      display: none;
+      position: relative;
+      z-index: 60;
 
       width: 28px;
       height: 28px;
@@ -198,259 +147,20 @@
         transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .mounted .flower {
-      opacity: 1;
-      transform: translateY(0);
-
-      transition-delay: 400ms;
+    .flower svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
-    /* ==============================
-       HAMBURGER
-    ============================== */
-
     .hamburger {
+      display: none;
+
       position: relative;
-      z-index: 50;
+      z-index: 60;
 
       width: 32px;
       height: 32px;
-
-      display: flex;
-      flex
-        2 13.93 2 12C2 10.07 3.57 8.5 5.5 8.5C8.5 8.5 12 12 12 12Z"
-          stroke="currentColor"
-          stroke-width="1.5"
-        />
-
-        <circle
-          cx="12"
-          cy="12"
-          r="1.5"
-          fill="currentColor"
-        />
-      </svg>
-
-      <!-- MOBILE HAMBURGER -->
-
-      <button
-        class="hamburger"
-        id="hamburger"
-        type="button"
-        aria-label="Toggle menu"
-      >
-        <span></span>
-        <span></span>
-      </button>
-
-    </div>
-
-  </header>
-
-  <!-- FULL SCREEN MENU -->
-
-  <div class="overlay" id="overlay">
-
-    <nav class="overlay-nav">
-
-      <a href="#" class="overlay-link">
-        Home
-      </a>
-
-      <a href="#" class="overlay-link">
-        Story
-      </a>
-
-      <a href="#" class="overlay-link">
-        Collection
-      </a>
-
-      <a href="#" class="overlay-link">
-        Inquire
-      </a>
-
-    </nav>
-
-  </div>
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <div class="video-wrapper">
-
-      <video
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260819_212700_3bb9329b-5c50-4257-a09b-ca85cf3654a3.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
-      ></video>
-
-    </div>
-
-    <div class="hero-content">
-
-      <h1 class="hero-title">
-        A carefully curated
-        <br class="desktop-break">
-        collection beyond compare
-      </h1>
-
-      <p class="hero-subcopy">
-        Reserve your place in our private gallery.
-      </p>
-
-      <a href="#" class="cta">
-        Join the waitlist
-      </a>
-
-    </div>
-
-  </section>
-
-  <script>
-
-    /* =================================
-       ELEMENTS
-    ================================= */
-
-    const body = document.body;
-    const navbar = document.getElementById("navbar");
-
-    const overlay = document.getElementById("overlay");
-
-    const navigateButton =
-      document.getElementById("navigateButton");
-
-    const navigateText =
-      document.getElementById("navigateText");
-
-    const hamburger =
-      document.getElementById("hamburger");
-
-    const overlayLinks =
-      document.querySelectorAll(".overlay-link");
-
-    /* =================================
-       PAGE ENTRANCE
-    ================================= */
-
-    window.addEventListener("load", function () {
-
-      setTimeout(function () {
-
-        body.classList.add("mounted");
-
-      }, 100);
-
-    });
-
-    /* =================================
-       SCROLL NAVBAR
-    ================================= */
-
-    window.addEventListener("scroll", function () {
-
-      if (window.scrollY > 40) {
-
-        navbar.classList.add("scrolled");
-
-      } else {
-
-        navbar.classList.remove("scrolled");
-
-      }
-
-    });
-
-    /* =================================
-       MENU
-    ================================= */
-
-    function openMenu() {
-
-      overlay.classList.add("open");
-
-      hamburger.classList.add("open");
-
-      navigateText.textContent = "Close";
-
-      body.style.overflow = "hidden";
-
-    }
-
-    function closeMenu() {
-
-      overlay.classList.remove("open");
-
-      hamburger.classList.remove("open");
-
-      navigateText.textContent = "Navigate";
-
-      body.style.overflow = "";
-
-    }
-
-    function toggleMenu() {
-
-      if (overlay.classList.contains("open")) {
-
-        closeMenu();
-
-      } else {
-
-        openMenu();
-
-      }
-
-    }
-
-    /* =================================
-       BUTTONS
-    ================================= */
-
-    navigateButton.addEventListener(
-      "click",
-      toggleMenu
-    );
-
-    hamburger.addEventListener(
-      "click",
-      toggleMenu
-    );
-
-    /* =================================
-       OVERLAY LINKS
-    ================================= */
-
-    overlayLinks.forEach(function (link) {
-
-      link.addEventListener("click", function () {
-
-        closeMenu();
-
-      });
-
-    });
-
-    /* =================================
-       ESCAPE KEY
-    ================================= */
-
-    document.addEventListener(
-      "keydown",
-      function (event) {
-
-        if (
-          event.key === "Escape" &&
-          overlay.classList.contains("open")
-        ction: column;
-
-      align-items: center;
-      justify-content: center;
-
-      gap: 6px;
 
       border: 0;
       background: transparent;
@@ -465,50 +175,486 @@
         transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .mounted .hamburger {
+    .hamburger-inner {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      gap: 6px;
+    }
+
+    .hamburger-bar {
+      width: 24px;
+      height: 2px;
+
+      background: #fff;
+
+      transition:
+        transform 450ms cubic-bezier(0.76, 0, 0.24, 1),
+        opacity 250ms ease;
+    }
+
+    .hamburger.open .hamburger-bar:first-child {
+      transform: translateY(4px) rotate(45deg);
+    }
+
+    .hamburger.open .hamburger-bar:last-child {
+      transform: translateY(-4px) rotate(-45deg);
+    }
+
+    /* =========================================
+       MOUNT ANIMATION
+    ========================================= */
+
+    body.mounted .logo {
+      opacity: 1;
+      transform: translateY(0)
+      FULLSCREEN MENU
+  ========================================= -->
+
+  <div class="menu-overlay" id="menuOverlay">
+
+    <nav class="menu-links">
+
+      <a href="#home" class="menu-link">
+        Home
+      </a>
+
+      <a href="#story" class="menu-link">
+        Story
+      </a>
+
+      <a href="#collection" class="menu-link">
+        Collection
+      </a>
+
+      <a href="#inquire" class="menu-link">
+        Inquire
+      </a>
+
+    </nav>
+
+  </div>
+
+  <!-- =========================================
+       HERO
+  ========================================= -->
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="video-wrapper">
+        <video
+          class="hero-video"
+          id="heroVideo"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        >
+          <source
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260819_212700_3bb9329b-5c50-4257-a09b-ca85cf3654a3.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+
+      <div class="hero-content">
+
+        <h1 class="hero-title font-instrument">
+          A carefully curated
+          <br class="desktop-break" />
+          collection beyond compare
+        </h1>
+
+        <p class="hero-subtitle">
+          Reserve your place in our private gallery.
+        </p>
+
+        <a href="#" class="hero-cta">
+          Join the waitlist
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <noscript>
+    <div class="no-js-message">
+      Please enable JavaScript to view Aurevon.
+    </div>
+  </noscript>
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+    (function () {
+
+      const body = document.body;
+      const navbar = document.getElementById("navbar");
+
+      const navigateButton =
+        document.getElementById("navigateButton");
+
+      const navigateText =
+        document.getElementById("navigateText");
+
+      const hamburger =
+        document.getElementById("hamburger");
+
+      const menuOverlay =
+        document.getElementById("menuOverlay");
+
+      const menuLinks =
+        document.querySelectorAll(".menu-link");
+
+      const video =
+        document.getElementById("heroVideo");
+
+      /*
+        IMPORTANT:
+        We intentionally do NOT wait for window.load.
+
+        The external video can take a long time to load.
+        Waiting for window.load was the reason the page
+        could remain completely black.
+      */
+
+      function mountPage() {
+        body.classList.add("mounted");
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          function () {
+            setTimeout(mountPage, 100);
+          }
+        );
+      } else {
+        setTimeout(mountPage, 100);
+      }
+
+      /* =====================================
+         NAVBAR SCROLL
+      ===================================== */
+
+      function updateNavbar() {
+        if (window.scrollY > 40) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      }
+
+      window.addEventListener(
+        "scroll",
+        updateNavbar,
+        { passive: true }
+      );
+
+      updateNavbar();
+
+      /* =====================================
+         MENU
+      ===================================== */
+
+      let menuOpen = false;
+
+      function openMenu() {
+        menuOpen = true;
+
+        menuOverlay.classList.add("open");
+        hamburger.classList.add("open");
+
+        hamburger.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+        hamburger.setAttribute(
+          "aria-label",
+          "Close navigation"
+        );
+
+        if (navigateText) {
+          navigateText.textContent = "Close";
+        }
+
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMenu() {
+        menuOpen = false;
+
+        menuOverlay.classList.remove("open");
+        hamburger.classList.remove("open");
+
+        hamburger.setAttribute(
+        255, 0.7);
+
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .hero-cta {
+      display: inline-block;
+
+      padding: 14px 32px;
+
+      border-radius: 999px;
+
+      background: #fff;
+      color: #000;
+
+      font-size: 14px;
+      font-weight: 500;
+
+      transition:
+        background-color 200ms ease,
+        transform 200ms ease;
+    }
+
+    .hero-cta:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    min-width: 640px {
+      .navbar {
+        height: 64px;
+      }
+
+      .nav-inner {
+        padding: 0 24px;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .desktop-break {
+        display: block;
+      }
+
+      .menu-link {
+        font-size: 48px;
+      }
+    }
+
+    min-width: 768px {
+      .navbar {
+        height: 80px;
+      }
+
+      .nav-inner {
+        padding: 0 40px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .navigate-button {
+        display: block;
+      }
+
+      .flower {
+        display: block;
+      }
+
+      .hamburger {
+        display: none;
+      }
+
+      .hero-content {
+        padding-bottom: 96px;
+      }
+
+      .hero-title {
+        margin-bottom: 24px;
+        font-size: 3.75rem;
+      }
+
+      .hero-subtitle {
+        margin-bottom: 40px;
+        font-size: 18px;
+      }
+
+      .hero-cta {
+        font-size: 16px;
+      }
+
+      .menu-link {
+        font-size: 60px;
+      }
+    }
+
+    max-width: 767px {
+      .navigate-button,
+      .flower {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .menu-links {
+        gap: 32px;
+      }
+    }
+
+    min-width: 1024px {
+      .hero-title {
+        font-size: 4.5rem;
+      }
+    }
+
+    /* =========================================
+       SAFETY FALLBACK
+       If JavaScript fails, the page is still visible.
+    ========================================= */
+
+    .no-js-message {
+      display: none;
+    }
+
+    noscript .no-js-message {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+
+      background: #000;
+      color: #fff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      padding: 30px;
+
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================
+       NAVIGATION
+  ========================================= -->
+
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="#" class="logo">
+        Aurevon
+      </a>
+
+      <button
+        class="navigate-button"
+        id="navigateButton"
+        type="button"
+        aria-label="Open navigation"
+      >
+        <span id="navigateText">Navigate</span>
+      </button>
+
+      <div class="flower" aria-hidden="true">
+        <!-- Flower2-style icon -->
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 3C12 3 12 8 15 8C18 8 18 4 18 4C18 4 21 6 20 9C19 12 15 12 15 12C15 12 19 12 20 15C21 18 18 20 18 20C18 20 18 16 15 16C12 16 12 21 12 21C12 21 12 16 9 16C6 16 6 20 6 20C6 20 3 18 4 15C5 12 9 12 9 12C9 12 5 12 4 9C3 6 6 4 6 4C6 4 6 8 9 8C12 8 12 3 12 3Z"
+            stroke="currentColor"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="1.5"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+
+      <button
+        class="hamburger"
+        id="hamburger"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        <span class="hamburger-inner">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- =========================================
+  }
+
+    body.mounted .navigate-button {
+      opacity: 1;
+      transform:
+        translate(-50%, -50%)
+        translateY(0);
+
+      transition-delay: 200ms;
+    }
+
+    body.mounted .hamburger {
       opacity: 1;
       transform: translateY(0);
 
       transition-delay: 200ms;
     }
 
-    .hamburger span {
-      display: block;
+    body.mounted .flower {
+      opacity: 1;
+      transform: translateY(0);
 
-      width: 24px;
-      height: 2px;
-
-      background: white;
-
-      transition:
-        transform 500ms cubic-bezier(0.76, 0, 0.24, 1);
+      transition-delay: 400ms;
     }
 
-    .hamburger.open span:first-child {
-      transform: translateY(4px) rotate(45deg);
-    }
+    /* =========================================
+       MENU OVERLAY
+    ========================================= */
 
-    .hamburger.open span:last-child {
-      transform: translateY(-4px) rotate(-45deg);
-    }
-
-    /* ==============================
-       FULLSCREEN MENU
-    ============================== */
-
-    .overlay {
+    .menu-overlay {
       position: fixed;
       inset: 0;
 
       z-index: 40;
 
-      width: 100%;
-      height: 100vh;
-
       background: #000;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
@@ -520,159 +666,142 @@
         visibility 700ms cubic-bezier(0.76, 0, 0.24, 1);
     }
 
-    .overlay.open {
+    .menu-overlay.open {
       visibility: visible;
       opacity: 1;
     }
 
-    .overlay-nav {
+    .menu-links {
+      width: 100%;
+
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
-
-      justify-content: center;
 
       gap: 32px;
 
       text-align: center;
     }
 
-    .overlay-link {
-      color: white;
-
+    .menu-link {
       font-family: "Instrument Serif", serif;
 
       font-size: 40px;
       line-height: 1;
 
-      opacity: 0;
+      color: #fff;
 
+      opacity: 0;
       transform: translateY(24px);
 
       transition:
         opacity 600ms cubic-bezier(0.76, 0, 0.24, 1),
-        transform 600ms cubic-bezier(0.76, 0, 0.24, 1);
-
-      cursor: pointer;
+        transform 600ms cubic-bezier(0.76, 0, 0.24, 1),
+        color 200ms ease;
     }
 
-    .overlay-link:hover {
-      opacity: 0.6 !important;
+    .menu-link:hover {
+      color: rgba(255, 255, 255, 0.6);
     }
 
-    .overlay.open .overlay-link {
+    .menu-overlay.open .menu-link {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .overlay.open .overlay-link:nth-child(1) {
+    .menu-overlay.open .menu-link:nth-child(1) {
       transition-delay: 150ms;
     }
 
-    .overlay.open .overlay-link:nth-child(2) {
+    .menu-overlay.open .menu-link:nth-child(2) {
       transition-delay: 230ms;
     }
 
-    .overlay.open .overlay-link:nth-child(3) {
+    .menu-overlay.open .menu-link:nth-child(3) {
       transition-delay: 310ms;
     }
 
-    .overlay.open .overlay-link:nth-child(4) {
+    .menu-overlay.open .menu-link:nth-child(4) {
       transition-delay: 390ms;
     }
 
-    /* ==============================
+    /* =========================================
        HERO
-    ============================== */
+    ========================================= */
 
     .hero {
       position: relative;
 
       width: 100%;
       height: 100vh;
+      min-height: 600px;
 
       overflow: hidden;
 
       display: flex;
-
       align-items: flex-end;
       justify-content: center;
-    }
 
-    /* VIDEO */
+      background: #000;
+    }
 
     .video-wrapper {
       position: absolute;
       inset: 0;
 
-      width: 100%;
-      height: 100%;
+      z-index: 0;
 
-      overflow: hidden;
+      background: #000;
 
       opacity: 0;
-
       transform: scale(1.05);
 
       transition:
         opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1),
         transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
-
-      transition-delay: 0ms;
     }
 
-    .mounted .video-wrapper {
+    body.mounted .video-wrapper {
       opacity: 1;
-
       transform: scale(1);
 
       transition-delay: 300ms;
     }
 
-    .video-wrapper video {
+    .hero-video {
       width: 100%;
       height: 100%;
 
+      display: block;
+
       object-fit: cover;
 
-      display: block;
+      background: #000;
     }
-
-    /* ==============================
-       HERO CONTENT
-    ============================== */
 
     .hero-content {
       position: relative;
+
       z-index: 10;
 
       width: 100%;
-      max-width: 1024px;
+      max-width: 896px;
 
       margin: 0 auto;
 
       padding: 0 24px 64px;
 
       text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .hero-title {
-      color: white;
-
-      font-family: "Instrument Serif", serif;
-
-      font-size: 2.5rem;
-
-      line-height: 0.95;
-
-      font-weight: 400;
-
-      margin-bottom: 20px;
-
+    .hero-title,
+    .hero-subtitle,
+    .hero-cta {
       opacity: 0;
-
       transform: translateY(32px);
 
       transition:
@@ -680,250 +809,132 @@
         transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .mounted .hero-title {
+    body.mounted .hero-title {
       opacity: 1;
-
       transform: translateY(0);
 
-      transitio
-        n-delay: 400ms;
+      transition-delay: 400ms;
     }
 
-    .hero-subcopy {
-      max-width: 448px;
-
-      margin: 0 auto 32px;
-
-      color: rgba(255, 255, 255, 0.7);
-
-      font-size: 16px;
-
-      line-height: 1.5;
-
-      opacity: 0;
-
-      transform: translateY(32px);
-
-      transition:
-        opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
-        transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .mounted .hero-subcopy {
+    body.mounted .hero-subtitle {
       opacity: 1;
-
       transform: translateY(0);
 
       transition-delay: 600ms;
     }
 
-    /* ==============================
-       CTA
-    ============================== */
-
-    .cta {
-      display: inline-block;
-
-      padding: 14px 32px;
-
-      border-radius: 999px;
-
-      background: white;
-
-      color: black;
-
-      font-size: 14px;
-
-      font-weight: 500;
-
-      opacity: 0;
-
-      transform: translateY(32px);
-
-      transition:
-        opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
-        transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
-        background-color 250ms ease;
-    }
-
-    .mounted .cta {
+    body.mounted .hero-cta {
       opacity: 1;
-
       transform: translateY(0);
 
       transition-delay: 800ms;
     }
 
-    .cta:hover {
-      background: rgba(255, 255, 255, 0.9);
+    .hero-title {
+      margin-bottom: 20px;
+
+      font-family: "Instrument Serif", serif;
+
+      color: #fff;
+
+      font-size: 2.5rem;
+      line-height: 0.95;
+      font-weight: 400;
+      letter-spacing: -0.025em;
     }
 
-    /* ==============================
-       DESKTOP
-    ============================== */
+    .hero-subtitle {
+      max-width: 448px;
 
-    min-width: 768px {
+      margin-bottom: 32px;
 
-      .navbar {
-        height: 80px;
-      }
+      color: rgba(255, 255,
+  "aria-expanded",
+          "false"
+        );
 
-      .navbar-inner {
-        padding: 0 40px;
-      }
+        hamburger.setAttribute(
+          "aria-label",
+          "Open navigation"
+        );
 
-      .navigate-button {
-        display: flex;
-      }
-
-      .flower {
-        display: block;
-      }
-
-      .hamburger {
-        display: none;
-      }
-
-      .overlay-link {
-        font-size: 60px;
-      }
-
-      .hero-content {
-        padding-bottom: 96px;
-      }
-
-      .hero-title {
-        font-size: 3.75rem;
-        margin-bottom: 24px;
-      }
-
-      .hero-subcopy {
-        font-size: 18px;
-        margin-bottom: 40px;
-      }
-
-      .cta {
-        font-size: 16px;
-      }
-    }
-
-    /* ==============================
-       SM
-    ============================== */
-
-    min-width: 640px {
-
-      .hero-title {
-        font-size: 3rem;
-      }
-
-      .hero-title br {
-        display: block;
-      }
-    }
-
-    /* ==============================
-       LG
-    ============================== */
-
-    min-width: 1024px {
-
-      .hero-title {
-        font-size: 4.5rem;
-      }
-    }
-
-    /* ==============================
-       VERY SMALL PHONES
-    ============================== */
-
-    max-width: 380px {
-
-      .navbar-inner {
-        padding: 0 18px;
-      }
-
-      .hero-content {
-        padding-left: 18px;
-        padding-right: 18px;
-        padding-bottom: 64px;
-      }
-
-      .hero-title {
-        font-size: 2.25rem;
-      }
-
-      .hero-subcopy {
-        font-size: 15px;
-      }
-
-      .cta {
-        padding-left: 28px;
-        padding-right: 28px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- NAVBAR -->
-
-  <header class="navbar" id="navbar">
-
-    <div class="navbar-inner">
-
-      <a href="#" class="logo">
-        Aurevon
-      </a>
-
-      <button
-        class="navigate-button"
-        id="navigateButton"
-        type="button"
-        aria-label="Toggle menu"
-      >
-        <span id="navigateText">Navigate</span>
-      </button>
-
-      <svg
-        class="flower"
-        id="flower"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path
-          d="M12 12C12 12 8.5 8.5 8.5 5.5C8.5 3.57 10.07 2 12 2C13.93 2 15.5 3.57 15.5 5.5C15.5 8.5 12 12 12 12Z"
-          stroke="currentColor"
-          stroke-width="1.5"
-        />
-
-        <path
-          d="M12 12C12 12 15.5 8.5 18.5 8.5C20.43 8.5 22 10.07 22 12C22 13.93 20.43 15.5 18.5 15.5C15.5 15.5 12 12 12 12Z"
-          stroke="currentColor"
-          stroke-width="1.5"
-        />
-
-        <path
-          d="M12 12C12 12 15.5 15.5 18.5 15.5C20.43 15.5 22 17.07 22 19C22 20.93 20.43 22.5 18.5 22.5C15.5 22.5 12 19 12 19C12 19 12 12 12 12Z"
-          stroke="currentColor"
-          stroke-width="1.5"
-        />
-
-        <path
-          d="M12 12C12 12 8.5 15.5 5.5 15.5C3.57 15.5
-            ) {
-
-          closeMenu();
-
+        if (navigateText) {
+          navigateText.textContent = "Navigate";
         }
 
+        document.body.style.overflow = "";
       }
-    );
 
+      function toggleMenu() {
+        if (menuOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      }
+
+      navigateButton.addEventListener(
+        "click",
+        toggleMenu
+      );
+
+      hamburger.addEventListener(
+        "click",
+        toggleMenu
+      );
+
+      menuLinks.forEach(function (link) {
+        link.addEventListener(
+          "click",
+          function () {
+            closeMenu();
+          }
+        );
+      });
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+          if (event.key === "Escape" && menuOpen) {
+            closeMenu();
+          }
+        }
+      );
+
+      /* =====================================
+         VIDEO
+      ===================================== */
+
+      /*
+        If autoplay is blocked, we still try to
+        start the muted video manually.
+      */
+
+      function startVideo() {
+        if (!video) return;
+
+        video.muted = true;
+
+        const playPromise = video.play();
+
+        if (
+          playPromise &&
+          typeof playPromise.catch === "function"
+        ) {
+          playPromise.catch(function () {
+            /*
+              Video playback can be blocked by the browser.
+              This is harmless — the rest of the website
+              remains fully functional.
+            */
+          });
+        }
+      }
+
+      setTimeout(startVideo, 500);
+
+    })();
   </script>
 
 </body>
-</html>-dire
+</html>;
