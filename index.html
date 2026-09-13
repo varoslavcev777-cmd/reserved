@@ -1,1059 +1,1263 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Noira Reserve</title>
+<title>NOIRA RESERVE</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #ffffff;
+    color: #111111;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 55px;
+
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+
+    z-index: 1000;
+}
+
+.logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+
+.nav a {
+    color: #111;
+    text-decoration: none;
+
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    transition: opacity 0.25s ease;
+}
+
+.nav a:hover {
+    opacity: 0.45;
+}
+
+/* MOBILE MENU BUTTON */
+
+.menu-button {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 50%;
+
+    background: transparent;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.menu-icon {
+    width: 17px;
+    height: 12px;
+
+    position: relative;
+}
+
+.menu-icon span {
+    position: absolute;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: #111;
+
+    transition: 0.25s ease;
+}
+
+.menu-icon span:first-child {
+    top: 2px;
+}
+
+.menu-icon span:last-child {
+    bottom: 2px;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+    position: fixed;
+
+    top: 78px;
+    left: 0;
+
+    width: 100%;
+
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+
+    padding: 25px 25px 30px;
+
+    display: none;
+
+    z-index: 999;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu a {
+    display: block;
+
+    padding: 17px 0;
+
+    color: #111;
+    text-decoration: none;
+
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.mobile-menu a:last-child {
+    border-bottom: none;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 120px 30px 80px;
+
+    position: relative;
+}
+
+.hero-title {
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(85px, 11vw, 175px);
+
+    font-weight: 400;
+    line-height: 0.9;
+
+    white-space: nowrap;
+
+    color: #080808;
+
+    margin-left: -10px;
+}
+
+.hero-subtitle {
+    margin-top: 55px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(17px, 2vw, 27px);
+
+    font-weight: 400;
+
+    letter-spacing: 9px;
+
+    color: #666;
+
+    text-transform: uppercase;
+}
+
+.hero-description {
+    margin-top: 27px;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 6px;
+
+    color: #aaa;
+
+    text-transform: uppercase;
+
+    max-width: 600px;
+
+    line-height: 2;
+}
+
+.discover {
+    position: absolute;
+
+    bottom: 45px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction:
+     iption {
+        font-size: 7px;
+        letter-spacing: 2.5px;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .product-image {
+        height: 350px;
     }
 
-    body {
-      font-family: "Inter", sans-serif;
-      background: #fff;
-      color: #111;
-      overflow-x: hidden;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="logo">
+        NOIRA RESERVE
+    </div>
+
+    <nav class="nav">
+
+        <a href="#collection">
+            Новинки
+        </a>
+
+        <a href="#collection">
+            Коллекция
+        </a>
+
+        <a href="#about">
+            О бренде
+        </a>
+
+        <a href="#" onclick="openCart(); return false;">
+            Корзина
+        </a>
+
+    </nav>
+
+    <button class="menu-button" onclick="toggleMenu()">
+
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+        </div>
+
+    </button>
+
+</header>
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="#collection" onclick="closeMenu()">
+        Новинки
+    </a>
+
+    <a href="#collection" onclick="closeMenu()">
+        Коллекция
+    </a>
+
+    <a href="#about" onclick="closeMenu()">
+        О бренде
+    </a>
+
+    <a href="#" onclick="openCart(); closeMenu(); return false;">
+        Корзина
+    </a>
+
+</div>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h1 class="hero-title">
+        Noira Reserve
+    </h1>
+
+    <div class="hero-subtitle">
+        London — Paris — Digital Luxury
+    </div>
+
+    <div class="hero-description">
+        Crafted for those who move differently
+    </div>
+
+    <div class="discover">
+
+        <span>
+            DISCOVER
+        </span>
+
+        <div class="discover-line"></div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     COLLECTION
+========================= -->
+
+<section class="collection" id="collection">
+
+    <div class="section-label">
+        NOIRA RESERVE
+    </div>
+
+    <h2 class="section-title">
+        New Collection
+    </h2>
+
+    <div class="products">
+
+        <!-- PRODUCT 1 -->
+
+        <div class="product"
+             onclick="openProduct(
+                'NOIRA TEE / BLACK',
+                '€59',
+                'Minimalist premium T-shirt by Noira Reserve. Designed in London.'
+             )">
+
+            <div class="product-image">
+
+                <div class="shirt"></div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    NOIRA TEE / BLACK
+                </div>
+
+                <div class="product-price">
+                    €59
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product"
+             onclick="openProduct(
+                'NOIRA TEE / WHITE',
+                '€59',
+                'Minimalist premium T-shirt by Noira Reserve. Designed in London.'
+             )">
+
+            <div class="product-image">
+
+                <div class="shirt white"></div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    NOIRA TEE / WHITE
+                </div>
+
+                <div class="product-price">
+                    €59
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product"
+             onclick="openProduct(
+                'NOIRA RESERVE HOODIE',
+                '€119',
+                'Heavyweight luxury hoodie with the signature Noira Reserve identity.'
+             )">
+
+            <div class="product-image">
+
+                <div class="shirt"></div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    NOIRA RESERVE HOODIE
+                </div>
+
+                <div class="product-price">
+                    €119
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about" id="about">
+
+    <div class="about-inner">
+      umn;
+    align-items: center;
+
+    gap: 18px;
+
+    color: #aaa;
+
+    font-size: 10px;
+    letter-spacing: 6px;
+}
+
+.discover-line {
+    width: 1px;
+    height: 60px;
+
+    background: #bbb;
+}
+
+/* =========================
+   COLLECTION
+========================= */
+
+.collection {
+    padding: 140px 7vw 160px;
+
+    background: #fafafa;
+
+    text-align: center;
+}
+
+.section-label {
+    font-family: "Inter", sans-serif;
+
+    font-size: 10px;
+    letter-spacing: 5px;
+
+    color: #999;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(48px, 6vw, 85px);
+
+    font-weight: 300;
+
+    margin-bottom: 80px;
+}
+
+.products {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.product {
+    background: white;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.product:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+}
+
+.product-image {
+    height: 480px;
+
+    background: #f2f2f2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.shirt {
+    width: 230px;
+    height: 280px;
+
+    background: #111;
+
+    clip-path: polygon(
+        25% 0,
+        42% 13%,
+        58% 13%,
+        75% 0,
+        100% 25%,
+        82% 43%,
+        75% 35%,
+        75% 100%,
+        25% 100%,
+        25% 35%,
+        18% 43%,
+        0 25%
+    );
+
+    position: relative;
+}
+
+.shirt.white {
+    background: #fff;
+
+    border: 1px solid #ddd;
+}
+
+.shirt::after {
+    content: "NR";
+
+    position: absolute;
+
+    top: 47%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 25px;
+
+    letter-spacing: 4px;
+
+    color: rgba(255,255,255,0.75);
+}
+
+.shirt.white::after {
+    color: rgba(0,0,0,0.65);
+}
+
+.product-info {
+    padding: 25px 15px 30px;
+}
+
+.product-name {
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 20px;
+
+    color: #777;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    min-height: 65vh;
+
+    background: #111;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 100px 30px;
+}
+
+.about-inner {
+    max-width: 750px;
+}
+
+.about-small {
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    color: #777;
+
+    text-transform: uppercase;
+
+    margin-bottom: 35px;
+}
+
+.about-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(55px, 7vw, 100px);
+
+    font-weight: 300;
+
+    margin-bottom: 30px;
+}
+
+.about-text {
+    font-size: 13px;
+
+    line-height: 2;
+
+    letter-spacing: 1px;
+
+    color: #aaa;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: #111;
+
+    color: #777;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    padding: 35px 7vw;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+/* =========================
+   PRODUCT MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 2000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+
+    width: 100%;
+    max-width: 500px;
+
+    padding: 50px;
+
+    text-align: center;
+
+    position: relative;
+}
+
+.close {
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    border: none;
+
+    background: none;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    color: #555;
+}
+
+.modal-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 42px;
+      font-weight: 400;
+
+    margin-bottom: 10px;
+}
+
+.modal-price {
+    font-family: "Inter", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+}
+
+.modal-description {
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    color: #777;
+
+    margin-bottom: 30px;
+}
+
+.add-cart {
+    width: 100%;
+
+    padding: 17px;
+
+    background: #111;
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+/* ==================================================
+   TABLET
+================================================== */
+
+max-width: 900px {
+
+    .header {
+        padding: 0 30px;
     }
+
+    .nav {
+        gap: 25px;
+    }
+
+    .nav a {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .hero-title {
+        font-size: clamp(70px, 12vw, 110px);
+    }
+
+    .hero-subtitle {
+        letter-spacing: 6px;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* ==================================================
+   PHONE
+================================================== */
+
+max-width: 600px {
 
     /* HEADER */
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 78px;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,.78);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(0,0,0,.06);
+    .header {
+        height: 68px;
+
+        padding: 0 20px;
     }
 
     .logo {
-      position: absolute;
-      left: 6%;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 19px;
-      font-weight: 600;
-      letter-spacing: 5px;
+        font-size: 17px;
+        letter-spacing: 3px;
     }
 
-    nav {
-      display: flex;
-      gap: 34px;
+    .nav {
+        display: none;
     }
 
-    nav a {
-      color: #111;
-      text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: opacity .25s;
+    .menu-button {
+        display: flex;
     }
 
-    nav a:hover {
-      opacity: .45;
+    .mobile-menu {
+        top: 68px;
     }
 
     /* HERO */
 
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 20px 60px;
-      position: relative;
+        min-height: 100svh;
+
+        padding:
+            100px
+            20px
+            100px;
     }
 
-    .hero-content {
-      width: 100%;
-      animation: appear 1.4s ease forwards;
+    .hero-title {
+        font-size: clamp(58px, 18vw, 95px);
+
+        line-height: 0.95;
+
+        white-space: normal;
+
+        width: 100%;
+
+        margin: 0;
+
+        word-break: normal;
     }
 
-    .brand-name {
-      font-family: "Great Vibes", cursive;
-      font-size: clamp(85px, 15vw, 190px);
-      font-weight: 400;
-      line-height: .9;
-      color: #080808;
-      white-space: nowrap;
+    .hero-subtitle {
+        margin-top: 38px;
+
+        font-size: 15px;
+
+        letter-spacing: 4px;
+
+        line-height: 1.8;
+
+        max-width: 330px;
     }
 
-    .tagline {
-      margin-top: 34px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 17px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #555;
+    .hero-description {
+        margin-top: 18px;
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
+
+        line-height: 2;
+
+        max-width: 310px;
     }
 
-    .location {
-      margin-top: 14px;
-      font-size: 9px;
-      letter-spacing: 5px;
-      color: #999;
-      text-transform: uppercase;
+    .discover {
+        bottom: 28px;
+
+        font-size: 8px;
+
+        letter-spacing: 4px;
+
+        gap: 13px;
     }
 
-    .scroll {
-      position: absolute;
-      bottom: 35px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 9px;
-      letter-spacing: 4px;
-      color: #999;
-      text-transform: uppercase;
+    .discover-line {
+        height: 40px;
     }
 
-    .scroll::after {
-      content: "";
-      display: block;
-      width: 1px;
-      height: 32px;
-      background: #bbb;
-      margin: 12px auto 0;
+    /* COLLECTION */
+
+    .collection {
+        padding: 90px 18px 100px;
     }
 
-    /* PRODUCTS */
+    .section-label {
+        font-size: 8px;
 
-    .section {
-      padding: 120px 6%;
+        letter-spacing: 4px;
+
+        margin-bottom: 15px;
     }
 
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      margin-bottom: 42px;
-    }
+    .section-title {
+        font-size: 48px;
 
-    .section-heading h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 42px;
-      font-weight: 500;
-      letter-spacing: -1px;
-    }
-
-    .section-heading span {
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: #999;
+        margin-bottom: 45px;
     }
 
     .products {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
+        grid-template-columns: 1fr;
 
-    .product {
-      cursor: pointer;
-      position: relative;
-      background: #f7f7f5;
-      border: 1px solid #ededeb;
-      border-radius: 20px;
-      padding: 12px;
-      transition: transform .35s ease, box-shadow .35s ease;
-    }
+        gap: 35px;
 
-    .product:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 22px 55px rgba(0,0,0,.09);
+        width: 100%;
     }
 
     .product-image {
-      height: 430px;
-      border-radius: 14px;
-      background: linear-gradient(145deg,#eeeeec,#fafafa);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+        height: 400px;
     }
 
     .shirt {
-      width: 175px;
-      height: 205px;
-      background: #111;
-      }
-    }
-
-  </style>
-</head>
-
-<body>
-
-  <header>
-
-    <div class="logo">
-      NOIRA RESERVE
-    </div>
-
-    <nav>
-      <a href="#new">Новинки</a>
-      <a href="#collection">Коллекция</a>
-      <a href="#about">О бренде</a>
-      <a href="#cart">Корзина</a>
-    </nav>
-
-  </header>
-
-  <main>
-
-    <section class="hero">
-
-      <div class="hero-content">
-
-        <div class="brand-name">
-          Noira Reserve
-        </div>
-
-        <div class="tagline">
-          London — Paris — Digital Luxury
-        </div>
-
-        <div class="location">
-          Crafted for those who move differently
-        </div>
-
-      </div>
-
-      <div class="scroll">
-        Discover
-      </div>
-
-    </section>
-
-    <section class="section" id="new">
-
-      <div class="section-heading">
-
-        <h2>
-          New Collection
-        </h2>
-
-        <span>
-          03 / RESERVE
-        </span>
-
-      </div>
-
-      <div class="products">
-
-        <article
-          class="product"
-          onclick="openProduct(
-            'NOIRA TEE / BLACK',
-            'Heavyweight T-Shirt',
-            '€59',
-            'black'
-          )"
-        >
-
-          <div class="product-image">
-
-            <div class="shirt">
-              <span>NR</span>
-            </div>
-
-          </div>
-
-          <div class="product-info">
-
-            <div>
-
-              <div class="product-name">
-                NOIRA TEE / BLACK
-              </div>
-
-              <div class="product-type">
-                Heavyweight T-Shirt
-              </div>
-
-            </div>
-
-            <div class="price">
-              €59
-            </div>
-
-          </div>
-
-        </article>
-
-        <article
-          class="product"
-          onclick="openProduct(
-            'NOIRA TEE / WHITE',
-            'Heavyweight T-Shirt',
-            '€59',
-            'white'
-          )"
-        >
-
-          <div class="product-image">
-
-            <div
-              class="shirt"
-              style="background:#e8e8e6;"
-            >
-              <span style="color:#111;">
-                NR
-              </span>
-            </div>
-
-          </div>
-
-          <div class="product-info">
-
-            <div>
-
-              <div class="product-name">
-                NOIRA TEE / WHITE
-              </div>
-
-              <div class="product-type">
-                Heavyweight T-Shirt
-              </div>
-
-            </div>
-
-            <div class="price">
-              €59
-            </div>
-
-          </div>
-
-        </article>
-
-        <article
-          class="product"
-          onclick="openProduct(
-            'NOIRA RESERVE HOODIE',
-            'Premium Hoodie',
-            '€119',
-            'gray'
-          )"
-        >
-
-          <div class="product-image">
-
-            <div
-              class="shirt"
-              style="background:#555;"
-            >
-              <span>
-                NR
-              </span>
-            </div>
-
-          </div>
-
-          <div class="product-info">
-
-            <div>
-
-              <div class="product-name">
-                NOIRA RESERVE HOODIE
-              </div>
-
-              <div class="product-type">
-                Premium Hoodie
-              </div>
-
-            </div>
-
-            <div class="price">
-              €119
-            </div>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-    <section class="about" id="about">
-
-      <h2>
-        Quiet Luxury.
-      </h2>
-
-      <p>
-        Noira Reserve — это эстетика Лондона и Парижа,
-        соединённая с духом новой цифровой экономики.
-        Минимализм, качество и характер без необходимости
-        что-либо доказывать.
-      </p>
-
-    </section>
-
-  </main>
-
-  <!-- PRODUCT WINDOW -->
-
-  <div
-    class="modal"
-    id="productModal"
-  >
-
-    <div class="modal-box">
-
-      <button
-        class="close"
-        onclick="closeProduct()"
-      >
-        ×
-      </button>
-
-      <div class="modal-image">
-
-        <div
-          class="shirt"
-          id="modalShirt"
-        >
-          <span>
-            NR
-          </span>
-        </div>
-
-      </div>
-
-      <div
-        }
-    }
-
-    /* ========================================
-       MOBILE VERSION
-       ======================================== */
-
-    max-width: 600px {
-
-      header {
-        position: fixed;
-        height: 62px;
-        padding: 0 14px;
-      }
-
-      .logo {
-        position: static;
-        font-size: 14px;
-        letter-spacing: 3px;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero {
-        min-height: 100svh;
-        padding: 80px 15px 70px;
-      }
-
-      .brand-name {
-        font-size: clamp(58px, 19vw, 100px);
-        letter-spacing: 0;
-        white-space: normal;
-        line-height: .95;
-      }
-
-      .tagline {
-        margin-top: 25px;
-        font-size: 11px;
-        letter-spacing: 2px;
-        line-height: 1.7;
-      }
-
-      .location {
-        margin-top: 12px;
-        font-size: 7px;
-        letter-spacing: 3px;
-        line-height: 1.7;
-      }
-
-      .scroll {
-        bottom: 22px;
-        font-size: 7px;
-        letter-spacing: 3px;
-      }
-
-      .scroll::after {
-        height: 24px;
-        margin-top: 8px;
-      }
-
-      .section {
-        padding: 75px 15px;
-      }
-
-      .section-heading {
-        margin-bottom: 25px;
-        align-items: center;
-      }
-
-      .section-heading h2 {
-        font-size: 30px;
-      }
-
-      .section-heading span {
-        font-size: 7px;
-        letter-spacing: 2px;
-      }
-
-      .products {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .product {
-        padding: 9px;
-        border-radius: 17px;
-      }
-
-      .product:hover {
-        transform: none;
-        box-shadow: none;
-      }
-
-      .product-image {
-        height: 390px;
-        border-radius: 12px;
-      }
-
-      .shirt {
-        width: 155px;
-        height: 185px;
-      }
-
-      .product:hover .shirt {
-        transform: none;
-      }
-
-      .product-info {
-        padding: 16px 4px 5px;
-      }
-
-      .product-name {
-        font-size: 11px;
-      }
-
-      .product-type {
-        font-size: 9px;
-      }
-
-      .price {
-        font-size: 11px;
-      }
-
-      .about {
-        margin: 15px 15px 75px;
-        padding: 65px 22px;
-        border-radius: 22px;
-      }
-
-      .about h2 {
-        font-size: 43px;
-        line-height: 1;
-      }
-
-      .about p {
-        margin-top: 23px;
-        font-size: 11px;
-        line-height: 1.9;
-      }
-
-      /* Mobile product window */
-
-      .modal {
-        padding: 10px;
-        align-items: flex-end;
-      }
-
-      .modal-box {
-        width: 100%;
-        max-height: 94svh;
-        padding: 10px;
-        border-radius: 22px 22px 15px 15px;
-        display: block;
-        overflow-y: auto;
-      }
-
-      .modal-image {
-        min-height: 280px;
-        height: 42svh;
-        max-height: 390px;
-        border-radius: 15px;
-      }
-
-      .modal-image .shirt {
-        width: 135px;
-        height: 165px;
-      }
-
-      .modal-info {
-        padding: 25px 12px 15px;
-      }
-
-      .modal-info h2 {
-        font-size: 36px;
-        line-height: 1;
-        padding-right: 25px;
-      }
-
-      .modal-price {
-        margin-top: 12px;
-        font-size: 16px;
-      }
-
-      .modal-info p {
-        margin-top: 18px;
-        font-size: 11px;
-        line-height: 1.7;
-      }
-
-      .buy {
-        width: 100%;
-        margin-top: 22px;
-        padding: 15px;
-      }
-
-      .close {
-        top: 16px;
-        right: 17px;
-        font-size: 25px;
-      }
-
-      .cart {
-        right: 15px;
-        bottom: 15px;
-        padding: 13px 17px;
-        font-size: 8px;
-        letter-spacing: 1.5px;
-      }
-
-      footer {
-        padding: 28px 15px;
-        flex-direction: column;
-        gap: 10px;
-        font-size: 8px;
-        letter-spacing: 1.5px;
-        text-align: center;
-      }
-    }
-
-    /* VERY SMALL PHONES */
-
-    max-width: 380px {
-
-      .brand-name {
-        font-size: 58px;
-      }
-
-      .tagline {
-        font-size: 9px;
-      }
-
-      .product-image {
-        height: 330px;
-      }
-
-      .modal-image {
-        height: 270px;
-      }
-
-      .modal-info h2 {
-        font-size: 32px;
-        clip-path: polygon(
-        25% 0,
-        42% 10%,
-        50% 17%,
-        58% 10%,
-        75% 0,
-        100% 20%,
-        85% 42%,
-        72% 32%,
-        72% 100%,
-        28% 100%,
-        28% 32%,
-        15% 42%,
-        0 20%
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform .5s ease;
-    }
-
-    .product:hover .shirt {
-      transform: scale(1.06);
-    }
-
-    .shirt span {
-      color: white;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      transform: translateY(15px);
+        width: 190px;
+        height: 235px;
     }
 
     .product-info {
-      padding: 19px 5px 5px;
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-    }
-
-    .product-name {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .product-type {
-      margin-top: 6px;
-      font-size: 10px;
-      color: #999;
-      letter-spacing: .5px;
-    }
-
-    .price {
-      font-size: 12px;
-      font-weight: 600;
+        padding: 20px 10px 25px;
     }
 
     /* ABOUT */
 
     .about {
-      margin: 40px 6% 120px;
-      padding: 100px 30px;
-      background: #0d0d0d;
-      color: white;
-      border-radius: 28px;
-      text-align: center;
+        min-height: 60vh;
+
+        padding: 80px 25px;
     }
 
-    .about h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(42px, 7vw, 75px);
-      font-weight: 400;
-      letter-spacing: -2px;
+    .about-small {
+        font-size: 8px;
+
+        letter-spacing: 4px;
+
+        margin-bottom: 25px;
     }
 
-    .about p {
-      max-width: 580px;
-      margin: 30px auto 0;
-      color: #999;
-      font-size: 12px;
-      line-height: 2;
-      letter-spacing: .5px;
+    .about-title {
+        font-size: 60px;
+
+        margin-bottom: 25px;
     }
 
-    /* PRODUCT MODAL */
+    .about-text {
+        font-size: 11px;
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(0,0,0,.5);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-box {
-      width: min(900px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      background: white;
-      border-radius: 25px;
-      padding: 20px;
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .modal-image {
-      min-height: 500px;
-      border-radius: 18px;
-      background: linear-gradient(145deg,#eeeeec,#fafafa);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 30px;
-    }
-
-    .modal-info h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 48px;
-      font-weight: 500;
-    }
-
-    .modal-price {
-      margin-top: 15px;
-      font-size: 18px;
-    }
-
-    .modal-info p {
-      margin-top: 25px;
-      color: #777;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      z-index: 5;
-      border: 0;
-      background: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #111;
-    }
-
-    .buy {
-      margin-top: 30px;
-      border: 0;
-      background: #111;
-      color: white;
-      padding: 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 10px;
-      letter-spacing: 2px;
-      transition: opacity .2s;
-    }
-
-    .buy:hover {
-      opacity: .7;
-    }
-
-    /* CART */
-
-    .cart {
-      position: fixed;
-      right: 25px;
-      bottom: 25px;
-      z-index: 200;
-      padding: 15px 21px;
-      border-radius: 50px;
-      background: #111;
-      color: white;
-      font-size: 10px;
-      letter-spacing: 2px;
-      box-shadow: 0 12px 35px rgba(0,0,0,.18);
+        line-height: 1.9;
     }
 
     /* FOOTER */
 
-    footer {
-      padding: 35px 6%;
-      border-top: 1px solid #eee;
-      display: flex;
-      justify-content: space-between;
-      color: #999;
-      font-size: 9px;
-      letter-spacing: 2px;
+    .footer {
+        padding: 28px 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+
+        font-size: 8px;
+
+        line-height: 1.8;
     }
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
+    /* MODAL */
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        class="modal-info">
+    .modal {
+        padding: 15px;
+    }
 
-        <h2 id="modalName">
-          NOIRA TEE
-        </h2>
+    .modal-content {
+        padding: 45px 25px 30px;
 
-        <div
-          class="modal-price"
-          id="modalPrice"
-        >
-          €59
+        max-width: 100%;
+    }
+
+    .modal-title {
+        font-size: 34px;
+    }
+
+}
+
+/* ==================================================
+   VERY SMALL PHONES
+================================================== */
+
+max-width: 380px {
+
+    .logo {
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+
+    .hero {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .hero-title {
+        font-size: 56px;
+    }
+
+    .hero-subtitle {
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+
+    .hero-descr
+      <div class="about-small">
+            ABOUT NOIRA RESERVE
         </div>
 
-        <p id="modalDescription">
-          Premium heavyweight piece created for the
-          Noira Reserve collection. Clean silhouette,
-          minimal branding and timeless design.
+        <h2 class="about-title">
+            Quiet Luxury.
+        </h2>
+
+        <p class="about-text">
+            Noira Reserve is a contemporary clothing concept
+            inspired by London, Paris and the digital generation.
+            Minimal silhouettes. Premium attitude. No unnecessary noise.
         </p>
-
-        <button
-          class="buy"
-          onclick="addToCart()"
-        >
-          ADD TO CART
-        </button>
-
-      </div>
 
     </div>
 
-  </div>
+</section>
 
-  <div class="cart" id="cart">
+<!-- =========================
+     FOOTER
+========================= -->
 
-    CART:
-    <span id="cartCount">
-      0
-    </span>
-
-  </div>
-
-  <footer>
+<footer class="footer">
 
     <span>
-      © 2026 NOIRA RESERVE
+        © 2026 NOIRA RESERVE
     </span>
 
     <span>
-      LONDON — PARIS
+        LONDON — PARIS
     </span>
 
-  </footer>
+</footer>
 
-  <script>
+<!-- =========================
+     PRODUCT MODAL
+========================= -->
 
-    let cartCount = 0;
+<div class="modal" id="productModal">
 
-    function openProduct(
-      name,
-      type,
-      price,
-      color
-    ) {
+    <div class="modal-content">
 
-      document.getElementById("modalName")
-        .textContent = name;
+        <button class="close" onclick="closeProduct()">
+            ×
+        </button>
 
-      document.getElementById("modalPrice")
-        .textContent = price;
+        <div class="modal-title" id="modalTitle">
+            Product
+        </div>
 
-      const shirt =
-        document.getElementById("modalShirt");
+        <div class="modal-price" id="modalPrice">
+            €59
+        </div>
 
-      if (color === "white") {
+        <div class="modal-description" id="modalDescription">
+            Product description
+        </div>
 
-        shirt.style.background = "#e8e8e6";
+        <button class="add-cart" onclick="addToCart()">
+            Add to cart
+        </button>
 
-        shirt.querySelector("span")
-          .style.color = "#111";
+    </div>
 
-      }
+</div>
 
-      else if (color === "gray") {
+<script>
 
-        shirt.style.background = "#555";
+/* =========================
+   MOBILE MENU
+========================= */
 
-        shirt.querySelector("span")
-          .style.color = "#fff";
+function toggleMenu() {
 
-      }
+    const menu = document.getElementById("mobileMenu");
 
-      else {
+    menu.classList.toggle("active");
 
-        shirt.style.background = "#111";
+}
 
-        shirt.querySelector("span")
-          .style.color = "#fff";
+function closeMenu() {
 
-      }
+    const menu = document.getElementById("mobileMenu");
 
-      document.getElementById("productModal")
-        .classList.add("active");
+    menu.classList.remove("active");
 
-      document.body.style.overflow = "hidden";
-    }
+}
 
-    function closeProduct() {
+/* =========================
+   PRODUCT
+========================= */
 
-      document.getElementById("productModal")
-        .classList.remove("active");
+let cartCount = 0;
 
-      document.body.style.overflow = "";
-    }
+function openProduct(name, price, description) {
 
-    function addToCart() {
+    document.getElementById("modalTitle").textContent = name;
 
-      cartCount++;
+    document.getElementById("modalPrice").textContent = price;
 
-      document.getElementById("cartCount")
-        .textContent = cartCount;
+    document.getElementById("modalDescription").textContent = description;
 
-      closeProduct();
+    document.getElementById("productModal").classList.add("active");
 
-      alert("Товар добавлен в корзину.");
-    }
+}
 
-    document.getElementById("productModal")
-      .addEventListener(
-        "click",
-        function(event) {
+function closeProduct() {
 
-          if (event.target === this) {
-            closeProduct();
-          }
+    document.getElementById("productModal").classList.remove("active");
 
-        }
-      );
+}
 
-    document.addEventListener(
-      "keydown",
-      function(event) {
+function addToCart() {
 
-        if (event.key === "Escape") {
-          closeProduct();
-        }
+    cartCount++;
 
-      }
+    alert(
+        "Added to cart.\n\nItems in cart: " + cartCount
     );
 
-  </script>
+}
+
+function openCart() {
+
+    if (cartCount === 0) {
+
+        alert("Your cart is empty.");
+
+    } else {
+
+        alert(
+            "Items in cart: " + cartCount
+        );
+
+    }
+
+}
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+document.getElementById("productModal").addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === this) {
+
+            closeProduct();
+
+        }
+
+    }
+);
+
+</script>
 
 </body>
-</html>
+</html> col
