@@ -1,3931 +1,1873 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
-
-<meta name="theme-color" content="#10100e">
-
-<title>Noira Reserve — House of Quiet Luxury</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10100f">
+<title>Noira Reserve — Maison de Paris & London</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Manrope:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   NOIRA RESERVE
-   ART / FASHION / QUIET LUXURY
-========================================================= */
-
-:root {
-
-  --black: #0f0f0d;
-  --black2: #171713;
-
-  --cream: #eee9df;
-  --paper: #e5ded1;
-
-  --gold: #c6a56b;
-
-  --white: #fffdf8;
-
-  --muted: #8d887e;
-
-  --line: rgba(255,255,255,.13);
-
-  --glass:
-    rgba(255,255,255,.075);
-
-  --ease:
-    cubic-bezier(.22,.61,.36,1);
-
+:root{
+  --bg:#11110f;
+  --paper:#e9e5dc;
+  --paper2:#d9d4c9;
+  --ink:#151513;
+  --muted:#aaa69d;
+  --line:rgba(255,255,255,.12);
+  --white:#f4f1ea;
+  --accent:#b9a27b;
+  --ease:cubic-bezier(.22,.61,.36,1);
 }
 
-* {
-  box-sizing: border-box;
-
-  margin: 0;
-  padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
-
-  background:
-    var(--black);
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-
-  margin: 0;
-
-  background:
-    var(--black);
-
-  color:
-    var(--white);
-
-  font-family:
-    "DM Sans",
-    Arial,
-    sans-serif;
-
-  overflow-x:
-    hidden;
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
 }
 
-body::selection {
-  background:
-    var(--gold);
-
-  color:
-    #111;
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+  opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
 }
 
-img {
-  display:
-    block;
-
-  max-width:
-    100%;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-a {
-  color:
-    inherit;
-
-  text-decoration:
-    none;
+button{
+  font:inherit;
 }
 
-button {
-  font:
-    inherit;
+::-webkit-scrollbar{
+  width:7px;
 }
 
-/* =========================================================
-   GRAIN
-========================================================= */
-
-.noise {
-
-  position:
-    fixed;
-
-  inset:
-    0;
-
-  z-index:
-    9999;
-
-  pointer-events:
-    none;
-
-  opacity:
-    .055;
-
-  mix-blend-mode:
-    soft-light;
-
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.55'/%3E%3C/svg%3E");
-
+::-webkit-scrollbar-track{
+  background:#11110f;
 }
 
-/* =========================================================
+::-webkit-scrollbar-thumb{
+  background:#49463f;
+  border-radius:20px;
+}
+
+/* =========================
    NAVIGATION
-========================================================= */
+========================= */
 
-.nav {
-
-  position:
-    fixed;
-
-  z-index:
-    500;
-
-  top:
-    0;
-
-  left:
-    0;
-
-  right:
-    0;
-
-  height:
-    78px;
-
-  padding:
-    0 34px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(10,10,9,.62),
-      transparent
-    );
-
-  transition:
-    background .45s ease,
-    backdrop-filter .45s ease;
-
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:82px;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5vw;
+  transition:.5s var(--ease);
 }
 
-.nav.scrolled {
-
-  background:
-    rgba(15,15,13,.84);
-
-  backdrop-filter:
-    blur(22px);
-
-  -webkit-backdrop-filter:
-    blur(22px);
-
+.nav.scrolled{
+  background:rgba(15,15,14,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
 }
 
-.logo {
-
-  font-family:
-    "Great Vibes",
-    cursive;
-
-  font-size:
-    35px;
-
-  font-weight:
-    400;
-
-  line-height:
-    .9;
-
-  white-space:
-    nowrap;
-
+.logo{
+  font-family:"Great Vibes",cursive;
+  font-size:42px;
+  font-weight:400;
+  line-height:1;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:.4s var(--ease);
 }
 
-.nav-links {
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  gap:
-    32px;
-
+.logo:hover{
+  transform:scale(1.04);
 }
 
-.nav-links a {
-
-  position:
-    relative;
-
-  font-size:
-    9px;
-
-  letter-spacing:
-    .2em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    rgba(255,255,255,.8);
-
+.nav-links{
+  display:flex;
+  gap:34px;
+  align-items:center;
 }
 
-.nav-links a::after {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  left:
-    0;
-
-  bottom:
-    -7px;
-
-  width:
-    0;
-
-  height:
-    1px;
-
-  background:
-    white;
-
-  transition:
-    width .35s var(--ease);
-
+.nav-links a{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  opacity:.72;
+  transition:.3s;
 }
 
-.nav-links a:hover::after {
-  width:
-    100%;
+.nav-links a:hover{
+  opacity:1;
 }
 
-/* =========================================================
+.nav-right{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.nav-small{
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  opacity:.6;
+}
+
+/* =========================
    HERO
-========================================================= */
+========================= */
 
-.hero {
-
-  position:
-    relative;
-
-  min-height:
-    100svh;
-
-  height:
-    100svh;
-
-  overflow:
-    hidden;
-
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:0 5vw 8vh;
+  overflow:hidden;
   background:
-    #12120f;
-
-}
-
-.hero-bg {
-
-  position:
-    absolute;
-
-  inset:
-    -4%;
-
-  width:
-    108%;
-
-  height:
-    108%;
-
-  object-fit:
-    cover;
-
-  object-position:
-    center;
-
-  filter:
-    grayscale(.18)
-    sepia(.12)
-    contrast(1.08)
-    brightness(.65);
-
-  animation:
-    heroScale 18s ease-in-out infinite alternate;
-
-}
-
-.hero-overlay {
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  background:
-
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(185,151,91,.18),
-      transparent 36%
-    ),
-
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.54),
-      rgba(0,0,0,.10) 40%,
-      rgba(0,0,0,.78)
-    );
-
-}
-
-.hero-glow {
-
-  position:
-    absolute;
-
-  width:
-    600px;
-
-  height:
-    600px;
-
-  left:
-    50%;
-
-  top:
-    50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  border-radius:
-    50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(215,178,108,.16),
-      transparent 68%
-    );
-
-  filter:
-    blur(30px);
-
-  animation:
-    glowMove 9s ease-in-out infinite alternate;
-
-}
-
-.hero-center {
-
-  position:
-    absolute;
-
-  z-index:
-    5;
-
-  inset:
-    0;
-
-  display:
-    flex;
-
-  flex-direction:
-    column;
-
-  justify-content:
-    center;
-
-  align-items:
-    center;
-
-  text-align:
-    center;
-
-  padding:
-    100px 20px;
-
-}
-
-.hero-label {
-
-  margin-bottom:
-    28px;
-
-  font-size:
-    9px;
-
-  letter-spacing:
-    .42em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    rgba(255,255,255,.72);
-
-  animation:
-    fadeUp 1s .2s both;
-
-}
-
-.hero-logo {
-
-  font-family:
-    "Great Vibes",
-    cursive;
-
-  font-size:
-    clamp(78px, 12vw, 185px);
-
-  font-weight:
-    400;
-
-  line-height:
-    .72;
-
-  white-space:
-    nowrap;
-
-  text-shadow:
-    0 15px 60px rgba(0,0,0,.5);
-
-  animation:
-    logoAppear 1.4s var(--ease) both;
-
-}
-
-.hero-description {
-
-  margin-top:
-    38px;
-
-  max-width:
-    420px;
-
-  font-size:
-    10px;
-
-  line-height:
-    1.8;
-
-  letter-spacing:
-    .24em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    rgba(255,255,255,.72);
-
-  animation:
-    fadeUp 1s .55s both;
-
-}
-
-.hero-bottom {
-
-  position:
-    absolute;
-
-  z-index:
-    10;
-
-  left:
-    34px;
-
-  right:
-    34px;
-
-  bottom:
-    28px;
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .2em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    rgba(255,255,255,.58);
-
-}
-
-/* =========================================================
-   ART FLOATING CARDS
-========================================================= */
-
-.art-card {
-
-  position:
-    absolute;
-
-  z-index:
-    8;
-
-  overflow:
-    hidden;
-
-  border:
-    1px solid rgba(255,255,255,.28);
-
-  background:
-    rgba(255,255,255,.08);
-
-  box-shadow:
-    0 35px 90px rgba(0,0,0,.4);
-
-  backdrop-filter:
-    blur(15px);
-
-  -webkit-backdrop-filter:
-    blur(15px);
-
-  transform-style:
-    preserve-3d;
-
-  transition:
-    transform .15s linear,
-    box-shadow .5s ease;
-
-  animation:
-    floatingCard 7s ease-in-out infinite;
-
-}
-
-.art-card img {
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  object-fit:
-    cover;
-
-  filter:
-    sepia(.1)
-    contrast(1.05);
-
-}
-
-.art-card::after {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.25),
-      transparent 35%,
-      rgba(0,0,0,.2)
-    );
-
-}
-
-.art-one {
-
-  width:
-    190px;
-
-  height:
-    250px;
-
-  left:
-    8%;
-
-  top:
-    23%;
-
-  transform:
-    rotate(-8deg);
-
-  animation-delay:
-    -.8s;
-
-}
-
-.art-two {
-
-  width:
-    170px;
-
-  height:
-    235px;
-
-  right:
-    9%;
-
-  top:
-    20%;
-
-  transform:
-    rotate(8deg);
-
-  animation-delay:
-    -3s;
-
-}
-
-.art-three {
-
-  width:
-    135px;
-
-  height:
-    185px;
-
-  right:
-    16%;
-
-  bottom:
-    16%;
-
-  transform:
-    rotate(-7deg);
-
-  animation-delay:
-    -5s;
-
-}
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro {
-
-  position:
-    relative;
-
-  padding:
-    150px 7vw;
-
-  background:
-    var(--cream);
-
-  color:
-    #151512;
-
-}
-
-.intro-grid {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1.1fr .9fr;
-
-  gap:
-    9vw;
-
-  align-items:
-    center;
-
-}
-
-.kicker {
-
-  margin-bottom:
-    27px;
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .36em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    #77736b;
-
-}
-
-.intro-title {
-
-  max-width:
-    780px;
-
-  font-family:
-    "Manrope",
-    sans-se
-  ter;
-
-  border:
-    1px solid rgba(255,255,255,.3);
-
-  border-radius:
-    50%;
-
-  background:
-    rgba(0,0,0,.16);
-
-  backdrop-filter:
-    blur(10px);
-
-  transition:
-    transform .45s var(--ease),
-    background .35s ease,
-    color .35s ease;
-
-}
-
-.product-card:hover
-.product-arrow {
-
-  transform:
-    rotate(-45deg);
-
-  background:
-    white;
-
-  color:
-    black;
-
-}
-
-/* =========================================================
-   ART SECTION
-========================================================= */
-
-.art-section {
-
-  position:
-    relative;
-
-  min-height:
-    850px;
-
-  overflow:
-    hidden;
-
-  background:
-    var(--paper);
-
-  color:
-    #151512;
-
-}
-
-.art-main {
-
-  position:
-    absolute;
-
-  width:
-    min(42vw,560px);
-
-  height:
-    min(57vw,730px);
-
-  left:
-    50%;
-
-  top:
-    50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  box-shadow:
-    0 50px 100px rgba(0,0,0,.3);
-
-  overflow:
-    hidden;
-
-}
-
-.art-main img {
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  object-fit:
-    cover;
-
-}
-
-.art-caption {
-
-  position:
-    absolute;
-
-  left:
-    7vw;
-
-  top:
-    50%;
-
-  transform:
-    translateY(-50%);
-
-}
-
-.art-caption h2 {
-
-  max-width:
-    430px;
-
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size:
-    clamp(48px, 6vw, 90px);
-
-  font-weight:
-    500;
-
-  line-height:
-    .9;
-
-  letter-spacing:
-    -.07em;
-
-}
-
-.art-caption p {
-
-  max-width:
-    330px;
-
-  margin-top:
-    30px;
-
-  font-size:
-    13px;
-
-  line-height:
-    1.8;
-
-  color:
-    #68635b;
-
-}
-
-.art-small {
-
-  position:
-    absolute;
-
-  width:
-    180px;
-
-  height:
-    235px;
-
-  overflow:
-    hidden;
-
-  box-shadow:
-    0 30px 60px rgba(0,0,0,.25);
-
-}
-
-.art-small img {
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  object-fit:
-    cover;
-
-}
-
-.art-small-one {
-
-  right:
-    10%;
-
-  top:
-    16%;
-
-  transform:
-    rotate(7deg);
-
-}
-
-.art-small-two {
-
-  right:
-    7%;
-
-  bottom:
-    13%;
-
-  transform:
-    rotate(-8deg);
-
-}
-
-/* =========================================================
-   STATEMENT
-========================================================= */
-
-.statement {
-
-  padding:
-    150px 7vw;
-
-  background:
-    #eee9df;
-
-  color:
-    #11110e;
-
-}
-
-.statement-title {
-
-  max-width:
-    1150px;
-
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size:
-    clamp(55px, 8vw, 140px);
-
-  font-weight:
-    500;
-
-  line-height:
-    .87;
-
-  letter-spacing:
-    -.08em;
-
-}
-
-.statement-title em {
-
-  font-family:
-    "Great Vibes",
-    cursive;
-
-  font-size:
-    1.12em;
-
-  font-weight:
-    400;
-
-  letter-spacing:
-    0;
-
-}
-
-.statement-bottom {
-
-  margin-top:
-    70px;
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  gap:
-    30px;
-
-  font-size:
-    9px;
-
-  line-height:
-    1.8;
-
-  letter-spacing:
-    .08em;
-
-  color:
-    #777168;
-
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
-
-  padding:
-    80px 5vw 30px;
-
-  background:
-    #10100e;
-
-}
-
-.footer-top {
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
-    flex-end;
-
-  padding-bottom:
-    70px;
-
-  gap:
-    40px;
-
-}
-
-.footer-logo {
-
-  font-family:
-    "Great Vibes",
-    cursive;
-
-  font-size:
-    clamp(70px, 9vw, 135px);
-
-  line-height:
-    .7;
-
-}
-
-.footer-links {
-
-  display:
-    flex;
-
-  flex-wrap:
-    wrap;
-
-  gap:
-    25px;
-
-}
-
-.footer-links a {
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .18em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    #77736b;
-
-}
-
-.footer-bottom {
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  padding-top:
-    24px;
-
-  border-top:
-    1px solid rgba(255,255,255,.1);
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .15em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    #68645c;
-
-}
-
-/* =========================================================
-   PRODUCT PAGE
-========================================================= */
-
-.product-page {
-
-  min-height:
-    100svh;
-
-  background:
-    #11110f;
-
-  color:
-    white;
-
-}
-
-.product-nav {
-
-  position:
-    fixed;
-
-  z-index:
-    1000;
-
-  top:
-    0;
-
-  left:
-    0;
-
-  right:
-    0;
-
-  height:
-    76px;
-
-  padding:
-    rif;
-
-  font-size:
-    clamp(42px, 5.5vw, 82px);
-
-  font-weight:
-    500;
-
-  line-height:
-    .94;
-
-  letter-spacing:
-    -.065em;
-
-}
-
-.intro-title span {
-
-  color:
-    #969086;
-
-}
-
-.intro-copy {
-
-  max-width:
-    470px;
-
-  font-size:
-    14px;
-
-  line-height:
-    1.9;
-
-  color:
-    #666159;
-
-}
-
-.signature {
-
-  margin-top:
-    38px;
-
-  font-family:
-    "Great Vibes",
-    cursive;
-
-  font-size:
-    50px;
-
-}
-
-/* =========================================================
-   COLLECTION ART WALL
-========================================================= */
-
-.collection {
-
-  position:
-    relative;
-
-  overflow:
-    hidden;
-
-  padding:
-    125px 5vw 160px;
-
-  background:
-    #181814;
-
-  color:
-    white;
-
-}
-
-.collection::before {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  width:
-    650px;
-
-  height:
-    650px;
-
-  left:
-    -250px;
-
-  top:
-    20%;
-
-  border-radius:
-    50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(198,165,107,.11),
-      transparent 70%
-    );
-
-  filter:
-    blur(20px);
-
-}
-
-.collection-header {
-
-  position:
-    relative;
-
-  z-index:
-    2;
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
-    flex-end;
-
-  margin-bottom:
-    65px;
-
-}
-
-.collection-title {
-
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size:
-    clamp(50px, 7vw, 100px);
-
-  font-weight:
-    500;
-
-  line-height:
-    .85;
-
-  letter-spacing:
-    -.075em;
-
-}
-
-.collection-note {
-
-  max-width:
-    250px;
-
-  font-size:
-    9px;
-
-  line-height:
-    1.8;
-
-  letter-spacing:
-    .15em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    #817d73;
-
-}
-
-/* =========================================================
-   PRODUCTS
-========================================================= */
-
-.products {
-
-  position:
-    relative;
-
-  z-index:
-    3;
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1fr 1fr 1fr;
-
-  gap:
-    18px;
-
-}
-
-.product-card {
-
-  position:
-    relative;
-
-  min-height:
-    590px;
-
-  overflow:
-    hidden;
-
-  border:
-    1px solid rgba(255,255,255,.13);
-
-  background:
-    rgba(255,255,255,.055);
-
-  backdrop-filter:
-    blur(15px);
-
-  -webkit-backdrop-filter:
-    blur(15px);
-
-  cursor:
-    pointer;
-
-  transition:
-    transform .65s var(--ease),
-    box-shadow .65s ease,
-    border-color .5s ease;
-
-}
-
-.product-card:nth-child(2) {
-
-  margin-top:
-    90px;
-
-}
-
-.product-card:nth-child(3) {
-
-  margin-top:
-    180px;
-
-}
-
-.product-card:hover {
-
-  transform:
-    translateY(-14px);
-
-  border-color:
-    rgba(255,255,255,.3);
-
-  box-shadow:
-    0 40px 100px rgba(0,0,0,.45);
-
-}
-
-.product-image {
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  object-fit:
-    cover;
-
-  transition:
-    transform 1s var(--ease),
-    filter .8s ease;
-
-}
-
-.product-card:hover
-.product-image {
-
-  transform:
-    scale(1.065);
-
-  filter:
-    saturate(1.08);
-
-}
-
-.product-overlay {
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.04),
-      rgba(0,0,0,.72)
-    );
-
-}
-
-.product-glass {
-
-  position:
-    absolute;
-
-  z-index:
-    4;
-
-  left:
-    17px;
-
-  right:
-    17px;
-
-  bottom:
-    17px;
-
-  padding:
-    20px;
-
-  border:
-    1px solid rgba(255,255,255,.18);
-
-  background:
-    rgba(15,15,13,.38);
-
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
-
-}
-
-.product-number {
-
-  font-size:
-    7px;
-
-  letter-spacing:
-    .28em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    rgba(255,255,255,.5);
-
-}
-
-.product-name {
-
-  margin-top:
-    10px;
-
-  font-size:
-    18px;
-
-  font-weight:
-    500;
-
-}
-
-.product-row {
-
-  margin-top:
-    15px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-
-}
-
-.product-price {
-
-  font-size:
-    12px;
-
-  color:
-    #d2b47d;
-
-}
-
-.product-view {
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .2em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    rgba(255,255,255,.68);
-
-}
-
-.product-arrow {
-
-  position:
-    absolute;
-
-  z-index:
-    5;
-
-  top:
-    18px;
-
-  right:
-    18px;
-
-  width:
-    42px;
-
-  height:
-    42px;
-
-  display:
-    grid;
-
-  place-items:
-    cen
-  ===================================== */
-
-max-width: 800px {
-
-  .nav {
-
-    height:
-      64px;
-
-    padding:
-      0 16px;
-
-  }
-
-  .logo {
-
-    font-size:
-      27px;
-
-  }
-
-  .nav-links {
-
-    gap:
-      11px;
-
-  }
-
-  .nav-links a {
-
-    font-size:
-      6px;
-
-    letter-spacing:
-      .11em;
-
-  }
-
-  /* HERO */
-
-  .hero {
-
-    min-height:
-      100svh;
-
-    height:
-      100svh;
-
-  }
-
-  .hero-bg {
-
-    object-position:
-      58% center;
-
-  }
-
-  .hero-center {
-
-    padding:
-      80px 18px;
-
-  }
-
-  .hero-label {
-
-    font-size:
-      7px;
-
-    letter-spacing:
-      .25em;
-
-  }
-
-  .hero-logo {
-
-    width:
-      100%;
-
-    font-size:
-      clamp(62px,18vw,100px);
-
-    white-space:
-      normal;
-
-    line-height:
-      .78;
-
-  }
-
-  .hero-description {
-
-    max-width:
-      290px;
-
-    margin-top:
-      28px;
-
-    font-size:
-      8px;
-
-    line-height:
-      1.8;
-
-  }
-
-  .hero-bottom {
-
-    left:
-      16px;
-
-    right:
-      16px;
-
-    bottom:
-      20px;
-
-    font-size:
-      6px;
-
-  }
-
-  /* HIDE ART CARDS ON SMALL SCREENS */
-
-  .art-card {
-
-    opacity:
-      .24;
-
-    transform:
-      scale(.68);
-
-  }
-
-  .art-one {
-
-    left:
-      -35px;
-
-    top:
-      19%;
-
-  }
-
-  .art-two {
-
-    right:
-      -35px;
-
-    top:
-      19%;
-
-  }
-
-  .art-three {
-
-    display:
-      none;
-
-  }
-
-  /* INTRO */
-
-  .intro {
-
-    padding:
-      90px 24px;
-
-  }
-
-  .intro-grid {
-
-    display:
-      block;
-
-  }
-
-  .intro-title {
-
-    font-size:
-      clamp(42px,12vw,62px);
-
-  }
-
-  .intro-copy {
-
-    margin-top:
-      50px;
-
-    font-size:
-      13px;
-
-    line-height:
-      1.85;
-
-  }
-
-  /* COLLECTION */
-
-  .collection {
-
-    padding:
-      90px 16px
-      105px;
-
-  }
-
-  .collection-header {
-
-    display:
-      block;
-
-    margin-bottom:
-      38px;
-
-  }
-
-  .collection-title {
-
-    font-size:
-      54px;
-
-  }
-
-  .collection-note {
-
-    margin-top:
-      20px;
-
-  }
-
-  .products {
-
-    display:
-      grid;
-
-    grid-template-columns:
-      1fr;
-
-    gap:
-      12px;
-
-  }
-
-  .product-card {
-
-    min-height:
-      510px;
-
-    margin:
-      0 !important;
-
-  }
-
-  .product-glass {
-
-    left:
-      12px;
-
-    right:
-      12px;
-
-    bottom:
-      12px;
-
-    padding:
-      17px;
-
-  }
-
-  .product-name {
-
-    font-size:
-      16px;
-
-  }
-
-  /* ART SECTION */
-
-  .art-section {
-
-    min-height:
-      900px;
-
-  }
-
-  .art-main {
-
-    width:
-      68vw;
-
-    height:
-      82vw;
-
-    top:
-      54%;
-
-  }
-
-  .art-caption {
-
-    left:
-      24px;
-
-    top:
-      11%;
-
-    transform:
-      none;
-
-  }
-
-  .art-caption h2 {
-
-    font-size:
-      50px;
-
-  }
-
-  .art-caption p {
-
-    margin-top:
-      20px;
-
-    max-width:
-      290px;
-
-  }
-
-  .art-small {
-
-    width:
-      105px;
-
-    height:
-      140px;
-
-  }
-
-  .art-small-one {
-
-    right:
-      3%;
-
-    top:
-      30%;
-
-  }
-
-  .art-small-two {
-
-    right:
-      4%;
-
-    bottom:
-      8%;
-
-  }
-
-  /* STATEMENT */
-
-  .statement {
-
-    padding:
-      95px 24px
-      105px;
-
-  }
-
-  .statement-title {
-
-    font-size:
-      clamp(55px,14vw,90px);
-
-  }
-
-  .statement-bottom {
-
-    display:
-      block;
-
-    margin-top:
-      50px;
-
-  }
-
-  .statement-bottom div + div {
-
-    margin-top:
-      25px;
-
-  }
-
-  /* FOOTER */
-
-  .footer {
-
-    padding:
-      65px 20px
-      25px;
-
-  }
-
-  .footer-top {
-
-    display:
-      block;
-
-    padding-bottom:
-      55px;
-
-  }
-
-  .footer-logo {
-
-    font-size:
-      75px;
-
-  }
-
-  .footer-links {
-
-    margin-top:
-      45px;
-
-  }
-
-  .footer-bottom {
-
-    display:
-      block;
-
-    line-height:
-      1.8;
-
-  }
-
-  .footer-bottom div + div {
-
-    margin-top:
-      8px;
-
-  }
-
-  /* PRODUCT PAGE */
-
-  .product-nav {
-
-    height:
-      64px;
-
-    padding:
-      0 16px;
-
-  }
-
-  .product-logo {
-
-    font-size:
-      27px;
-
-  }
-
-  .product-back {
-
-    font-size:
-      6px;
-
-  }
-
-  .product-layout {
-
-    display:
-      block;
-
-    padding:
-      90px 12px
-      70px;
-
-  }
-
-  .product-main {
-
-    aspect-ratio:
-      4 / 5;
-
-  }
-
-  .product-art {
-
-    aspect-ratio:
-      4 / 5;
-
-  }
-
-  .product-info-page {
-
-    position:
-      static;
-
-    padding:
-      55px 10px
-      20px;
-
-  }
-
-  .product-title-page
-  {
-
-    font-size:
-      49px;
-
-  }
-
-  .product-description-page {
-
-    font-size:
-      13px;
-
-  }
-
-  .buy {
-
-    height:
-      58px;
-
-  }
-
-}
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-max-width: 380px {
-
-  .nav-links {
-
-    gap:
-      7px;
-
-  }
-
-  .nav-links a {
-
-    font-size:
-      5.5px;
-
-  }
-
-  .hero-logo {
-
-    font-size:
-      62px;
-
-  }
-
-  .product-card {
-
-    min-height:
-      450px;
-
-  }
-
-}
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes heroScale {
-
-  from {
-    transform:
-      scale(1);
-  }
-
-  to {
-    transform:
-      scale(1.07);
-  }
-
-}
-
-@keyframes glowMove {
-
-  from {
-
-    transform:
-      translate(-55%,-48%)
-      scale(.9);
-
-  }
-
-  to {
-
-    transform:
-      translate(-43%,-52%)
-      scale(1.12);
-
-  }
-
-}
-
-@keyframes logoAppear {
-
-  from {
-
-    opacity:
-      0;
-
-    transform:
-      translateY(30px)
-      scale(.96);
-
-    filter:
-      blur(8px);
-
-  }
-
-  to {
-
-    opacity:
-      1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-    filter:
-      blur(0);
-
-  }
-
-}
-
-@keyframes fadeUp {
-
-  from {
-
-    opacity:
-      0;
-
-    transform:
-      translateY(20px);
-
-  }
-
-  to {
-
-    opacity:
-      1;
-
-    transform:
-      translateY(0);
-
-  }
-
-}
-
-@keyframes floatingCard {
-
-  0% {
-
-    margin-top:
-      0;
-
-  }
-
-  50% {
-
-    margin-top:
-      -16px;
-
-  }
-
-  100% {
-
-    margin-top:
-      0;
-
-  }
-
-}
-
-@keyframes productAppear {
-
-  from {
-
-    opacity:
-      0;
-
-    transform:
-      scale(1.04);
-
-  }
-
-  to {
-
-    opacity:
-      1;
-
-    transform:
-      scale(1);
-
-  }
-
+    linear-gradient(90deg,rgba(9,9,8,.82),rgba(9,9,8,.25)),
+    linear-gradient(0deg,rgba(9,9,8,.85),transparent 60%),
+    url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2200&q=90") center/cover;
 }
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-prefers-reduced-motion: reduce {
-
-  *,
-  *::before,
-  *::after {
 
-    animation:
-      none !important;
-
-    transition:
-      none !important;
-
-    scroll-behavior:
-      auto !important;
-
-  }
-
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 72% 40%,rgba(185,162,123,.18),transparent 28%);
+  pointer-events:none;
 }
-
-</style>
-
-</head>
-
-<body>
-
-<div class="noise"></div>
-
-<!-- =======================================================
-     MAIN PAGE
-======================================================= -->
-
-<div id="mainSite">
-
-<header class="nav" id="nav">
-
-  <a
-    href="index.html"
-    class="logo"
-  >
-    Noira Reserve
-  </a>
-
-  <nav class="nav-links">
-
-    <a href="index.html">
-      Дом
-    </a>
-
-    <a href="#collection">
-      Коллекция
-    </a>
-
-    <a href="#about">
-      О бренде
-    </a>
-
-  </nav>
-
-</header>
-
-<!-- =======================================================
-     HERO
-======================================================= -->
-
-<section class="hero">
-
-  <img
-    class="hero-bg"
-    src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2400&q=90"
-    alt="Noira Reserve"
-  >
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-glow"></div>
-
-  <!-- ART CARD 1 -->
 
-  <div
-    class="art-card art-one tilt-card"
-  >
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg"
-      alt="Mona Lisa"
-    >
-
-  </div>
-
-  <!-- ART CARD 2 -->
-
-  <div
-    class="art-card art-two tilt-card"
-  >
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-      alt="The Starry Night"
-    >
-
-  </div>
-
-  <!-- ART CARD 3 -->
-
-  <div
-    class="art-card art-three tilt-card"
-  >
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/4/40/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg"
-      alt="Renaissance artwork"
-    >
-
-  </div>
-
-  <div class="hero-center">
-
-    <div class="hero-label">
-      London · Paris · Collection 01
-    </div>
-
-    <h1 class="hero-logo">
-      Noira Reserve
-    </h1>
-
-    <div class="hero-description">
-
-      A contemporary house inspired by
-      art, architecture and quiet luxury.
-
-    </div>
-
-  </div>
-
-  <div class="hero-bottom">
-
-    <span>
-      2026 / The Reserve
-    </span>
-
-    <span>
-      Scroll to discover
-    </
-      0 34px;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-
-  background:
-    rgba(15,15,13,.82);
-
-  backdrop-filter:
-    blur(22px);
-
-  -webkit-backdrop-filter:
-    blur(22px);
-
+.hero-content{
+  position:relative;
+  z-index:3;
+  max-width:900px;
 }
-
-.product-back {
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .2em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    rgba(255,255,255,.65);
 
+.hero-kicker{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:#c8c1b4;
+  margin-bottom:22px;
+  animation:rise 1s .2s both;
 }
 
-.product-logo {
-
-  font-family:
-    "Great Vibes",
-    cursive;
-
-  font-size:
-    33px;
-
+.hero-kicker:before{
+  content:"";
+  width:42px;
+  height:1px;
+  background:#c8c1b4;
 }
-
-.product-layout {
-
-  max-width:
-    1500px;
-
-  margin:
-    auto;
-
-  padding:
-    115px 5vw 110px;
-
-  display:
-    grid;
 
-  grid-template-columns:
-    minmax(0,1.15fr)
-    minmax(330px,.85fr);
-
-  gap:
-    6vw;
-
+.hero h1{
+  font-family:"Manrope",sans-serif;
+  font-weight:300;
+  font-size:clamp(60px,9vw,145px);
+  line-height:.87;
+  letter-spacing:-7px;
+  max-width:1000px;
+  animation:rise 1.2s .3s both;
 }
-
-.product-gallery {
-
-  display:
-    grid;
 
-  gap:
-    12px;
-
+.hero h1 em{
+  font-family:"Great Vibes",cursive;
+  font-size:1.08em;
+  letter-spacing:0;
+  font-weight:400;
 }
-
-.product-main {
-
-  overflow:
-    hidden;
-
-  aspect-ratio:
-    4 / 5;
 
-  background:
-    #1a1916;
-
+.hero-bottom{
+  margin-top:38px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:40px;
+  animation:rise 1.2s .5s both;
 }
-
-.product-main img {
-
-  width:
-    100%;
-
-  height:
-    100%;
 
-  object-fit:
-    cover;
-
-  animation:
-    productAppear 1s var(--ease) both;
-
+.hero-description{
+  max-width
+  border-bottom:1px solid rgba(0,0,0,.1);
 }
-
-.product-art {
-
-  position:
-    relative;
 
-  overflow:
-    hidden;
-
-  aspect-ratio:
-    16 / 9;
-
-  background:
-    #201f1b;
-
+.product-page-nav .logo{
+  color:#151513;
 }
-
-.product-art img {
-
-  width:
-    100%;
-
-  height:
-    100%;
-
-  object-fit:
-    cover;
-
-  filter:
-    sepia(.15);
 
-  transition:
-    transform 1s ease;
-
+.back-link{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#44413b;
 }
-
-.product-art:hover img {
 
-  transform:
-    scale(1.04);
-
+.product-layout{
+  max-width:1400px;
+  margin:0 auto;
+  padding:50px 5vw 100px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:7vw;
 }
-
-.product-art::after {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  background:
-    linear-gradient(
-      transparent,
-      rgba(0,0,0,.6)
-    );
 
+.product-main-image{
+  height:750px;
+  overflow:hidden;
+  background:#d6d1c7;
 }
-
-.product-art-label {
-
-  position:
-    absolute;
-
-  z-index:
-    2;
-
-  left:
-    25px;
-
-  bottom:
-    22px;
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .25em;
-
-  text-transform:
-    uppercase;
 
-  color:
-    rgba(255,255,255,.75);
-
+.product-main-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
-
-.product-info-page {
-
-  position:
-    sticky;
-
-  top:
-    110px;
 
-  padding-top:
-    15px;
-
+.product-info{
+  padding:30px 0;
 }
-
-.product-small {
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .3em;
 
-  text-transform:
-    uppercase;
-
-  color:
-    #77736b;
-
+.product-info-category{
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:#777169;
 }
-
-.product-title-page {
-
-  margin-top:
-    30px;
-
-  font-family:
-    "Manrope",
-    sans-serif;
-
-  font-size:
-    clamp(48px,5vw,80px);
-
-  font-weight:
-    500;
-
-  line-height:
-    .88;
 
-  letter-spacing:
-    -.07em;
-
+.product-info h1{
+  font-size:clamp(45px,6vw,90px);
+  line-height:.88;
+  letter-spacing:-5px;
+  font-weight:300;
+  margin-top:20px;
 }
-
-.product-price-page {
-
-  margin-top:
-    28px;
-
-  font-size:
-    16px;
 
-  color:
-    #d0ae70;
-
+.product-info .price{
+  font-size:18px;
+  margin-top:25px;
 }
-
-.product-description-page {
-
-  max-width:
-    470px;
-
-  margin-top:
-    35px;
 
-  font-size:
-    13px;
-
-  line-height:
-    1.9;
-
-  color:
-    #a29d94;
-
+.product-description{
+  margin-top:35px;
+  max-width:470px;
+  color:#59554e;
+  line-height:1.8;
+  font-size:13px;
 }
-
-.product-line {
 
-  height:
-    1px;
-
-  margin:
-    40px 0;
-
-  background:
-    rgba(255,255,255,.12);
-
+.sizes{
+  margin-top:45px;
 }
-
-.size-label {
 
-  margin-bottom:
-    14px;
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .25em;
-
-  text-transform:
-    uppercase;
-
-  color:
-    #77736b;
-
+.sizes-title{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  margin-bottom:14px;
 }
-
-.sizes {
-
-  display:
-    flex;
-
-  flex-wrap:
-    wrap;
 
-  gap:
-    7px;
-
+.size-row{
+  display:flex;
+  gap:8px;
 }
-
-.size {
-
-  width:
-    54px;
-
-  height:
-    46px;
-
-  border:
-    1px solid rgba(255,255,255,.18);
-
-  background:
-    transparent;
-
-  color:
-    white;
-
-  cursor:
-    pointer;
-
-  transition:
-    background .3s ease,
-    color .3s ease;
 
+.size{
+  width:55px;
+  height:48px;
+  border:1px solid rgba(0,0,0,.2);
+  background:transparent;
+  cursor:pointer;
+  transition:.3s;
 }
 
 .size:hover,
-.size.active {
-
-  background:
-    white;
-
-  color:
-    black;
-
+.size.selected{
+  background:#151513;
+  color:white;
 }
 
-.buy {
-
-  position:
-    relative;
-
-  width:
-    100%;
-
-  height:
-    62px;
-
-  margin-top:
-    38px;
-
-  border:
-    none;
-
-  background:
-    white;
-
-  color:
-    black;
-
-  cursor:
-    pointer;
-
-  overflow:
-    hidden;
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .3em;
-
-  text-transform:
-    uppercase;
-
+.buy-button{
+  margin-top:25px;
+  width:100%;
+  border:0;
+  background:#151513;
+  color:white;
+  padding:19px;
+  cursor:pointer;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  transition:.4s;
 }
 
-.buy::before {
-
-  content:
-    "";
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  background:
-    #c6a56b;
-
-  transform:
-    translateX(-100%);
-
-  transition:
-    transform .5s var(--ease);
-
+.buy-button:hover{
+  transform:translateY(-3px);
+  background:#292823;
 }
 
-.buy:hover::before {
-
-  transform:
-    translateX(0);
-
+.specs{
+  margin-top:50px;
+  border-top:1px solid rgba(0,0,0,.15);
 }
 
-.buy span {
-
-  position:
-    relative;
-
-  z-index:
-    2;
-
+.spec{
+  display:flex;
+  justify-content:space-between;
+  padding:17px 0;
+  border-bottom:1px solid rgba(0,0,0,.12);
+  font-size:11px;
 }
 
-.meta {
-
-  margin-top:
-    35px;
-
-  display:
-    grid;
-
-  gap:
-    13px;
-
+.spec span:first-child{
+  color:#777169;
 }
 
-.meta-row {
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  gap:
-    20px;
-
-  padding-bottom:
-    12px;
-
-  border-bottom:
-    1px solid rgba(255,255,255,.08);
-
-  font-size:
-    8px;
-
-  color:
-    #77736b;
-
+.product-art{
+  margin-top:40px;
+  height:300px;
+  overflow:hidden;
 }
 
-/* =========================================================
+.product-art img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(.65);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes rise{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s var(--ease);
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================
    MOBILE
-====================
-  iv class="art-caption">
+========================= */
 
-    <div class="kicker">
-      Art / Inspiration
-    </div>
+max-width:800px{
+
+  .nav{
+    height:70px;
+    padding:0 20px;
+  }
+
+  .logo{
+    font-size:34px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-small{
+    font-size:8px;
+  }
+
+  .hero{
+    min-height:100svh;
+    padding:0 22px 55px;
+    background-position:60% center;
+  }
+
+  .hero h1{
+    font-size:17vw;
+    letter-spacing:-3px;
+  }
+
+  .hero-bottom{
+    display:block;
+  }
+
+  .hero-description{
+    font-size:12px;
+    max-width:320px;
+  }
+
+  .hero-button{
+    display:inline-block;
+    margin-top:28px;
+  }
+
+  .hero-number{
+    display:none;
+  }
+
+  .intro{
+    padding:90px 25px;
+  }
+
+  .intro-grid{
+    display:block;
+  }
+
+  .intro h2{
+    font-size:48px;
+    letter-spacing:-2px;
+  }
+
+  .intro-copy{
+    margin-top:45px;
+    font-size:14px;
+  }
+
+  .art-strip{
+    padding:75px 20px;
+  }
+
+  .art-header{
+    display:block;
+  }
+
+  .art-header h2{
+    font-size:50px;
+    margin-bottom:25px;
+  }
+
+  .art-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    min-height:auto;
+  }
+
+  .art-card{
+    height:390px;
+    min-height:390px;
+  }
+
+  .collection{
+    padding:90px 20px;
+  }
+
+  .collection-top{
+    display:block;
+  }
+
+  .collection-title{
+    font-size:55px;
+    letter-spacing:-3px;
+  }
+
+  .collection-title span{
+    margin-left:45px;
+  }
+
+  .collection-note{
+    margin-top:35px;
+  }
+
+  .products-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:45px;
+  }
+
+  .product-card{
+    min-height:560px;
+  }
+
+  .philosophy{
+    padding:110px 25px;
+  }
+
+  .philosophy h2{
+    font-size:63px;
+    letter-spacing:-3px;
+  }
+
+  .philosophy-text{
+    margin-top:45px;
+    font-size:13px;
+  }
+
+  .cities{
+    px;
+  color:#c0bbb1;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.hero-button{
+  border:1px solid rgba(255,255,255,.45);
+  padding:17px 28px;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  transition:.4s var(--ease);
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(10px);
+}
+
+.hero-button:hover{
+  background:#f1eee7;
+  color:#111;
+  transform:translateY(-4px);
+}
+
+/* decorative numbers */
+
+.hero-number{
+  position:absolute;
+  right:5vw;
+  top:50%;
+  transform:translateY(-50%);
+  writing-mode:vertical-rl;
+  font-size:9px;
+  letter-spacing:5px;
+  opacity:.45;
+  z-index:3;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+  background:var(--paper);
+  color:var(--ink);
+  padding:150px 8vw;
+  position:relative;
+  overflow:hidden;
+}
+
+.intro-grid{
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:10vw;
+  align-items:start;
+}
+
+.eyebrow{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  opacity:.55;
+}
+
+.intro h2{
+  margin-top:25px;
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(38px,5vw,75px);
+  line-height:.98;
+  font-weight:300;
+  letter-spacing:-3px;
+}
+
+.intro h2 span{
+  font-family:"Great Vibes",cursive;
+  font-size:1.25em;
+}
+
+.intro-copy{
+  padding-top:20px;
+  max-width:580px;
+  font-size:16px;
+  line-height:1.9;
+  color:#4c4943;
+}
+
+.intro-copy p+p{
+  margin-top:25px;
+}
+
+.intro-signature{
+  margin-top:50px;
+  font-family:"Great Vibes",cursive;
+  font-size:48px;
+}
+
+/* =========================
+   ART STRIP
+========================= */
+
+.art-strip{
+  background:#171613;
+  padding:90px 5vw;
+  overflow:hidden;
+}
+
+.art-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:45px;
+}
+
+.art-header h2{
+  font-family:"Manrope";
+  font-weight:300;
+  font-size:clamp(35px,5vw,70px);
+  letter-spacing:-3px;
+}
+
+.art-header p{
+  max-width:280px;
+  color:#89857d;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.art-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr .8fr;
+  min-height:550px;
+  gap:16px;
+}
+
+.art-card{
+  position:relative;
+  overflow:hidden;
+  min-height:400px;
+  transform:translateY(0);
+  transition:transform .8s var(--ease);
+}
+
+.art-card:hover{
+  transform:translateY(-12px);
+}
+
+.art-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(.72) contrast(.94);
+  transition:1s var(--ease);
+}
+
+.art-card:hover img{
+  transform:scale(1.06);
+  filter:saturate(.95);
+}
+
+.art-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.75),transparent 60%);
+}
+
+.art-info{
+  position:absolute;
+  z-index:2;
+  left:25px;
+  right:25px;
+  bottom:24px;
+}
+
+.art-info small{
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.7;
+}
+
+.art-info h3{
+  font-family:"Great Vibes",cursive;
+  font-size:42px;
+  font-weight:400;
+  margin-top:4px;
+}
+
+/* =========================
+   COLLECTION
+========================= */
+
+.collection{
+  background:#e7e2d8;
+  color:#151513;
+  padding:145px 5vw;
+}
+
+.collection-top{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-bottom:60px;
+}
+
+.collection-title{
+  font-family:"Manrope";
+  font-size:clamp(45px,7vw,100px);
+  font-weight:300;
+  line-height:.85;
+  letter-spacing:-5px;
+}
+
+.collection-title span{
+  display:block;
+  font-family:"Great Vibes",cursive;
+  font-size:1em;
+  letter-spacing:0;
+  margin-left:80px;
+}
+
+.collection-note{
+  max-width:280px;
+  font-size:11px;
+  line-height:1.7;
+  color:#68645d;
+}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.product-card{
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
+  background:#d4d0c6;
+  min-height:620px;
+  transition:.6s var(--ease);
+}
+
+.product-card:hover{
+  transform:translateY(-8px);
+}
+
+.product-image{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:1s var(--ease);
+  filter:saturate(.7);
+}
+
+.product-card:hover .product-image img{
+  transform:scale(1.07);
+  filter:saturate(1);
+}
+  .product-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.82),transparent 65%);
+}
+
+.product-meta{
+  position:absolute;
+  z-index:3;
+  bottom:27px;
+  left:27px;
+  right:27px;
+  color:white;
+}
+
+.product-category{
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.68;
+}
+
+.product-name{
+  font-size:27px;
+  font-weight:300;
+  margin-top:8px;
+}
+
+.product-price{
+  margin-top:7px;
+  font-size:12px;
+  opacity:.8;
+}
+
+.product-arrow{
+  position:absolute;
+  right:26px;
+  bottom:27px;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.45);
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:18px;
+  transition:.4s;
+}
+
+.product-card:hover .product-arrow{
+  background:white;
+  color:#111;
+  transform:rotate(-45deg);
+}
+
+/* =========================
+   PHILOSOPHY
+========================= */
+
+.philosophy{
+  padding:170px 8vw;
+  background:#11110f;
+  position:relative;
+  overflow:hidden;
+}
+
+.philosophy:before{
+  content:"NOIRA";
+  position:absolute;
+  right:-70px;
+  top:30px;
+  font-size:22vw;
+  font-weight:600;
+  color:rgba(255,255,255,.018);
+  letter-spacing:-15px;
+  pointer-events:none;
+}
+
+.philosophy-inner{
+  max-width:1000px;
+  position:relative;
+  z-index:2;
+}
+
+.philosophy h2{
+  font-size:clamp(55px,9vw,130px);
+  font-weight:300;
+  line-height:.85;
+  letter-spacing:-7px;
+}
+
+.philosophy h2 em{
+  font-family:"Great Vibes",cursive;
+  letter-spacing:0;
+  font-weight:400;
+}
+
+.philosophy-text{
+  max-width:580px;
+  margin:55px 0 0 auto;
+  color:#9b978e;
+  line-height:1.9;
+  font-size:14px;
+}
+
+/* =========================
+   PARIS / LONDON
+========================= */
+
+.cities{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:650px;
+}
+
+.city{
+  position:relative;
+  min-height:600px;
+  display:flex;
+  align-items:flex-end;
+  padding:50px;
+  overflow:hidden;
+}
+
+.city:first-child{
+  background:
+    linear-gradient(0deg,rgba(0,0,0,.75),transparent),
+    url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1500&q=85") center/cover;
+}
+
+.city:last-child{
+  background:
+    linear-gradient(0deg,rgba(0,0,0,.78),transparent),
+    url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1500&q=85") center/cover;
+}
+
+.city-content{
+  position:relative;
+  z-index:2;
+}
+
+.city small{
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.city h3{
+  font-size:clamp(55px,7vw,105px);
+  font-weight:300;
+  letter-spacing:-5px;
+  line-height:.9;
+  margin-top:12px;
+}
+
+.city p{
+  max-width:350px;
+  font-size:12px;
+  line-height:1.8;
+  color:#ccc7bd;
+  margin-top:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#0b0b0a;
+  padding:80px 5vw 35px;
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  padding-bottom:70px;
+}
+
+.footer-logo{
+  font-family:"Great Vibes",cursive;
+  font-size:68px;
+}
+
+.footer-description{
+  max-width:320px;
+  color:#77736c;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.footer-links{
+  display:flex;
+  gap:70px;
+}
+
+.footer-column{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+}
+
+.footer-column small{
+  color:#5e5a54;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:8px;
+  margin-bottom:5px;
+}
+
+.footer-column a{
+  font-size:11px;
+  color:#a6a19a;
+  transition:.3s;
+}
+
+.footer-column a:hover{
+  color:white;
+}
+
+.footer-bottom{
+  padding-top:25px;
+  border-top:1px solid rgba(255,255,255,.09);
+  display:flex;
+  justify-content:space-between;
+  color:#55514b;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* =========================
+   PRODUCT PAGE
+========================= */
+
+.product-page{
+  min-height:100vh;
+  background:#e9e5dc;
+  color:#151513;
+  padding-top:100px;
+}
+
+.product-page-nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  height:82px;
+  padding:0 5vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(233,229,220,.9);
+  backdrop-filter:blur(18px);
+  <div class="product-meta">
+        <div class="product-category">Hoodie · Black</div>
+        <div class="product-name">Reserve Heavy Hoodie</div>
+        <div class="product-price">€120</div>
+      </div>
+
+      <div class="product-arrow">↗</div>
+
+    </a>
+
+  </div>
+
+</section>
+
+<section class="philosophy" id="philosophy">
+
+  <div class="philosophy-inner reveal">
+
+    <div class="eyebrow">04 · Philosophy</div>
 
     <h2>
-      Wear the
-      
+      Less noise.
 
-      masterpiece.
+      More <em>presence.</em>
     </h2>
 
-    <p>
-
-      Noira Reserve существует между
-      старым искусством и современной
-      городской культурой.
-
+    <p class="philosophy-text">
+      Настоящая роскошь не требует громких логотипов.
+      Она чувствуется в ткани, посадке, деталях и том,
+      как человек ощущает себя внутри вещи.
+      Noira Reserve строится именно вокруг этого ощущения.
     </p>
 
   </div>
 
-  <div class="art-main">
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg"
-      alt="Mona Lisa"
-    >
-
-  </div>
-
-  <div class="art-small art-small-one">
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-      alt="Starry Night"
-    >
-
-  </div>
-
-  <div class="art-small art-small-two">
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/4/40/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg"
-      alt="Renaissance"
-    >
-
-  </div>
-
 </section>
 
-<!-- =======================================================
-     ABOUT
-======================================================= -->
+<section class="cities">
 
-<section
-  class="statement"
-  id="about"
->
+  <div class="city">
 
-  <div class="kicker">
-    The House
-  </div>
-
-  <h2 class="statement-title">
-
-    Less noise.
-    
-
-    More
-    <em>presence.</em>
-
-  </h2>
-
-  <div class="statement-bottom">
-
-    <div>
-
-      London — Paris
-      
-
-      Independent fashion house
-
+    <div class="city-content reveal">
+      <small>Origin · 48.8566° N</small>
+      <h3>Paris</h3>
+      <p>
+        Архитектура, искусство, свет и безупречное
+        чувство формы.
+      </p>
     </div>
 
-    <div>
+  </div>
 
-      Inspired by art.
-      
+  <div class="city">
 
-      Designed for the modern city.
-
+    <div class="city-content reveal">
+      <small>Spirit · 51.5074° N</small>
+      <h3>London</h3>
+      <p>
+        Контраст, характер и спокойная уверенность
+        без необходимости что-либо доказывать.
+      </p>
     </div>
 
   </div>
 
 </section>
 
-<!-- =======================================================
-     FOOTER
-======================================================= -->
-
-<footer class="footer">
+<footer>
 
   <div class="footer-top">
 
-    <div class="footer-logo">
-      Noira
+    <div>
+      <div class="footer-logo">Noira Reserve</div>
+
+      <p class="footer-description">
+        Independent European fashion house.
+        Paris attitude. London character.
+      </p>
     </div>
 
     <div class="footer-links">
 
-      <a href="index.html">
-        Home
-      </a>
+      <div class="footer-column">
+        <small>Explore</small>
+        <a href="#home">Дом</a>
+        <a href="#maison">Maison</a>
+        <a href="#collection">Collection</a>
+      </div>
 
-      <a href="#collection">
-        Collection
-      </a>
-
-      <a href="#about">
-        The House
-      </a>
-
-      <a href="mailto:hello@noirareserve.com">
-        Contact
-      </a>
+      <div class="footer-column">
+        <small>Maison</small>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#">Journal</a>
+        <a href="#">Contact</a>
+      </div>
 
     </div>
 
   </div>
 
   <div class="footer-bottom">
-
-    <div>
-      © 2026 Noira Reserve
-    </div>
-
-    <div>
-      London · Paris
-    </div>
-
+    <span>© 2026 Noira Reserve</span>
+    <span>Paris · London · Worldwide</span>
   </div>
 
 </footer>
 
 </div>
 
-<!-- =======================================================
+<!-- =====================================================
      PRODUCT PAGE
-======================================================= -->
+===================================================== -->
 
-<div id="productPage"></div>
+<div id="productPage" style="display:none;"></div>
 
 <script>
 
-/* =========================================================
-   PRODUCT DATABASE
-========================================================= */
+/* ============================================
+   PRODUCTS
+============================================ */
 
-const PRODUCTS = {
+const products = {
 
-  black: {
-
-    number:
-      "Essential / 01",
-
-    name:
-      "Noira Tee / Black",
-
-    price:
-      "€59",
-
-    image:
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1800&q=90",
-
-    art:
-      "https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg",
-
-    description:
-      "Плотная футболка свободного силуэта. Минимальный брендинг, мягкая фактура и чистая посадка. Базовая вещь Noira Reserve, созданная как самостоятельный объект гардероба.",
-
-    material:
-      "100% Premium Cotton",
-
-    fit:
-      "Relaxed",
-
-    color:
-      "Noir Black"
-
+  "tee-black":{
+    name:"Noira Essential Tee",
+    category:"T-Shirt · Black",
+    price:"€60",
+    image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1800&q=90",
+    art:"https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+    description:"Базовая футболка Noira Reserve с расслабленной посадкой. Создана как фундамент коллекции — чистая форма, плотная ткань и минимальное количество визуального шума.",
+    material:"100% premium cotton",
+    origin:"Made with Italian fabric",
+    fit:"Relaxed fit",
+    colors:"Black"
   },
 
-  ivory: {
-
-    number:
-      "Essential / 02",
-
-    name:
-      "Noira Tee / Ivory",
-
-    price:
-      "€59",
-
-    image:
-      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=90",
-
-    art:
-      "https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
-
-    description:
-      "Молочная футболка свободного силуэта. Спокойный оттенок, мягкая ткань и минимальная эстетика Noira Reserve.",
-
-    material:
-      "100% Premium Cotton",
-
-    fit:
-      "Relaxed",
-
-    color:
-      "Soft Ivory"
-
+  "hoodie-green":{
+    name:"Reserve Heavy Hoodie",
+    category:"Hoodie · Forest",
+    price:"€120",
+    image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1800&q=90",
+    art:"https://upload.wikimedia.org/wikipedia/commons/4/40/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+    description:"Объёмное худи с плотным силуэтом и мягкой внутренней стороной. Глубокий зелёный оттенок вдохновлён европейской палитрой старых интерьерных тканей.",
+    material:"80% cotton · 20% recycled polyester",
+    origin:"European fabric",
+    fit:"Oversized fit",
+    colors:"Forest Green"
   },
 
-  hoodie: {
+  "pants-blue":{
+    name:"Reserve Wide Trousers",
+    category:"Trousers · Navy",
+    price:"€110",
+    image:"https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1800&q=90",
+    art:"https://upload.wikimedia.org/wikipedia/commons/0/0a/Claude_Monet_-_Impression%2C_Sunrise_-_Mus%C3%A9e_Marmottan_Monet.jpg",
+    description:"Свободные брюки с
+  <div class="art-info">
+        <small>Claude Monet</small>
+        <h3>Impression</h3>
+      </div>
+    </div>
 
-    number:
-      "Heavyweight / 03",
+    <div class="art-card reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg" alt="Birth of Venus">
+      <div class="art-info">
+        <small>Sandro Botticelli</small>
+        <h3>Venere</h3>
+      </div>
+    </div>
 
-    name:
-      "Noira Reserve Hoodie",
+  </div>
 
-    price:
-      "€119",
+</section>
 
-    image:
-      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=90",
+<section class="collection" id="collection">
 
-    art:
-      "https://upload.wikimedia.org/wikipedia/commons/4/40/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+  <div class="collection-top reveal">
 
-    description:
-      "Тяжёлый худи свободного си
-      луэта. Плотная ткань, глубокий оттенок и минимальный дизайн создают ощущение современной городской формы.",
+    <div>
+      <div class="eyebrow">03 · Collection 001</div>
 
-    material:
-      "Heavyweight Cotton Blend",
+      <h2 class="collection-title">
+        Reserve
+        <span>Essentials</span>
+      </h2>
+    </div>
 
-    fit:
-      "Oversized",
+    <p class="collection-note">
+      Шесть базовых предметов.
+      Три цвета.
+      Один визуальный язык.
+      Коллекция создана для ежедневной формы,
+      которая не требует объяснений.
+    </p>
 
-    color:
-      "Reserve Black"
+  </div>
 
+  <div class="products-grid">
+
+    <a class="product-card reveal" href="index.html?product=tee-black">
+
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90" alt="Noira Black Tee">
+      </div>
+
+      <div class="product-overlay"></div>
+
+      <div class="product-meta">
+        <div class="product-category">T-Shirt · Black</div>
+        <div class="product-name">Noira Essential Tee</div>
+        <div class="product-price">€60</div>
+      </div>
+
+      <div class="product-arrow">↗</div>
+
+    </a>
+
+    <a class="product-card reveal" href="index.html?product=hoodie-green">
+
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=90" alt="Noira Green Hoodie">
+      </div>
+
+      <div class="product-overlay"></div>
+
+      <div class="product-meta">
+        <div class="product-category">Hoodie · Forest</div>
+        <div class="product-name">Reserve Heavy Hoodie</div>
+        <div class="product-price">€120</div>
+      </div>
+
+      <div class="product-arrow">↗</div>
+
+    </a>
+
+    <a class="product-card reveal" href="index.html?product=pants-blue">
+
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1200&q=90" alt="Noira Blue Pants">
+      </div>
+
+      <div class="product-overlay"></div>
+
+      <div class="product-meta">
+        <div class="product-category">Trousers · Navy</div>
+        <div class="product-name">Reserve Wide Trousers</div>
+        <div class="product-price">€110</div>
+      </div>
+
+      <div class="product-arrow">↗</div>
+
+    </a>
+
+    <a class="product-card reveal" href="index.html?product=tank-black">
+
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=1200&q=90" alt="Noira Black Tank">
+      </div>
+
+      <div class="product-overlay"></div>
+
+      <div class="product-meta">
+        <div class="product-category">Tank · Black</div>
+        <div class="product-name">Noira Frame Tank</div>
+        <div class="product-price">€50</div>
+      </div>
+
+      <div class="product-arrow">↗</div>
+
+    </a>
+
+    <a class="product-card reveal" href="index.html?product=tee-blue">
+
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1200&q=90" alt="Noira Blue Tee">
+      </div>
+
+      <div class="product-overlay"></div>
+
+      <div class="product-meta">
+        <div class="product-category">T-Shirt · Deep Blue</div>
+        <div class="product-name">Noira Essential Tee</div>
+        <div class="product-price">€60</div>
+      </div>
+
+      <div class="product-arrow">↗</div>
+
+    </a>
+
+    <a class="product-card reveal" href="index.html?product=hoodie-black">
+
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1200&q=90" alt="Noira Black Hoodie">
+      </div>
+
+      <div class="product-overlay"></div>
+  grid-template-columns:1fr;
   }
 
-};
-
-/* =========================================================
-   OPEN PRODUCT
-========================================================= */
-
-function openProduct(id) {
-
-  const product =
-    PRODUCTS[id];
-
-  if (!product) {
-    return;
+  .city{
+    min-height:500px;
+    padding:30px;
   }
 
-  document.getElementById("mainSite")
-    .style.display =
-    "none";
+  .city h3{
+    font-size:65px;
+  }
 
-  document.getElementById("productPage")
-    .innerHTML = `
+  footer{
+    padding:65px 25px 25px;
+  }
 
-    <div class="product-page">
+  .footer-top{
+    display:block;
+  }
 
-      <header class="product-nav">
+  .footer-logo{
+    font-size:58px;
+  }
 
-        <a
-          href="index.html#collection"
-          class="product-back"
-        >
-          ← Collection
-        </a>
+  .footer-description{
+    margin-top:20px;
+  }
 
-        <a
-          href="index.html"
-          class="product-logo"
-        >
-          Noira Reserve
-        </a>
+  .footer-links{
+    margin-top:50px;
+    gap:40px;
+  }
 
-        <span class="product-back">
-          2026 / 001
-        </span>
+  .footer-bottom{
+    display:block;
+    line-height:2;
+  }
 
-      </header>
+  .product-page{
+    padding-top:70px;
+  }
 
-      <main class="product-layout">
+  .product-page-nav{
+    height:70px;
+    padding:0 20px;
+  }
 
-        <section class="product-gallery">
+  .product-layout{
+    display:block;
+    padding:20px 20px 70px;
+  }
 
-          <div class="product-main">
+  .product-main-image{
+    height:550px;
+  }
 
-            <img
-              src="${product.image}"
-              alt="${product.name}"
-            >
+  .product-info{
+    padding:45px 0 0;
+  }
 
-          </div>
+  .product-info h1{
+    font-size:55px;
+    letter-spacing:-3px;
+  }
 
-          <div class="product-art">
+  .product-description{
+    font-size:13px;
+  }
 
-            <img
-              src="${product.art}"
-              alt="Noira Reserve artwork"
-            >
+  .product-art{
+    height:240px;
+  }
+}
 
-            <div class="product-art-label">
+max-width:380px{
 
-              Noira Reserve
-              / Art Study
+  .hero h1{
+    font-size:18vw;
+  }
 
+  .product-card{
+    min-height:500px;
+  }
+
+  .product-main-image{
+    height:460px;
+  }
+
+  .footer-links{
+    gap:25px;
+  }
+}
+
+prefers-reduced-motion:reduce{
+  *,
+  *:before,
+  *:after{
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     MAIN SITE
+===================================================== -->
+
+<div id="mainSite">
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="logo">Noira Reserve</a>
+
+  <div class="nav-links">
+    <a href="#home">Дом</a>
+    <a href="#maison">Maison</a>
+    <a href="#collection">Коллекция</a>
+    <a href="#philosophy">Философия</a>
+  </div>
+
+  <div class="nav-right">
+    <span class="nav-small">Paris · London</span>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+
+  <div class="hero-number">
+    NOIRA RESERVE · EST. 2026
+  </div>
+
+  <div class="hero-content">
+
+    <div class="hero-kicker">
+      Maison de Paris · London
+    </div>
+
+    <h1>
+      Dress
+
+      <em>your</em>
+
+      presence.
+    </h1>
+
+    <div class="hero-bottom">
+
+      <p class="hero-description">
+        Noira Reserve — независимый fashion house,
+        созданный на пересечении парижской эстетики,
+        лондонской сдержанности и современного искусства.
+      </p>
+
+      <a href="#collection" class="hero-button">
+        Смотреть коллекцию
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="intro" id="maison">
+
+  <div class="intro-grid">
+
+    <div>
+      <div class="eyebrow">01 · The Maison</div>
+
+      <h2>
+        Не следовать
+
+        <span>шуму.</span>
+      </h2>
+    </div>
+
+    <div class="intro-copy">
+
+      <p>
+        Noira Reserve создавался как современный европейский
+        fashion house с собственным характером.
+      </p>
+
+      <p>
+        Мы соединяем чистые силуэты, глубокие оттенки,
+        итальянские ткани и визуальный язык европейского
+        искусства.
+      </p>
+
+      <p>
+        Париж дал нам чувство формы.
+        Лондон — характер.
+        Искусство — способность видеть красоту
+        за пределами очевидного.
+      </p>
+
+      <div class="intro-signature">
+        Noira Reserve
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="art-strip">
+
+  <div class="art-header reveal">
+
+    <div>
+      <div class="eyebrow">02 · Art & Culture</div>
+
+      <h2>
+        Art
+
+        becomes
+        <span style="font-family:'Great Vibes';">fashion.</span>
+      </h2>
+    </div>
+
+    <p>
+      Мы не копируем прошлое.
+      Мы берём его настроение, фактуру
+      и превращаем его в современный визуальный язык.
+    </p>
+
+  </div>
+
+  <div class="art-grid">
+
+    <div class="art-card reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="Starry Night">
+      <div class="art-info">
+        <small>Vincent van Gogh</small>
+        <h3>Starry Night</h3>
+      </div>
+    </div>
+
+    <div class="art-card reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Claude_Monet_-_Impression%2C_Sunrise_-_Mus%C3%A9e_Marmottan_Monet.jpg" alt="Impression Sunrise">
+      t.material}</span>
+            </div>
+
+            <div class="spec">
+              <span>Textile</span>
+              <span>${product.origin}</span>
+            </div>
+
+            <div class="spec">
+              <span>Fit</span>
+              <span>${product.fit}</span>
+            </div>
+
+            <div class="spec">
+              <span>Color</span>
+              <span>${product.colors}</span>
+            </div>
+
+            <div class="spec">
+              <span>Collection</span>
+              <span>Reserve 001</span>
             </div>
 
           </div>
 
-        </section>
+        </div>
 
-        <aside class="product-info-page">
-
-          <div class="product-small">
-            ${product.number}
-          </div>
-
-          <h1 class="product-title-page">
-
-            ${product.name}
-
-          </h1>
-
-          <div class="product-price-page">
-
-            ${product.price}
-
-          </div>
-
-          <p class="product-description-page">
-
-            ${product.description}
-
-          </p>
-
-          <div class="product-line"></div>
-
-          <div class="size-label">
-            Select size
-          </div>
-
-          <div class="sizes">
-
-            <button class="size">
-              XS
-            </button>
-
-            <button class="size active">
-              S
-            </button>
-
-            <button class="size">
-              M
-            </button>
-
-            <button class="size">
-              L
-            </button>
-
-            <button class="size">
-              XL
-            </button>
-
-          </div>
-
-          <button
-            class="buy"
-            id="buyButton"
-          >
-
-            <span>
-              Add to reserve
-            </span>
-
-          </button>
-
-          <div class="meta">
-
-            <div class="meta-row">
-
-              <span>
-                Material
-              </span>
-
-              <span>
-                ${product.material}
-              </span>
-
-            </div>
-
-            <div class="meta-row">
-
-              <span>
-                Fit
-              </span>
-
-              <span>
-                ${product.fit}
-              </span>
-
-            </div>
-
-            <div class="meta-row">
-
-              <span>
-                Color
-              </span>
-
-              <span>
-                ${product.color}
-              </span>
-
-            </div>
-
-            <div class="meta-row">
-
-              <span>
-                Shipping
-              </span>
-
-              <span>
-                Worldwide
-              </span>
-
-            </div>
-
-          </div>
-
-        </aside>
-
-      </main>
+      </div>
 
     </div>
 
   `;
 
-  /* SIZE SELECTION */
+  window.scrollTo(0,0);
+}
 
-  const sizes =
-    document.querySelectorAll(".size");
+/* ============================================
+   SIZE
+============================================ */
 
-  sizes.forEach(
-    button => {
+function selectSize(button){
 
-      button.addEventListener(
-        "click",
-        function() {
+  document
+    .querySelectorAll(".size")
+    .forEach(item=>item.classList.remove("selected"));
 
-          sizes.forEach(
-            item =>
-              item.classList.remove("active")
-          );
-
-          this.classList.add("active");
-
-        }
-      );
-
-    }
-  );
-
-  /* BUY BUTTON */
-
-  const buyButton =
-    document.getElementById("buyButton");
-
-  if (buyButton) {
-
-    buyButton.addEventListener(
-      "click",
-      functi
-      span>
-
-  </div>
-
-</section>
-
-<!-- =======================================================
-     INTRO
-======================================================= -->
-
-<section class="intro">
-
-  <div class="intro-grid">
-
-    <div>
-
-      <div class="kicker">
-        The House / 001
-      </div>
-
-      <h2 class="intro-title">
-
-        Clothes for those
-        who don't need
-        <span>to be loud.</span>
-
-      </h2>
-
-      <div class="signature">
-        Noira
-      </div>
-
-    </div>
-
-    <div>
-
-      <p class="intro-copy">
-
-        Noira Reserve — современный fashion house,
-        вдохновлённый Лондоном, Парижем
-        и эстетикой старого искусства.
-
-        
-
-        Мы соединяем строгий городской силуэт
-        с ощущением музейной коллекции.
-
-        
-
-        Каждая вещь должна выглядеть
-        так, будто она уже имеет историю.
-
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =======================================================
-     COLLECTION
-======================================================= -->
-
-<section
-  class="collection"
-  id="collection"
->
-
-  <div class="collection-header">
-
-    <div>
-
-      <div class="kicker">
-        Collection 01
-      </div>
-
-      <h2 class="collection-title">
-        The Reserve
-      </h2>
-
-    </div>
-
-    <div class="collection-note">
-
-      Three pieces.
-      Three moods.
-      One house.
-
-    </div>
-
-  </div>
-
-  <div class="products">
-
-    <!-- PRODUCT 1 -->
-
-    <a
-      href="index.html?product=black"
-      class="product-card tilt-product"
-    >
-
-      <img
-        class="product-image"
-        src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1500&q=90"
-        alt="Noira Tee Black"
-      >
-
-      <div class="product-overlay"></div>
-
-      <div class="product-arrow">
-        ↗
-      </div>
-
-      <div class="product-glass">
-
-        <div class="product-number">
-          Essential / 01
-        </div>
-
-        <div class="product-name">
-          Noira Tee / Black
-        </div>
-
-        <div class="product-row">
-
-          <div class="product-price">
-            €59
-          </div>
-
-          <div class="product-view">
-            View piece
-          </div>
-
-        </div>
-
-      </div>
-
-    </a>
-
-    <!-- PRODUCT 2 -->
-
-    <a
-      href="index.html?product=ivory"
-      class="product-card tilt-product"
-    >
-
-      <img
-        class="product-image"
-        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1500&q=90"
-        alt="Noira Tee Ivory"
-      >
-
-      <div class="product-overlay"></div>
-
-      <div class="product-arrow">
-        ↗
-      </div>
-
-      <div class="product-glass">
-
-        <div class="product-number">
-          Essential / 02
-        </div>
-
-        <div class="product-name">
-          Noira Tee / Ivory
-        </div>
-
-        <div class="product-row">
-
-          <div class="product-price">
-            €59
-          </div>
-
-          <div class="product-view">
-            View piece
-          </div>
-
-        </div>
-
-      </div>
-
-    </a>
-
-    <!-- PRODUCT 3 -->
-
-    <a
-      href="index.html?product=hoodie"
-      class="product-card tilt-product"
-    >
-
-      <img
-        class="product-image"
-        src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1500&q=90"
-        alt="Noira Reserve Hoodie"
-      >
-
-      <div class="product-overlay"></div>
-
-      <div class="product-arrow">
-        ↗
-      </div>
-
-      <div class="product-glass">
-
-        <div class="product-number">
-          Heavyweight / 03
-        </div>
-
-        <div class="product-name">
-          Noira Reserve Hoodie
-        </div>
-
-        <div class="product-row">
-
-          <div class="product-price">
-            €119
-          </div>
-
-          <div class="product-view">
-            View piece
-          </div>
-
-        </div>
-
-      </div>
-
-    </a>
-
-  </div>
-
-</section>
-
-<!-- =======================================================
-     ART / MONA LISA SECTION
-======================================================= -->
-
-<section class="art-section">
-
-  <d
-    on() {
-
-        const selected =
-          document.querySelector(
-            ".size.active"
-          );
-
-        const size =
-          selected
-            ? selected.textContent.trim()
-            : "S";
-
-        this.querySelector("span")
-          .textContent =
-          "Reserved · " + size;
-
-        setTimeout(
-          () => {
-
-            this.querySelector("span")
-              .textContent =
-              "Add to reserve";
-
-          },
-          1800
-        );
-
-      }
-    );
-
-  }
+  button.classList.add("selected");
 
 }
 
-/* =========================================================
-   PRODUCT URL
-========================================================= */
+/* ============================================
+   RESERVE BUTTON
+============================================ */
 
-(function() {
+function reserveProduct(button){
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
+  const selected=document.querySelector(".size.selected");
 
-  const product =
-    params.get("product");
+  if(!selected){
 
-  if (
-    product &&
-    PRODUCTS[product]
-  ) {
+    button.innerText="Select a size first";
 
-    openProduct(product);
+    setTimeout(()=>{
+      button.innerText="Add to reserve";
+    },1800);
 
+    return;
   }
 
-})();
+  button.innerText="Reserved · "+selected.innerText;
 
-/* =========================================================
+}
+
+/* ============================================
    NAV SCROLL
-========================================================= */
+============================================ */
 
-window.addEventListener(
-  "scroll",
-  function() {
+const nav=document.getElementById("nav");
 
-    const nav =
-      document.getElementById("nav");
+window.addEventListener("scroll",()=>{
 
-    if (!nav) {
-      return;
-    }
-
-    if (
-      window.scrollY > 40
-    ) {
-
-      nav.classList.add(
-        "scrolled"
-      );
-
-    } else {
-
-      nav.classList.remove(
-        "scrolled"
-      );
-
-    }
-
-  },
-  {
-    passive: true
+  if(window.scrollY>40){
+    nav.classList.add("scrolled");
+  }else{
+    nav.classList.remove("scrolled");
   }
-);
 
-/* =========================================================
-   DESKTOP 3D TILT
-========================================================= */
+});
 
-if (
-  window.matchMedia(
-    "(min-width: 801px)"
-  ).matches
-) {
+/* ============================================
+   REVEAL ANIMATIONS
+============================================ */
 
-  document
-    .querySelectorAll(
-      ".tilt-card, .tilt-product"
-    )
-    .forEach(
-      element => {
+const observer=new IntersectionObserver(
 
-        element.addEventListener(
-          "mousemove",
-          function(event) {
+  entries=>{
 
-            const rect =
-              this.getBoundingClientRect();
+    entries.forEach(entry=>{
 
-            const x =
-              event.clientX -
-              rect.left;
+      if(entry.isIntersecting){
 
-            const y =
-              event.clientY -
-              rect.top;
-
-            const centerX =
-              rect.width / 2;
-
-            const centerY =
-              rect.height / 2;
-
-            const rotateX =
-              ((y - centerY) /
-              centerY) * -4;
-
-            const rotateY =
-              ((x - centerX) /
-              centerX) * 4;
-
-            if (
-              this.classList.contains(
-                "tilt-card"
-              )
-            ) {
-
-              this.style.transform =
-                `perspective(900px)
-                 rotateX(${rotateX}deg)
-                 rotateY(${rotateY}deg)
-                 scale(1.025)`;
-
-            }
-
-            if (
-              this.classList.contains(
-                "tilt-product"
-              )
-            ) {
-
-              this.style.transform =
-                `perspective(1000px)
-                 rotateX(${rotateX * .45}deg)
-                 rotateY(${rotateY * .45}deg)
-                 translateY(-10px)`;
-
-            }
-
-          }
-        );
-
-        element.addEventListener(
-          "mouseleave",
-          function() {
-
-            if (
-              this.classList.contains(
-                "tilt-card"
-              )
-            ) {
-
-              this.style.transform =
-                "";
-
-            }
-
-            if (
-              this.classList.contains(
-                "tilt-product"
-              )
-            ) {
-
-              this.style.transform =
-                "";
-
-            }
-
-          }
-        );
+        entry.target.classList.add("visible");
 
       }
-    );
+
+    });
+
+  },
+
+  {
+    threshold:.12
+  }
+
+);
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(element=>observer.observe(element));
+
+/* ============================================
+   PRODUCT URL
+============================================ */
+
+const params=new URLSearchParams(window.location.search);
+
+const productId=params.get("product");
+
+if(productId){
+
+  showProduct(productId);
 
 }
 
 </script>
 
 </body>
-</html>
+</html>:390
+чистой линией и мягкой структурой. Созданы для сочетания с футболками, худи и классическими предметами гардероба.",
+    material:"Cotton · viscose blend",
+    origin:"Italian textile",
+    fit:"Wide fit",
+    colors:"Deep Navy"
+  },
+
+  "tank-black":{
+    name:"Noira Frame Tank",
+    category:"Tank · Black",
+    price:"€50",
+    image:"https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=1800&q=90",
+    art:"https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+    description:"Минималистичная майка с подчёркнутой линией плеча. Универсальная вещь для многослойных образов Noira Reserve.",
+    material:"100% premium cotton",
+    origin:"Italian fabric",
+    fit:"Regular fit",
+    colors:"Black"
+  },
+
+  "tee-blue":{
+    name:"Noira Essential Tee",
+    category:"T-Shirt · Deep Blue",
+    price:"€60",
+    image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1800&q=90",
+    art:"https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+    description:"Та же архитектура Essential Tee в глубоком синем оттенке. Цвет выбран как отсылка к вечернему Лондону и парижскому небу.",
+    material:"100% premium cotton",
+    origin:"Made with Italian fabric",
+    fit:"Relaxed fit",
+    colors:"Deep Blue"
+  },
+
+  "hoodie-black":{
+    name:"Reserve Heavy Hoodie",
+    category:"Hoodie · Black",
+    price:"€120",
+    image:"https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1800&q=90",
+    art:"https://upload.wikimedia.org/wikipedia/commons/4/40/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+    description:"Чёрное худи Noira Reserve с тяжёлым силуэтом. Максимально универсальный предмет коллекции с акцентом на объём и фактуру.",
+    material:"80% cotton · 20% recycled polyester",
+    origin:"European fabric",
+    fit:"Oversized fit",
+    colors:"Black"
+  }
+
+};
+
+/* ============================================
+   PRODUCT PAGE
+============================================ */
+
+function showProduct(id){
+
+  const product = products[id];
+
+  if(!product){
+    return;
+  }
+
+  document.getElementById("mainSite").style.display="none";
+
+  const page=document.getElementById("productPage");
+
+  page.style.display="block";
+
+  page.innerHTML=`
+
+    <div class="product-page">
+
+      <div class="product-page-nav">
+
+        <a href="index.html" class="logo">
+          Noira Reserve
+        </a>
+
+        <a href="index.html#collection" class="back-link">
+          ← Back to collection
+        </a>
+
+      </div>
+
+      <div class="product-layout">
+
+        <div>
+
+          <div class="product-main-image">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+
+          <div class="product-art">
+            <img src="${product.art}" alt="Art">
+          </div>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-info-category">
+            ${product.category}
+          </div>
+
+          <h1>
+            ${product.name}
+          </h1>
+
+          <div class="price">
+            ${product.price}
+          </div>
+
+          <div class="product-description">
+            ${product.description}
+          </div>
+
+          <div class="sizes">
+
+            <div class="sizes-title">
+              Select size
+            </div>
+
+            <div class="size-row">
+
+              <button class="size" onclick="selectSize(this)">XS</button>
+              <button class="size" onclick="selectSize(this)">S</button>
+              <button class="size" onclick="selectSize(this)">M</button>
+              <button class="size" onclick="selectSize(this)">L</button>
+              <button class="size" onclick="selectSize(this)">XL</button>
+
+            </div>
+
+          </div>
+
+          <button class="buy-button" onclick="reserveProduct(this)">
+            Add to reserve
+          </button>
+
+          <div class="specs">
+
+            <div class="spec">
+              <span>Material</span>
+              <span>${produc
+                
