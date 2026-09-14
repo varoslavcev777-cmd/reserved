@@ -3,1299 +3,640 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noira Reserve — Maison</title>
-
+<title>Noir Réserve — мужское ателье</title>
+<meta name="description" content="Noir Réserve — мужская одежда на стыке парижского и лондонского портновского наследия.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
-html {
-    scroll-behavior: smooth;
-}
+  :root{
+    --noir: #171310;
+    --parchment: #ECE4D0;
+    --parchment-deep: #E1D7BE;
+    --brass: #A9822F;
+    --brass-light: #C8A653;
+    --bottle: #26372B;
+    --bottle-deep: #1B2921;
+    --burgundy: #5C2430;
+    --ink: #221D17;
+    --ink-soft: #4A4239;
+    --rule: rgba(34,29,23,0.18);
+    --rule-light: rgba(236,228,208,0.22);
+  }
 
-body {
-    background: #11110f;
-    color: #f2eee7;
-    font-family: Inter, Arial, sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-}
+  *{ box-sizing: border-box; }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+  html{ scroll-behavior: smooth; }
 
-button {
-    font: inherit;
-}
+  body{
+    margin:0;
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-::selection {
-    background: #f2eee7;
-    color: #11110f;
-}
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
 
-/* =========================
-   HEADER
-========================= */
+  a{ color: inherit; text-decoration: none; }
 
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 82px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
+  img, svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ---------- Focus ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position: absolute;
+    top:0; left:0; right:0;
+    z-index: 20;
+    padding: 34px 0 0;
+  }
+
+  .nav-row{
+    display:flex;
+    align-items:center;
     justify-content: space-between;
-    padding: 0 4vw;
-    background: rgba(17,17,15,.35);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    transition: background .5s ease, height .5s ease;
-}
+  }
 
-.header.scrolled {
-    height: 68px;
-    background: rgba(17,17,15,.78);
-}
-
-.logo {
-    font-family: "Great Vibes", cursive;
-    font-size: 38px;
-    line-height: 1;
-    white-space: nowrap;
-    transition: transform .4s ease, opacity .4s ease;
-}
-
-.logo:hover {
-    transform: translateY(-2px);
-    opacity: .75;
-}
-
-.nav {
-    display: flex;
-    align-items: center;
+  .nav-row nav{
+    display:flex;
     gap: 34px;
-}
+    font-size: 17px;
+    letter-spacing: 0.03em;
+  }
 
-.nav a {
+  .nav-row nav a{
+    color: var(--parchment);
     position: relative;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .18em;
-    opacity: .72;
-    transition: opacity .3s ease;
-}
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.35s ease;
+  }
+  .nav-row nav a:hover{ border-color: var(--brass-light); }
 
-.nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -7px;
-    width: 0;
-    height: 1px;
-    background: #f2eee7;
-    transition: width .35s ease;
-}
+  .nav-mark{
+    font-family:'Pinyon Script', cursive;
+    font-size: 30px;
+    color: var(--parchment);
+  }
 
-.nav a:hover {
-    opacity: 1;
-}
+  .nav-row .lang{
+    color: var(--parchment);
+    opacity: 0.7;
+    font-size: 15px;
+  }
 
-.nav a:hover::after {
-    width: 100%;
-}
-
-.cart {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .15em;
-    opacity: .85;
-}
-
-.cart span {
-    opacity: .5;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    position: relative;
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
     min-height: 100vh;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     background:
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.72)),
-        url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2200&q=90")
-        center center / cover no-repeat;
-}
+      radial-gradient(ellipse at 50% 30%, rgba(169,130,47,0.10), transparent 60%),
+      linear-gradient(180deg, #1c1712 0%, var(--noir) 55%, #100D0A 100%);
+    overflow:hidden;
+    text-align:center;
+  }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(0,0,0,.42),
-        transparent 55%,
-        rgba(0,0,0,.18)
-    );
-    pointer-events: none;
-}
+  .hero::before{
+    /* faint engraved frame */
+    content:"";
+    position:absolute;
+    inset: 56px;
+    border: 1px solid rgba(236,228,208,0.14);
+    pointer-events:none;
+  }
 
-.hero-content {
-    position: relative;
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset: 64px;
+    border: 1px solid rgba(169,130,47,0.16);
+    pointer-events:none;
+  }
+
+  .hero-inner{
+    position:relative;
     z-index: 2;
-    width: 100%;
-    padding: 0 6vw 8vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
-}
-
-.hero-small {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .3em;
-    margin-bottom: 18px;
-    opacity: .7;
-}
-
-.hero-title {
-    font-family: "Great Vibes", cursive;
-    font-size: clamp(65px, 10vw, 145px);
-    font-weight: 400;
-    line-height: .82;
-    letter-spacing: -.02em;
-}
-
-.hero-description {
-    width: 280px;
-    font-size: 12px;
-    line-height: 1.8;
-    color: rgba(242,238,231,.72);
-}
-
-/* =========================
-   GENERAL
-========================= */
-
-.section {
-    position: relative;
-    padding: 140px 6vw;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 30px;
-    margin-bottom: 65px;
-}
-
-.eyebrow {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .3em;
-    opacity: .45;
-    margin-bottom: 16px;
-}
-
-.section-title {
-    font-size: clamp(38px, 5vw, 76px);
-    font-weight: 300;
-    line-height: .95;
-    letter-spacing: -
-   5em;
-}
-
-.section-copy {
-    max-width: 330px;
-    color: rgba(242,238,231,.58);
-    font-size: 12px;
-    line-height: 1.9;
-}
-
-/* =========================
-   MAISON
-========================= */
-
-.maison {
-    background: #e8e0d4;
-    color: #171614;
-}
-
-.maison .eyebrow {
-    opacity: .5;
-}
-
-.maison-grid {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 8vw;
-    align-items: center;
-}
-
-.maison-image {
-    height: 680px;
-    overflow: hidden;
-    position: relative;
-}
-
-.maison-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
-}
-
-.maison-image:hover img {
-    transform: scale(1.045);
-}
-
-.maison-text {
-    max-width: 500px;
-}
-
-.maison-text h3 {
-    font-family: "Great Vibes", cursive;
-    font-size: 68px;
-    font-weight: 400;
-    margin-bottom: 28px;
-}
-
-.maison-text p {
-    font-size: 14px;
-    line-height: 2;
-    color: rgba(23,22,20,.65);
-    margin-bottom: 22px;
-}
-
-/* =========================
-   ART
-========================= */
-
-.art {
-    background: #171714;
-}
-
-.art-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr 1fr;
-    gap: 18px;
-    align-items: stretch;
-}
-
-.art-card {
-    position: relative;
-    height: 520px;
-    overflow: hidden;
-}
-
-.art-card.large {
-    height: 620px;
-}
-
-.art-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1s cubic-bezier(.2,.7,.2,1);
-}
-
-.art-card:hover img {
-    transform: scale(1.06);
-}
-
-.art-overlay {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 30px;
-    background: linear-gradient(transparent, rgba(0,0,0,.7));
-}
-
-.art-overlay span {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    opacity: .65;
-}
-
-/* =========================
-   COLLECTION
-========================= */
-
-.collection {
-    background: #f0ece5;
-    color: #151412;
-}
-
-.collection .section-copy {
-    color: rgba(21,20,18,.58);
-}
-
-.products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
-
-.product {
-    display: block;
-    cursor: pointer;
-}
-
-.product-image {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: #ddd7cc;
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition:
-        transform .8s cubic-bezier(.2,.7,.2,1),
-        filter .8s ease;
-}
-
-.product:hover .product-image img {
-    transform: scale(1.045);
-}
-
-.product-info {
-    padding: 18px 2px 30px;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.product-name {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: .15em;
-}
-
-.product-price {
-    font-size: 12px;
-    opacity: .55;
-    white-space: nowrap;
-}
-
-.product-meta {
-    margin-top: 8px;
-    font-size: 10px;
-    opacity: .45;
-}
-
-/* =========================
-   PHILOSOPHY
-========================= */
-
-.philosophy {
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    background:
-        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.7)),
-        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=2200&q=90")
-        center / cover no-repeat;
-}
-
-.philosophy-inner {
-    max-width: 850px;
-}
-
-.philosophy-title {
-    font-family: "Great Vibes", cursive;
-    font-size: clamp(65px, 9vw, 130px);
-    font-weight: 400;
-    line-height: .9;
-    margin-bottom: 35px;
-}
-
-.philosophy p {
-    max-width: 470px;
-    font-size: 13px;
-    line-height: 2;
-    color: rgba(242,238,231,.65);
-}
-
-/* =========================
-   CITIES
-========================= */
-
-.cities {
-    background: #11110f;
-}
-
-.city-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-}
-
-.city {
-    position: relative;
-    height: 580px;
-    overflow: hidden;
-}
-
-.city img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1s cubic-bezier(.2,.7,.2,1);
-}
-
-.city:hover img {
-    transform: scale(1.05);
-}
-
-.city::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(tra
-                 nsparent 40%, rgba(0,0,0,.72));
-}
-
-.city-content {
-    position: absolute;
-    z-index: 2;
-    bottom: 35px;
-    left: 35px;
-}
-
-.city-name {
-    font-size: clamp(40px, 6vw, 80px);
-    font-weight: 300;
-    letter-spacing: -.05em;
-}
-
-.city-label {
-    margin-top: 10px;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .25em;
-    opacity: .55;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-    padding: 100px 6vw 40px;
-    background: #0c0c0b;
-}
-
-.footer-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 50px;
-    padding-bottom: 100px;
-}
-
-.footer-logo {
-    font-family: "Great Vibes", cursive;
-    font-size: 76px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 70px;
-}
-
-.footer-column {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.footer-column span:first-child {
-    opacity: .35;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: .25em;
-    margin-bottom: 8px;
-}
-
-.footer-column a {
-    font-size: 11px;
-    opacity: .65;
-    transition: opacity .3s ease;
-}
-
-.footer-column a:hover {
-    opacity: 1;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,.08);
-    padding-top: 25px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: .15em;
-    opacity: .3;
-}
-
-/* =========================
-   SCROLL ANIMATION
-========================= */
-
-.reveal {
+    padding: 0 24px;
+  }
+
+  .hero-eyebrow{
+    color: var(--brass-light);
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    margin: 0 0 18px;
     opacity: 0;
-    transform: translateY(35px);
-    transition:
-        opacity .9s ease,
-        transform .9s cubic-bezier(.2,.7,.2,1);
-}
+    animation: rise 1.1s ease 0.15s forwards;
+  }
 
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+  .hero h1{
+    font-family: 'Pinyon Script', cursive;
+    font-weight: 400;
+    color: var(--parchment);
+    font-size: clamp(72px, 13vw, 170px);
+    line-height: 1;
+    margin: 0;
+    opacity: 0;
+    animation: rise 1.3s ease 0.4s forwards;
+  }
 
-/* =========================
-   MOBILE
-========================= */
+  .hero-sub{
+    max-width: 480px;
+    margin: 30px auto 0;
+    color: rgba(236,228,208,0.78);
+    font-size: 20px;
+    font-style: italic;
+    opacity: 0;
+    animation: rise 1.1s ease 0.8s forwards;
+  }
 
-max-width: 800px {
+  .hero-cta{
+    display:inline-block;
+    margin-top: 40px;
+    padding: 15px 42px;
+    border: 1px solid var(--brass);
+    color: var(--parchment);
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: rise 1.1s ease 1.05s forwards;
+  }
+  .hero-cta span{ position:relative; z-index:2; }
+  .hero-cta::before{
+    content:"";
+    position:absolute; inset:0;
+    background: var(--brass);
+    transform: translateY(101%);
+    transition: transform 0.4s cubic-bezier(.65,0,.35,1);
+    z-index:1;
+  }
+  .hero-cta:hover{ color: var(--noir); }
+  .hero-cta:hover::before{ transform: translateY(0); }
 
-    .header {
-        height: 68px;
-        padding: 0 20px;
-    }
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(16px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
 
-    .header.scrolled {
-        height: 62px;
-    }
+  .scroll-cue{
+    position:absolute;
+    bottom: 40px; left:50%;
+    transform: translateX(-50%);
+    width:1px; height: 54px;
+    background: linear-gradient(180deg, transparent, rgba(236,228,208,0.6));
+    opacity: 0;
+    animation: rise 1s ease 1.3s forwards;
+  }
 
-    .logo {
-        font-size: 31px;
-    }
+  /* ---------- Category strip ---------- */
+  .categories{
+    background: var(--parchment);
+    border-bottom: 1px solid var(--rule);
+  }
+  .cat-row{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .cat-row a{
+    padding: 26px 10px;
+    text-align:center;
+    font-size: 18px;
+    color: var(--ink-soft);
+    border-left: 1px solid var(--rule);
+    transition: color 0.3s ease, background 0.3s ease;
+  }
+  .cat-row a:first-child{ border-left:none; }
+  .cat-row a:hover{ color: var(--ink); background: var(--parchment-deep); }
 
-    .nav {
-        display: none;
-    }
+  /* ---------- Section heading ---------- */
+  .section-head{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 44px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 20px;
+  }
+  .section-head h2{
+    font-weight: 500;
+    font-size: 40px;
+    margin:0;
+  }
+  .section-head a{
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head a:hover{ color: var(--burgundy); border-color: var(--burgundy); }
 
-    .hero {
-        min-height: 100svh;
-    }
+  /* ---------- Products ---------- */
+  .products{ padding: 110px 0; }
 
-    .hero-content {
-        padding: 0 22px 42px;
-        display: block;
-    }
+  .product-grid{
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    background: var(--rule);
+  }
 
-    .hero-title {
-        font-size: 76px;
-        margin-bottom: 28px;
-    }
+  .product-card{
+    background: var(--parchment);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .product-card.feature{ grid-column: span 3; grid-row: span 2; }
+  .product-card:not(.feature){ grid-column: span 3; }
+  @media (min-width: 900px){
+    .product-card:not(.feature){ grid-column: span 3; }
+  }
 
-    .hero-description {
-        width: 100%;
-        max-width: 300px;
-    }
+  .product-img{
+    aspect-ratio: 4/5;
+    position:relative;
+    overflow:hidden;
+    background: linear-gradient(160deg, #d9cead, #c3b48c 45%, #a9822f 100%);
+  }
+  .product-card.feature .product-img{ aspect-ratio: 4/5; }
 
-    .section {
-        padding: 90px 22px;
-    }
+  .product-img::before{
+    content: attr(data-tag);
+    position:absolute;
+    top:18px; left:18px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--parchment);
+    background: rgba(23,19,16,0.55);
+    padding: 5px 12px;
+  }
 
-    .section-header {
-        display: block;
-        margin-bottom: 40px;
-    }
+  .product-img::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(115deg, rgba(23,19,16,0.05) 0 2px, transparent 2px 14px),
+      linear-gradient(200deg, rgba(23,19,16,0.06), rgba(23,19,16,0.28));
+  }
 
-    .section-copy {
-        margin-top: 25px;
-    }
+  .product-mono{ transition: filter 0.5s ease; }
+  .product-card:hover .product-img::after{
+    background:
+      repeating-linear-gradient(115deg, rgba(23,19,16,0.03) 0 2px, transparent 2px 14px),
+      linear-gradient(200deg, rgba(23,19,16,0.02), rgba(23,19,16,0.16));
+  }
 
-    .maison-grid {
-        grid-template-columns: 1fr;
-        gap: 45px;
-    }
+  .product-info{
+    padding: 22px 24px 26px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+  }
+  .product-info .cat{
+    font-size: 14px;
+    color: var(--brass);
+    font-style: italic;
+    margin: 0 0 6px;
+  }
+  .product-info h3{
+    margin: 0 0 10px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height:1.25;
+  }
+  .product-info .price{
+    font-size: 18px;
+    color: var(--ink-soft);
+  }
 
-    .maison-image {
-        height: 480px;
-    }
+  /* ---------- Maison / archive section ---------- */
+  .maison{
+    background: var(--bottle);
+    color: var(--parchment);
+    padding: 120px 0;
+  }
+  .maison-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items:center;
+  }
+  .maison-text .kicker{
+    font-style: italic;
+    color: var(--brass-light);
+    font-size: 18px;
+    margin: 0 0 18px;
+  }
+  .maison-text h2{
+    font-weight:500;
+    font-size: 38px;
+    line-height:1.2;
+    margin: 0 0 26px;
+    max-width: 420px;
+  }
+  .maison-text p{
+    color: rgba(236,228,208,0.8);
+    max-width: 440px;
+    font-size: 19px;
+  }
+  .maison-text p + p{ margin-top: 16px; }
 
-    .maison-text h3 {
-        font-size: 58px;
-    }
+  .maison-frame{
+    display:flex;
+    justify-content:center;
+  }
+  .maison-frame svg{ width: 100%; max-width: 420px; height:auto; }
 
-    .art-grid {
-        grid-template-columns: 1fr;
-    }
+  /* ---------- Newsletter ---------- */
+  .newsletter{
+    background: var(--noir);
+    color: var(--parchment);
+    padding: 90px 0;
+    text-align:center;
+  }
+  .newsletter h2{
+    font-family:'Pinyon Script', cursive;
+    font-weight:400;
+    font-size: 52px;
+    margin: 0 0 14px;
+  }
+  .newsletter p{
+    color: rgba(236,228,208,0.7);
+    margin: 0 0 36px;
+  }
+  .newsletter form{
+    display:flex;
+    justify-content:center;
+    gap: 0;
+    max-width: 460px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(236,228,208,0.4);
+    padding-bottom: 10px;
+  }
+  .newsletter input{
+    flex:1;
+    background:transparent;
+    border:none;
+    color: var(--parchment);
+    font-family: inherit;
+    font-size: 18px;
+    padding: 8px 4px;
+  }
+  .newsletter input::placeholder{ color: rgba(236,228,208,0.45); }
+  .newsletter button{
+    background:none;
+    border:none;
+    color: var(--brass-light);
+    font-family: inherit;
+    font-style: italic;
+    font-size: 18px;
+    cursor:pointer;
+    padding: 8px 6px;
+  }
+  .newsletter button:hover{ color: var(--parchment); }
 
-    .art-card,
-    .art-card.large {
-        height: 430px;
-    }
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--parchment);
+    padding: 54px 0 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .foot-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .foot-mark{
+    font-family:'Pinyon Script', cursive;
+    font-size: 34px;
+  }
+  .foot-links{
+    display:flex;
+    gap: 60px;
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .foot-links div p{ margin: 0 0 10px; color: var(--ink); }
+  .foot-links a{ display:block; margin-bottom:6px; color: var(--ink-soft); }
+  .foot-links a:hover{ color: var(--burgundy); }
+  .foot-bottom{
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 10px;
+  }
 
-    .products {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-
-    .product-info {
-        display: block;
-        padding-bottom: 25px;
-    }
-
-    .product-price {
-        margin-top: 8px;
-    }
-
-    .philosophy {
-        min-height: 80vh;
-    }
-
-    .city-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .city {
-        height: 450px;
-    }
-
-    .footer {
-        padding: 75px 22px 30px;
-    }
-
-    .footer-top {
-        display: block;
-        padding-bottom: 65px;
-    }
-
-    .footer-logo {
-        font-size: 60px;
-        margin-bottom: 55px;
-    }
-
-    .footer-links {
-        gap: 40px;
-        flex-wrap: wrap;
-    }
-
-    .footer-bottom {
-        display: block;
-        line-height: 2;
-    }
-
-    .footer-bottom span:last-child {
-        display: block;
-        margin-top: 10px;
-    }
-}
-
-/* =========================
-   VERY SMALL PHONES
-========================= */
-
-max-width: 430px {
-
-    .hero-title {
-        font-size: 65px;
-    }
-
-    .products {
-        grid-template-columns: 1fr;
-    }
-
-    .product-image {
-        aspect-ratio: 4 / 5;
-    }
-
-    .city {
-        height: 380px;
-    }
-}
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    .wrap{ padding: 0 22px; }
+    header{ padding-top: 22px; }
+    .nav-row nav{ display:none; }
+    .cat-row{ grid-template-columns: repeat(3,1fr); }
+    .cat-row a:nth-child(3n+1){ border-left:none; }
+    .product-grid{ grid-template-columns: repeat(2,1fr); }
+    .product-card.feature{ grid-column: span 2; }
+    .product-card:not(.feature){ grid-column: span 2; }
+    .maison-grid{ grid-template-columns: 1fr; gap: 50px; }
+    .maison-text h2{ max-width:none; }
+    .section-head h2{ font-size: 30px; }
+  }
 </style>
 </head>
-
 <body>
 
-<header class="header" id="header">
-
-    <a href="#home" class="logo">Noira Reserve</a>
-
-    <nav class="nav">
-        <a href="#home">Дом</a>
-        <a href="#maison">Mais
-           on</a>
-        <a href="#art">Art</a>
-        <a href="#collection">Коллекция</a>
-        <a href="#philosophy">Философия</a>
-        <a href="#cities">Cities</a>
+<header>
+  <div class="wrap nav-row">
+    <span class="nav-mark">N·R</span>
+    <nav>
+      <a href="#products">Коллекция</a>
+      <a href="#maison">Дом</a>
+      <a href="#contact">Ателье</a>
     </nav>
-
-    <a href="#collection" class="cart">
-        Collection <span>06</span>
-    </a>
-
+    <span class="lang">RU</span>
+  </div>
 </header>
 
-<main>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Париж · Лондон</p>
+    <h1>Noir Réserve</h1>
+    <p class="hero-sub">Портновский дом на пересечении французского силуэта и английского сукна</p>
+    <a href="#products" class="hero-cta"><span>Смотреть коллекцию</span></a>
+  </div>
+  <div class="scroll-cue"></div>
+</section>
 
-<!-- HERO -->
+<nav class="categories" aria-label="Категории каталога">
+  <div class="wrap cat-row">
+    <a href="#products">Пальто</a>
+    <a href="#products">Костюмы</a>
+    <a href="#products">Пиджаки</a>
+    <a href="#products">Брюки</a>
+    <a href="#products">Обувь</a>
+  </div>
+</nav>
 
-<section class="hero" id="home">
+<section class="products wrap" id="products">
+  <div class="section-head">
+    <h2>Новая коллекция</h2>
+    <a href="#">Весь каталог</a>
+  </div>
 
-    <div class="hero-content reveal">
+  <div class="product-grid">
+    <article class="product-card feature">
+      <div class="product-img" data-tag="Новинка"></div>
+      <div class="product-info">
+        <p class="cat">Пальто</p>
+        <h3>«Мон-Руаяль», шерсть 100%</h3>
+        <p class="price">128 000 ₽</p>
+      </div>
+    </article>
 
+    <article class="product-card">
+      <div class="product-img" data-tag="Твид"></div>
+      <div class="product-info">
+        <p class="cat">Костюм-тройка</p>
+        <h3>«Сен-Жермен»</h3>
+        <p class="price">96 000 ₽</p>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img" data-tag="Двубортный"></div>
+      <div class="product-info">
+        <p class="cat">Пиджак</p>
+        <h3>«Мэйфэйр»</h3>
+        <p class="price">74 000 ₽</p>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img" data-tag="Со стрелками"></div>
+      <div class="product-info">
+        <p class="cat">Брюки</p>
+        <h3>«Виктория»</h3>
+        <p class="price">32 000 ₽</p>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img" data-tag="Габардин"></div>
+      <div class="product-info">
+        <p class="cat">Тренч</p>
+        <h3>«Ла-Манш»</h3>
+        <p class="price">89 000 ₽</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="maison" id="maison">
+  <div class="wrap maison-grid">
+    <div class="maison-text">
+      <p class="kicker">С 1998 года</p>
+      <h2>Дом, выросший из двух ателье</h2>
+      <p>Noir Réserve родился на пересечении парижского кроя и лондонской портновской школы — там, где строгость сукна Сэвил-Роу встречает лёгкость французского силуэта.</p>
+      <p>Каждая модель проходит через архив дома: эскизы, выкройки и записи мастеров, собранные за годы работы двух ателье.</p>
+    </div>
+    <div class="maison-frame">
+      <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Гравюра в виде арки с колоннами">
+        <rect x="8" y="8" width="384" height="464" fill="none" stroke="#C8A653" stroke-width="1.5"/>
+        <rect x="20" y="20" width="360" height="440" fill="none" stroke="#C8A653" stroke-width="1"/>
+        <path d="M60 440 V220 A140 140 0 0 1 340 220 V440" fill="none" stroke="#EDE6D6" stroke-width="1.4"/>
+        <line x1="60" y1="440" x2="60" y2="200" stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="340" y1="440" x2="340" y2="200" stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="40" y1="440" x2="360" y2="440" stroke="#EDE6D6" stroke-width="1.4"/>
+        <g stroke="#EDE6D6" stroke-width="0.8" opacity="0.75">
+          <line x1="80" y1="440" x2="80" y2="250"/>
+          <line x1="105" y1="440" x2="105" y2="235"/>
+          <line x1="295" y1="440" x2="295" y2="235"/>
+          <line x1="320" y1="440" x2="320" y2="250"/>
+        </g>
+        <circle cx="200" cy="150" r="46" fill="none" stroke="#C8A653" stroke-width="1.2"/>
+        <line x1="200" y1="104" x2="200" y2="70" stroke="#C8A653" stroke-width="1"/>
+        <line x1="200" y1="230" x2="200" y2="196" stroke="#C8A653" stroke-width="1"/>
+        <g opacity="0.6" stroke="#EDE6D6" stroke-width="0.6">
+          <line x1="30" y1="470" x2="370" y2="470"/>
+          <line x1="30" y1="465" x2="30" y2="475"/>
+          <line x1="370" y1="465" x2="370" y2="475"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="wrap">
+    <h2>Оставайтесь на связи</h2>
+    <p>Новые коллекции и закрытые показы — в вашей почте</p>
+    <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Спасибо';">
+      <input type="email" required placeholder="Электронная почта" aria-label="Электронная почта">
+      <button type="submit">Подписаться</button>
+    </form>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-row">
+      <span class="foot-mark">Noir Réserve</span>
+      <div class="foot-links">
         <div>
-            <div class="hero-small">
-                London · Paris · Reserve
-            </div>
-
-            <h1 class="hero-title">
-                Noira
-            </h1>
+          <p>Дом</p>
+          <a href="#maison">О доме</a>
+          <a href="#">Ателье</a>
+          <a href="#">Мастерские</a>
         </div>
-
-        <p class="hero-description">
-            Contemporary essentials shaped by European architecture,
-            classical art and the quiet language of luxury.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- MAISON -->
-
-<section class="section maison" id="maison">
-
-    <div class="section-header reveal">
-
         <div>
-            <div class="eyebrow">01 — Maison</div>
-
-            <h2 class="section-title">
-                Made for
-
-                the few.
-            </h2>
+          <p>Помощь</p>
+          <a href="#">Доставка</a>
+          <a href="#">Возврат</a>
+          <a href="#">Размерная сетка</a>
         </div>
-
-        <p class="section-copy">
-            Noira Reserve is an independent fashion concept
-            built around restrained silhouettes, premium fabrics
-            and a dialogue between modern culture and old Europe.
-        </p>
-
-    </div>
-
-    <div class="maison-grid">
-
-        <div class="maison-image reveal">
-            <img
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=90"
-                alt="Noira Reserve fashion">
-        </div>
-
-        <div class="maison-text reveal">
-
-            <h3>No ordinary uniform.</h3>
-
-            <p>
-                We believe everyday clothing should carry the same
-                attention to detail as an object of art.
-            </p>
-
-            <p>
-                Clean proportions. Dense materials. Quiet colours.
-                A wardrobe designed to remain relevant after the
-                season has disappeared.
-            </p>
-
-            <p>
-                London attitude. Parisian restraint.
-                Noira Reserve.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ART -->
-
-<section class="section art" id="art">
-
-    <div class="section-header reveal">
-
         <div>
-            <div class="eyebrow">02 — Art</div>
-
-            <h2 class="section-title">
-                Between
-
-                centuries.
-            </h2>
+          <p>Контакты</p>
+          <a href="#">Париж, 8-й округ</a>
+          <a href="#">Лондон, Мэйфэйр</a>
         </div>
-
-        <p class="section-copy">
-            Classical painting and contemporary fashion share
-            the same obsession: composition, texture and presence.
-        </p>
-
+      </div>
     </div>
-
-    <div class="art-grid">
-
-        <div class="art-card reveal">
-
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-                alt="The Starry Night">
-
-            <div class="art-overlay">
-                <span>Vincent van Gogh · 1889</span>
-            </div>
-
-        </div>
-
-        <div class="art-card large reveal">
-
-            <img
-                src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1600&q=90"
-                alt="Classical art">
-
-            <div class="art-overlay">
-                <span>European archives · Noira Reserve</span>
-            </div>
-
-        </div>
-
-        <div class="art-card reveal">
-
-            <img
-                src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1200&q=90"
-                alt="Classical painting">
-
-            <div class="art-overlay">
-                <span>Old masters · New forms</span>
-            </div>
-
-        </div>
-
+    <div class="foot-bottom">
+      <span>© 2026 Noir Réserve</span>
+      <span>Пользовательское соглашение · Конфиденциальность</span>
     </div>
-
-</section>
-
-<!-- COLLECTION -->
-
-<section class="section collection" id="collection">
-
-    <div class="section-header reveal">
-
-        <div>
-            <div class="eyebrow">03 — Collection</div>
-
-            <h2 class="section-title">
-                Reserve
-
-                essentials.
-            </h2>
-        </div>
-
-        <p class="section-
-           ault();
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    });
-
-});
-
-</script>
-
-</body>
-</html>.04
-       copy">
-            Six pieces. Three colour directions.
-            A deliberately limited wardrobe.
-        </p>
-
-    </div>
-
-    <div class="products">
-
-        <a href="#product-black-tee" class="product reveal">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=90"
-                    alt="Noira black T-shirt">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-                    <div class="product-name">Reserve Tee / Black</div>
-                    <div class="product-meta">Italian cotton · 01</div>
-                </div>
-
-                <div class="product-price">€60</div>
-
-            </div>
-
-        </a>
-
-        <a href="#product-green-hoodie" class="product reveal">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=90"
-                    alt="Noira green hoodie">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-                    <div class="product-name">Reserve Hoodie / Green</div>
-                    <div class="product-meta">Heavy cotton · 02</div>
-                </div>
-
-                <div class="product-price">€120</div>
-
-            </div>
-
-        </a>
-
-        <a href="#product-blue-pants" class="product reveal">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1200&q=90"
-                    alt="Noira blue trousers">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-                    <div class="product-name">Reserve Trousers / Blue</div>
-                    <div class="product-meta">Italian wool blend · 03</div>
-                </div>
-
-                <div class="product-price">€110</div>
-
-            </div>
-
-        </a>
-
-        <a href="#product-black-tank" class="product reveal">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=1200&q=90"
-                    alt="Noira black tank">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-                    <div class="product-name">Reserve Tank / Black</div>
-                    <div class="product-meta">Soft jersey · 04</div>
-                </div>
-
-                <div class="product-price">€50</div>
-
-            </div>
-
-        </a>
-
-        <a href="#product-blue-tee" class="product reveal">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1200&q=90"
-                    alt="Noira blue T-shirt">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-                    <div class="product-name">Reserve Tee / Blue</div>
-                    <div class="product-meta">Italian cotton · 05</div>
-                </div>
-
-                <div class="product-price">€60</div>
-
-            </div>
-
-        </a>
-
-        <a href="#product-black-hoodie" class="product reveal">
-
-            <div class="product-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1200&q=90"
-                    alt="Noira black hoodie">
-
-            </div>
-
-            <div class="product-info">
-
-                <div>
-                    <div class="product-name">Reserve Hoodie / Black</div>
-                    <div class="product-meta">Heavy cotton · 06</div>
-                </div>
-
-                <div class="product-price">€120</div>
-
-            </div>
-
-        </a>
-
-    </div>
-
-</section>
-
-<!-- PHILOSOPHY -->
-
-<section class="section philosophy" id="philosophy">
-
-    <div class="philosophy-inner reveal">
-
-        <di
-          v class="eyebrow">
-            04 — Philosophy
-        </div>
-
-        <h2 class="philosophy-title">
-            Less noise.
-
-            More presence.
-        </h2>
-
-        <p>
-            Luxury does not need to announce itself.
-            It lives in proportion, material and the way
-            a garment becomes part of its owner.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- CITIES -->
-
-<section class="section cities" id="cities">
-
-    <div class="section-header reveal">
-
-        <div>
-            <div class="eyebrow">05 — Cities</div>
-
-            <h2 class="section-title">
-                Two cities.
-
-                One reserve.
-            </h2>
-        </div>
-
-    </div>
-
-    <div class="city-grid">
-
-        <div class="city reveal">
-
-            <img
-                src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1800&q=90"
-                alt="London">
-
-            <div class="city-content">
-
-                <div class="city-name">
-                    London
-                </div>
-
-                <div class="city-label">
-                    The attitude
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="city reveal">
-
-            <img
-                src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1800&q=90"
-                alt="Paris">
-
-            <div class="city-content">
-
-                <div class="city-name">
-                    Paris
-                </div>
-
-                <div class="city-label">
-                    The restraint
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-    <div class="footer-top">
-
-        <div class="footer-logo">
-            Noira Reserve
-        </div>
-
-        <div class="footer-links">
-
-            <div class="footer-column">
-                <span>Explore</span>
-                <a href="#home">Home</a>
-                <a href="#maison">Maison</a>
-                <a href="#collection">Collection</a>
-                <a href="#philosophy">Philosophy</a>
-            </div>
-
-            <div class="footer-column">
-                <span>World</span>
-                <a href="#cities">London</a>
-                <a href="#cities">Paris</a>
-                <a href="#art">Art</a>
-            </div>
-
-            <div class="footer-column">
-                <span>Contact</span>
-                <a href="mailto:hello@noirareserve.com">Email</a>
-                <a href="#collection">Shop</a>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-
-        <span>© 2026 Noira Reserve</span>
-
-        <span>London · Paris</span>
-
-    </div>
-
+  </div>
 </footer>
 
-<script>
-
-/* =========================
-   HEADER SCROLL
-========================= */
-
-const header = document.getElementById("header");
-
-window.addEventListener("scroll", function () {
-
-    if (window.scrollY > 40) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-
-});
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const revealElements = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver(
-    function(entries) {
-
-        entries.forEach(function(entry) {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("visible");
-
-                observer.unobserve(entry.target);
-
-            }
-
-        });
-
-    },
-    {
-        threshold: 0.12
-    }
-);
-
-revealElements.forEach(function(element) {
-    observer.observe(element);
-});
-
-/* =========================
-   SMOOTH NAVIGATION
-========================= */
-
-document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-
-    link.addEventListener("click", function(event) {
-
-        const targetId = link.getAttribute("href");
-
-        if (!targetId || targetId === "#") {
-            return;
-        }
-
-        const target = document.querySelector(targetId);
-
-        if (!target) {
-            return;
-        }
-
-        event.preventDef
-       
+</body>
+</html>
